@@ -6,8 +6,15 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 //redux
 import { connect } from 'react-redux';
+import { userLogout } from '../redux/actions/usersActions';
 
 class Navbar extends Component {
+
+  handleLogout = () => {
+    console.clear();
+    this.props.userLogout();
+  }
+
   render() {
   const { authenticated } = this.props;
     return (
@@ -18,6 +25,7 @@ class Navbar extends Component {
           {
           !!authenticated ? (
             <Button 
+              onClick={this.handleLogout}
               color="inherit" 
               component={Link} 
               to="/login"
@@ -38,5 +46,9 @@ const mapStateToProps = state => ({
   authenticated: state.user.authenticated
 });
 
+const mapActionsToProps = {
+  userLogout
+}
 
-export default connect(mapStateToProps)(Navbar);
+
+export default connect(mapStateToProps,mapActionsToProps)(Navbar);
