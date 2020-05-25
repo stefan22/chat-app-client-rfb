@@ -54,7 +54,7 @@ class Signup extends Component {
   };
 
   render() {
-    console.log(this);
+    //console.log(this);
     const { classes, errors, loading } = this.props;
     const {
       user,

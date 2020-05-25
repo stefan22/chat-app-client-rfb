@@ -48,7 +48,7 @@ class Login extends Component {
   };
 
   render() {
-    console.log(this);
+    //console.log(this);
     const {
       classes,
       loading,

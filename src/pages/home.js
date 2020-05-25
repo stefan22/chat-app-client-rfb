@@ -28,7 +28,7 @@ class Home extends Component {
   }
 
   render() {
-    console.log(this);
+    //console.log(this);
     const { classes, authenticated, messages, loading, user } = this.props;
     
     return ( 
