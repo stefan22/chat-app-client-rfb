@@ -1,0 +1,28 @@
+.nav-container {
+  margin: auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+#email-helper-text,#password-helper-text {
+  color: #F44336;
+}
+
+
+/*
+*  upload image elem
+*/
+.uploadImageWrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.uploadImageWrap button {
+  flex: 0 1 20%;
+}
+.uploadImageWrap span {
+  flex: 0 1 50%;
+  line-height: 3;
+}
