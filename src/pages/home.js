@@ -26,8 +26,6 @@ class Home extends Component {
     formData.append('file',image,image.name);
     this.props.setProfileImage(formData);
 
-   
-
   }
 
   render() {

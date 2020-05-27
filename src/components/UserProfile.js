@@ -46,11 +46,6 @@ const UserProfile = ({
               alt={`user profile ${user} `}
             />
             <div className="uploadImageWrap">
-              <progress 
-                className="imageProgress"
-                value="0" max="100" id="imageUploader"
-              >0%
-              </progress>
             <input 
               hidden="hidden" 
               type="file" 
