@@ -38,5 +38,4 @@ export default {
     height: 'auto',
     verticalAlign: 'top',
   },
-  
 };

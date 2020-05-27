@@ -66,7 +66,6 @@ const UserProfile = ({
               >
               Edit Picture
               </Typography>
-          
             </div>
           </div>
 

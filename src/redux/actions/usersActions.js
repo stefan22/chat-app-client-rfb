@@ -101,16 +101,19 @@ export const setProfileImage = (formData) => (dispatch) => {
   fetch(`${baseURL}/user/image`, {
     method: 'POST',
     headers: {
-      'Content-type': 'multipart/form-data',
+      'Accept': '*/*',
       'Authorization': token,
     },
-    body: JSON.stringify(formData)
+    body: formData
   })
-  .then((res) => {
-    console.log(res);
-    return dispatch(getUserData());
+  .then(res => {
+    let response = res;
+    dispatch(getUserData());
+    return response;
+  })
+  .then((data) => {
+    console.log(data);
   })
   .catch(err => console.log(`error => ${err.message}`));
-  dispatch({ type: SET_LOADING_OFF });
 }
 
