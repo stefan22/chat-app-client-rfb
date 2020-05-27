@@ -23,8 +23,11 @@ class Home extends Component {
   handleUserProfileImage = (evt) => {
     const image = evt.target.files[0];
     const formData = new FormData();
-    formData.append('image',image,image.name);
+    formData.append('file',image,image.name);
     this.props.setProfileImage(formData);
+
+   
+
   }
 
   render() {
