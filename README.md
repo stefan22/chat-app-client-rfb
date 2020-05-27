@@ -12,7 +12,7 @@ ref=> project:google.cloud.functions./chat-app-5c91e
 
 ### completed
 - user login - profile - logout - signup w/ validation
- 
+- user profile image upload √ 
 
 
 
