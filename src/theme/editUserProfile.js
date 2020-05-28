@@ -14,9 +14,24 @@ export default  {
 			cursor: 'pointer'
 		}
 	},
+	editProfile: {
+		color: '#f44336',
+		'& h2': {
+			fontSize: '1.75rem',
+    	margin: '1rem 0 0'
+		}
+	},
 	editProfileIcon: {
 		width: '22px',
     height: '22px',
     verticalAlign: 'middle'
+	},
+	userProfileContent: {
+		background: '#F5F5F5',
+    padding: '1.5rem 1.5rem 2rem 1.5rem',
+		margin: '1rem 0'
+	},
+	userProfileActions: {
+		padding: '1rem'
 	}
 }

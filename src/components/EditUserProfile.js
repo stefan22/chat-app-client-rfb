@@ -14,6 +14,9 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import LaunchIcon from '@material-ui/icons/Launch';
 // styles
 import styles from '../theme/editUserProfile';
+// redux
+import { connect } from 'react-redux';
+import { userProfileUpdate } from '../redux/actions/usersActions';
 
 
 class EditUserProfile extends Component {
@@ -25,11 +28,11 @@ class EditUserProfile extends Component {
 	}
 
 	componentDidMount() {
-		const {bio,location,website} = this.props;
+		const {bio,location,website} = this.props.user.protected;
 		this.setState({
-			bio: bio ? bio : 'enter something about you',
+			bio: bio ? bio : 'enter a brief intro',
 			location: location ? location : 'enter your location',
-			website: website ? website : 'enter website or blog here'
+			website: website ? website : 'enter website or blog if avail'
 		})
 	}
 
@@ -62,7 +65,7 @@ class EditUserProfile extends Component {
 			website,
 		}
 		this.setState({open: false});
-		console.log(userProfile);
+		this.props.userProfileUpdate(userProfile);
 	}
 
 	render() {
@@ -70,7 +73,7 @@ class EditUserProfile extends Component {
 		const { open } = this.state;
 		const { classes } = this.props;
 		return (
-			<div>
+			<form>
 				<div className={classes.userProfileIconWrap}>
 					<LaunchIcon
 						className={classes.editProfileIcon}
@@ -88,20 +91,23 @@ class EditUserProfile extends Component {
 					<DialogTitle 
 						className={classes.editProfile}
 						id="editProfile"
-						color="primary"
+						align="center"
 					>
-						User Profile
+						Edit User Profile
 					</DialogTitle>
-					<DialogContent>
-						<DialogContentText>
-							You can make changes to your user profile here.
+					<DialogContent 
+						className={classes.userProfileContent}
+					>
+						<DialogContentText align="center">
+							Make changes to your user profile here below.
 						</DialogContentText>
 						<TextField
 							autoFocus
 							margin="dense"
 							id="userStatement"
 							name="bio"
-							label="Edit user statement"
+							value={this.state.bio}
+							label="enter a brief bio"
 							type="textarea"
 							onChange={this.handleProfileChange}
 							fullWidth
@@ -110,8 +116,9 @@ class EditUserProfile extends Component {
 							autoFocus
 							margin="dense"
 							name="location"
+							value={this.state.location}
 							id="userLocation"
-							label="Edit user location"
+							label="enter your Location"
 							type="text"
 							fullWidth
 							onChange={this.handleProfileChange}
@@ -120,26 +127,36 @@ class EditUserProfile extends Component {
 							autoFocus
 							margin="dense"
 							name="website"
+							value={this.state.website}
 							id="userWebsite"
-							label="Edit user website or blog"
+							label="enter website or blog if available"
 							type="type"
 							fullWidth
 							onChange={this.handleProfileChange}
 						/>
 					</DialogContent>
-					<DialogActions>
+					<DialogActions className={classes.userProfileActions}>
 						<Button onClick={this.handleCancel} color="primary">
 							Cancel
 						</Button>
 						<Button onClick={this.handleSubmit} color="primary">
-							Save
+							Save Changes
 						</Button>
 					</DialogActions>
       </Dialog>
-			</div>
+			</form>
 		)
 	}
 }
 
+const mapStateToProps = state => ({
+	user: state.user,
+	authenticated: state.user,
+});
 
-export default withStyles(styles)(EditUserProfile);
+const mapActionsToProps = {
+	userProfileUpdate
+}
+
+
+export default connect(mapStateToProps,mapActionsToProps)(withStyles(styles)(EditUserProfile));
