@@ -30,7 +30,7 @@ class Home extends Component {
 
   render() {
     //console.log(this);
-    const { classes, authenticated, messages, loading, user } = this.props;
+    const { classes, authenticated, loading, messages, user } = this.props;
     
     return ( 
         <Grid container>
@@ -38,7 +38,7 @@ class Home extends Component {
 
           <div className={classes.homeCards}>
           {
-            messages.length > 0 && !loading ?
+            messages.length > 0  ?
               messages.map(msg => 
               <Messages 
                 key={msg.messageId}
@@ -49,7 +49,7 @@ class Home extends Component {
               : ( <CircularProgress
                     color='primary'
                     size={40}
-                    className={classes.spinner}
+                    className={classes.homeSpinner1}
                   />          
               )
           }
@@ -59,12 +59,12 @@ class Home extends Component {
         </Grid>
         <Grid item sm={4} xs={12}>
           <div className={classes.homeRight}>
-            {!!authenticated &&
-              <UserProfile 
-                protected={user.protected}
-                handleUserProfileImage={this.handleUserProfileImage}
-              />
-            }
+            <UserProfile 
+              protected={user.protected}
+              authenticated={authenticated}
+              loading={loading}
+              handleUserProfileImage={this.handleUserProfileImage}
+            />
           </div>
         </Grid>
       </Grid>

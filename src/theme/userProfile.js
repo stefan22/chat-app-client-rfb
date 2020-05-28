@@ -1,6 +1,8 @@
 export default {
   userProfileWrapper: {
     position: 'relative',
+    minWidth: '300px',
+    minHeight: '450px'
   },
   userImage: {
     padding: '1rem 0',
@@ -23,10 +25,10 @@ export default {
   profileDetails: {
     padding: '1rem',
   },
-  spinner: {
+  profileSpinner: {
     position: 'absolute',
-    left: '50%',
     top: '15vh',
+    left: '50%'
   },
   userProfileIcon: {
     width: '28px',

@@ -69,6 +69,14 @@ class Signup extends Component {
             Signup
           </Typography>
           <form id='login' noValidate onSubmit={this.handleSubmit}>
+             {!!loading ? (
+              <CircularProgress
+                color='primary'
+                size={40}
+                className={classes.spinner}
+              />
+            ) : (
+
             <div className={classes.innerForm}>
               <TextField
                 id='user'
@@ -126,14 +134,6 @@ class Signup extends Component {
                 fullWidth
               />
 
-              {!!loading && (
-                <CircularProgress
-                  color='primary'
-                  size={40}
-                  className={classes.spinner}
-                />
-              )}
-
               <Button
                 type={'submit'}
                 variant='contained'
@@ -144,27 +144,30 @@ class Signup extends Component {
               >
                 Signup
               </Button>
-
-              {errors.loginMsg && (
-                <Typography
-                  variant='body1'
-                  className={classes.credentialsError}
-                >
-                  {errors.loginMsg} Already have an account? Click
-                  <Link to='/login' className={classes.errorsHereLink}>
-                    here
-                  </Link>
-                </Typography>
-              )}
-              {errors.regMsg && (
-                <Typography
-                  variant='body1'
-                  className={classes.credentialsError}
-                >
-                  {errors.regMsg}
-                </Typography>
-              )}
             </div>
+
+            )}
+
+            {errors.loginMsg && (
+              <Typography
+                variant='body1'
+                className={classes.credentialsError}
+              >
+                {errors.loginMsg} Already have an account? Click
+                <Link to='/login' className={classes.errorsHereLink}>
+                  here
+                </Link>
+              </Typography>
+            )}
+            {errors.regMsg && (
+              <Typography
+                variant='body1'
+                className={classes.credentialsError}
+              >
+                {errors.regMsg}
+              </Typography>
+            )}
+
           </form>
         </Grid>
       </Grid>

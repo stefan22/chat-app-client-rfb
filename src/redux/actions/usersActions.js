@@ -6,7 +6,6 @@ import {
   SET_USER,
   SET_UNAUTHENTICATED,
   SET_AUTHENTICATED,
-  //SET_PROFILE_IMAGE,
 
 } from '../types';
 
@@ -22,9 +21,6 @@ const setAuthToken = (token) => {
   axios.defaults.headers.common['Authorization'] = fbToken;
 };
 
-export const removeLoading = () => dispatch => (
-  dispatch({ type: SET_LOADING_OFF })
-);
 
 export const clearFormErrors = () => (dispatch) => (
   dispatch({ type: CLEAR_ERRORS })
@@ -32,6 +28,7 @@ export const clearFormErrors = () => (dispatch) => (
 
 // login page
 export const userLogin = (userLogin, history) => (dispatch) => {
+  dispatch({type: SET_LOADING_ON});
   axios
     .post(`${baseURL}/login`, userLogin)
     .then((response) => {
@@ -74,7 +71,7 @@ export const userSignup = (userSignup, history) => (dispatch) => {
     });
 };
 
-// getting user data | choosing to do some with fetch otherwise could get rid xtra headers
+// getting user data | avoid extra headers by stiking to axios
 export const getUserData = () => (dispatch) => {
   let token = localStorage.getItem('fbToken');
   fetch(`${baseURL}/user`, {
@@ -97,6 +94,7 @@ export const getUserData = () => (dispatch) => {
 
 // upload user profile image
 export const setProfileImage = (formData) => (dispatch) => {
+  dispatch({ type: SET_LOADING_ON });
   let token = localStorage.getItem('fbToken');
   fetch(`${baseURL}/user/image`, {
     method: 'POST',
@@ -106,14 +104,7 @@ export const setProfileImage = (formData) => (dispatch) => {
     },
     body: formData
   })
-  .then(res => {
-    let response = res;
-    dispatch(getUserData());
-    return response;
-  })
-  .then((data) => {
-    console.log(data);
-  })
+  .then(() => dispatch(getUserData()))
   .catch(err => console.log(`error => ${err.message}`));
 }
 

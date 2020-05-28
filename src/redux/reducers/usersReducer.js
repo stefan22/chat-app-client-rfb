@@ -2,7 +2,6 @@ import {
   SET_AUTHENTICATED, 
   SET_UNAUTHENTICATED, 
   SET_USER, 
-  SET_PROFILE_IMAGE,
  
 } from '../types';
 
@@ -25,15 +24,6 @@ const userReducer = (state = initialState, action) => {
 
     case SET_UNAUTHENTICATED:
       return initialState;
-
-    case SET_PROFILE_IMAGE:
-      return {
-        ...state,
-        profileImage: {
-          userImage: action.payload,
-          userImageName: action.payload.name
-        },
-      }
                                                                                 
     case SET_USER:
       return {

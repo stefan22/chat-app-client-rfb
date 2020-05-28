@@ -18,6 +18,8 @@ import styles from '../theme/userProfile';
 
 const UserProfile = ({
   classes,
+  loading,
+  authenticated,
   protected: { imageUrl, user, bio, location, website, createdAt },
   handleUserProfileImage,
 }) => {
@@ -29,13 +31,14 @@ const UserProfile = ({
 
   return (
     <div className={classes.userProfileWrapper}>
-      {!user ? (
-        <CircularProgress
-          color='primary'
-          size={40}
-          className={classes.spinner}
-        />
-      ) : (
+      {!imageUrl || !!loading ? (
+
+         <CircularProgress
+            color='primary'
+            size={40}
+            className={classes.profileSpinner}
+          /> 
+        ) : (
         <Paper className={classes.userProfile} elevation={2}>
           <div className={classes.profileImage}>
             <img
@@ -68,7 +71,6 @@ const UserProfile = ({
               </Typography>
             </div>
           </div>
-
           <div className={classes.profileDetails}>
             <Typography
               variant='h4'

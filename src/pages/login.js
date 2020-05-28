@@ -63,6 +63,15 @@ class Login extends Component {
             Login
           </Typography>
           <form id='login' noValidate onSubmit={this.handleSubmit}>
+             {!!loading ? (
+                
+              <CircularProgress
+                color='primary'
+                size={40}
+                className={classes.spinner}
+              />
+            
+            ) : (
             <div className={classes.innerForm}>
               <TextField
                 id='email'
@@ -92,15 +101,6 @@ class Login extends Component {
                 autoComplete={'password'}
                 fullWidth
               />
-
-              {!!loading && (
-                <CircularProgress
-                  color='primary'
-                  size={40}
-                  className={classes.spinner}
-                />
-              )}
-
               <Button
                 type={'submit'}
                 variant='contained'
@@ -111,19 +111,20 @@ class Login extends Component {
               >
                 Login
               </Button>
-
-              {errors.credentials && (
-                <Typography
-                  variant='body1'
-                  className={classes.credentialsError}
-                >
-                  {errors.credentials}. Don't have an account? Click
-                  <Link to='/signup' className={classes.errorsHereLink}>
-                    here
-                  </Link>
-                </Typography>
-              )}
             </div>
+            )}
+
+            {errors.credentials && (
+              <Typography
+                variant='body1'
+                className={classes.credentialsError}
+              >
+              {errors.credentials}. Don't have an account? Click
+               <Link to='/signup' className={classes.errorsHereLink}>
+                here
+               </Link>
+              </Typography>
+              )}
           </form>
         </Grid>
       </Grid>
