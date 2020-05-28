@@ -1,4 +1,5 @@
 import React from 'react';
+import EditUserProfile from './EditUserProfile';
 // matui
 import Paper from '@material-ui/core/Paper';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -84,8 +85,11 @@ const UserProfile = ({
               {!!user ? user : 'username'}
             </Typography>
             <hr />
-            <Typography variant='h5' className={classes.userInfo}>
-              {!!bio ? bio : `${user} bio`}
+
+             <EditUserProfile />
+
+            <Typography variant='body1' className={classes.userInfo}>
+              {!!bio ? bio : `${user}'s feeling lucky today`}
             </Typography>
             <Typography variant='body1' className={classes.userInfo}>
               <LocationOnIcon
