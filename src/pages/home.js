@@ -59,12 +59,14 @@ class Home extends Component {
         </Grid>
         <Grid item sm={4} xs={12}>
           <div className={classes.homeRight}>
+          {!!authenticated &&
             <UserProfile 
               protected={user.protected}
               authenticated={authenticated}
               loading={loading}
               handleUserProfileImage={this.handleUserProfileImage}
             />
+          }
           </div>
         </Grid>
       </Grid>
