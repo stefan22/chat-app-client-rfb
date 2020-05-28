@@ -4,6 +4,7 @@ ref=> project:google.cloud.functions./chat-app-5c91e
 
 
 - Building side-by-side with - __chat-app__ repo - (gc functions-backend)
+- Or run concurrently by proxy [server/client]
 - React/Redux application with Firebase Firestore && FB Storage DB, Material-UI.
 
 
@@ -11,9 +12,10 @@ ref=> project:google.cloud.functions./chat-app-5c91e
 <br /><br />
 
 ### completed
-- user login - profile - logout - signup w/ validation
- 
-
+- user login - logout - signup w/ validation √
+- show userProfile √
+- user profile image upload √ 
+- edit userProfile √
 
 
 

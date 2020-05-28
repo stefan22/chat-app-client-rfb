@@ -1,6 +1,5 @@
 import {
   SET_LOADING_ON,
-  SET_LOADING_OFF,
   SET_ERRORS,
   CLEAR_ERRORS,
   SET_USER,
@@ -10,10 +9,8 @@ import {
 } from '../types';
 
 import axios from 'axios';
-
-
+// base url
 const baseURL = 'https://europe-west1-chat-app-5c91e.cloudfunctions.net/api';
-
 
 const setAuthToken = (token) => {
   let fbToken = `Bearer ${token}`;
@@ -21,7 +18,7 @@ const setAuthToken = (token) => {
   axios.defaults.headers.common['Authorization'] = fbToken;
 };
 
-
+// login/signup @comp mounting
 export const clearFormErrors = () => (dispatch) => (
   dispatch({ type: CLEAR_ERRORS })
 )
@@ -56,14 +53,12 @@ export const userSignup = (userSignup, history) => (dispatch) => {
     .post(`${baseURL}/signup`, userSignup)
     .then((response) => {
       setAuthToken(response.data.token);
-      axios.defaults.headers.common['Authorization'] = response.data.token;
       dispatch({ type: SET_AUTHENTICATED });
       dispatch(getUserData());
       history.push('/');
     })
     .catch((err) => {
       console.log(err.response.data);
-      dispatch({ type: SET_LOADING_OFF });
       dispatch({
         type: SET_ERRORS,
         payload: err.response.data,
@@ -93,7 +88,7 @@ export const getUserData = () => (dispatch) => {
 
 
 // upload user profile image
-export const setProfileImage = (formData) => (dispatch) => {
+export const setProfileImage = formData => dispatch => {
   dispatch({ type: SET_LOADING_ON });
   let token = localStorage.getItem('fbToken');
   fetch(`${baseURL}/user/image`, {
@@ -105,6 +100,22 @@ export const setProfileImage = (formData) => (dispatch) => {
     body: formData
   })
   .then(() => dispatch(getUserData()))
-  .catch(err => console.log(`error => ${err.message}`));
+  .catch(err => console.log(err));
 }
 
+
+// update user profile
+export const userProfileUpdate = data => dispatch => {
+  dispatch({ type: SET_LOADING_ON });
+  let tkn = localStorage.getItem('fbToken');
+  fetch(`${baseURL}/user`, {
+    method: 'POST',
+    headers: {
+      'Authorization': tkn,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+  .then(() => dispatch(getUserData()))
+  .catch(err => console.log(err));
+}

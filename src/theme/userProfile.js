@@ -16,11 +16,11 @@ export default {
   },
   userInfo: {
     textAlign: 'center',
-    margin: '1.25rem 0',
+    margin: '1.15rem 0',
   },
   userHeading: {
     textAlign: 'center',
-    marginBottom: '1.5rem',
+    marginBottom: '1.75rem',
   },
   profileDetails: {
     padding: '1rem',
