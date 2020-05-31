@@ -27,6 +27,7 @@ export const SET_LOADING_OFF = 'SET_LOADING_OFF';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const SET_ERRORS = 'SET_ERRORS';
 export const SET_WARNING = 'SET_WARNING';
+export const RESET_WARNING = 'RESET_WARNING';
 
 /*
 * ref => data
