@@ -26,6 +26,7 @@ export const SET_LOADING_OFF = 'SET_LOADING_OFF';
 // errors
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const SET_ERRORS = 'SET_ERRORS';
+export const SET_WARNING = 'SET_WARNING';
 
 /*
 * ref => data
@@ -34,3 +35,6 @@ export const SET_ERRORS = 'SET_ERRORS';
 
 // messages
 export const SET_MESSAGES = 'SET_MESSAGES';
+export const CLEAR_MESSAGES = 'CLEAR_MESSAGES';
+export const SET_LIKES = 'SET_LIKES';
+export const GET_LIKES = 'GET_LIKES';
