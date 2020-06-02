@@ -1,7 +1,7 @@
 import { 
 	SET_MESSAGES, 
 	CLEAR_MESSAGES, 
-	SET_LOADING_ON 
+	SET_LOADING_ON,
 
 } from '../types';
 
@@ -42,45 +42,41 @@ export const getMessages = () => async (dispatch) => {
 };
 
 //updating messages/likes => fetch messages/update localStorage
-export const handleUpdateLikes = (messageId) => (dispatch) => {
-  let allMessages = [];
-  let isMessage = {};
-  fetch(`${baseURL}/messages`)
+export const handleUpdateLikes = (messageId) => async (dispatch, getState) => {
+  let messages;
+   if (localStorage.messages) {
+    messages = await getMessagesFromLocalStorage();
+   }
+
+  let token = localStorage.getItem('fbToken');
+  fetch(`${baseURL}/message/${messageId}/like`, {
+     method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': token,
+      },
+    })
     .then((res) => {
       return res.json();
     })
-    .then((data) => {
-      allMessages = data;
-      //update likes
-      allMessages.forEach((msg) => {
-        if (messageId === msg.messageId) {
-          msg.likeCount = Number(msg.likeCount) + 1;
-          isMessage = msg;
-          return allMessages.concat(isMessage);
+    .then(data => {
+      messages.forEach(itm => {
+        if ( itm.messageId === data.messageId) {
+          itm.likeCount = data.likeCount;
         }
-        allMessages.concat(msg);
-      });
-      // update localstorage
-      addMessagesToLocalStorage(allMessages);
+      })
       dispatch({
         type: SET_MESSAGES,
-        payload: allMessages,
+        payload: messages
       });
-    })
-    .then(() => {
-      let token = localStorage.getItem('fbToken');
-      fetch(`${baseURL}/message/${messageId}/addliked`, {
-        method: 'POST',
-        headers: {
-          Accept: '*/*',
-          'Content-Type': 'application/json',
-          Authorization: token,
-        },
-        body: JSON.stringify(isMessage),
-      });
+      addMessagesToLocalStorage(messages);
     })
     .catch((err) => {
       console.log(err);
-      dispatch({ type: CLEAR_MESSAGES });
+      //dispatch({ type: CLEAR_MESSAGES });
     });
+  
 };
+
+
+

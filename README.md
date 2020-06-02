@@ -16,10 +16,12 @@ ref=> project:google.cloud.functions./chat-app-5c91e
 - show userProfile √
 - user profile image upload √ 
 - edit userProfile √
+- user like/likeCount √
 
 
-- backend commit behind
-> a few changes coming
+
+
+> a few changes coming..
 
 
 
