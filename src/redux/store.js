@@ -11,19 +11,30 @@ const initialState = {};
 const middlewares = [ thunk ];
 
 
-const reducers = combineReducers({
+const rootReducer = combineReducers({
 	user: usersReducer,
 	messages: messagesReducer,
 	ui: uiReducer
 });
 
+const composeEnhancer =
+  typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
+    : compose;
+
+const enhancer = composeEnhancer(applyMiddleware(...middlewares))
+
 
 const store = createStore(
-	reducers,
+	rootReducer,
 	initialState, 
-	compose(applyMiddleware(...middlewares),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__())
+	enhancer
 );
+
+
+
+
+
 
 
 export default store;

@@ -7,11 +7,13 @@ import Button from '@material-ui/core/Button';
 //redux
 import { connect } from 'react-redux';
 import { userLogout } from '../redux/actions/usersActions';
+import { resetWarningMessage } from '../redux/actions/uiActions';
 
 class Navbar extends Component {
 
   handleLogout = () => {
     console.clear();
+    this.props.resetWarningMessage();
     this.props.userLogout();
   }
 
@@ -46,11 +48,12 @@ class Navbar extends Component {
 }
 
 const mapStateToProps = state => ({
-  authenticated: state.user.authenticated
+  authenticated: state.user.authenticated,
 });
 
 const mapActionsToProps = {
-  userLogout
+  userLogout,
+  resetWarningMessage
 }
 
 

@@ -140,7 +140,7 @@ const mapStateToProps = (state) => ({
 
 const mapActionsToProps = {
   userLogin,
-  clearFormErrors
+  clearFormErrors,
 };
 
 export default connect(

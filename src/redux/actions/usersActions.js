@@ -5,6 +5,7 @@ import {
   SET_USER,
   SET_UNAUTHENTICATED,
   SET_AUTHENTICATED,
+  SET_LIKES
 
 } from '../types';
 
@@ -17,6 +18,26 @@ const setAuthToken = (token) => {
   localStorage.setItem('fbToken', fbToken);
   axios.defaults.headers.common['Authorization'] = fbToken;
 };
+
+const addLikesToLocalStorage = data => {
+  let likes = [];
+  let passData = [{user:data.user, message:data.messageId}];
+  if (passData.length === 1) {
+    likes = JSON.parse(localStorage.getItem('likes'));
+    if (likes === null) {
+      localStorage.setItem('likes', JSON.stringify(passData));
+    }
+    else {
+      let allLikes = likes.concat(passData);
+      localStorage.setItem('likes', JSON.stringify(allLikes));
+    }
+  } else {//no likes
+    if (passData.length === 1) {
+      likes.push(passData);
+      localStorage.setItem('likes', JSON.stringify(likes));
+    }
+  }
+}
 
 // login/signup @comp mounting
 export const clearFormErrors = () => (dispatch) => (
@@ -66,7 +87,7 @@ export const userSignup = (userSignup, history) => (dispatch) => {
     });
 };
 
-// getting user data | avoid extra headers by stiking to axios
+// getting user data | avoid extra headers by sticking to axios
 export const getUserData = () => (dispatch) => {
   let token = localStorage.getItem('fbToken');
   fetch(`${baseURL}/user`, {
@@ -103,7 +124,6 @@ export const setProfileImage = formData => dispatch => {
   .catch(err => console.log(err));
 }
 
-
 // update user profile
 export const userProfileUpdate = data => dispatch => {
   dispatch({ type: SET_LOADING_ON });
@@ -118,4 +138,27 @@ export const userProfileUpdate = data => dispatch => {
   })
   .then(() => dispatch(getUserData()))
   .catch(err => console.log(err));
+}
+
+export const getLikedUser = (messageId) => dispatch => {
+	let token = localStorage.getItem('fbToken');
+	fetch(`${baseURL}/message/${messageId}/like`, {
+		method: 'GET',
+		headers: {
+			'Content-Type': 'application/json',
+			'Authorization': token
+		}
+	})
+	.then((response) => {
+		return response.json();
+	})
+	.then(data => {
+    if (data.error === undefined) {
+      addLikesToLocalStorage(data);
+    }
+		dispatch({
+			type: SET_LIKES,
+			payload: {messageId: data.messageId, user: data.user}
+		})
+	})
 }
