@@ -1,6 +1,7 @@
 import { 
 	SET_MESSAGES,
   CLEAR_MESSAGES,
+  SET_LIKES,
 
 } from '../types';
 
@@ -18,6 +19,11 @@ const messagesReducer = (state = initialState, action) => {
 
     case CLEAR_MESSAGES:
       return initialState;
+
+    case SET_LIKES:
+      return [
+        ...action.payload
+      ]
       
     default:
       return state;

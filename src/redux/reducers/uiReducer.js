@@ -25,15 +25,15 @@ const uiReducer = (state=initialState, action) => {
 
 		case CLEAR_ERRORS:
 			return {
+				...state,
 				loading: false,
-				warning: false,
 				errors: {},
 			
 			}
 		case SET_ERRORS:
 			return {
+				...state,
 				loading: false,
-				warning: false,
 				errors: action.payload
 			}
 
