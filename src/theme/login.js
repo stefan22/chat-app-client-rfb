@@ -1,5 +1,5 @@
 export default {
-  'loginForm': {
+  '#root-chat loginForm': {
     textAlign: 'center',
     position: 'relative',
   },
@@ -7,6 +7,9 @@ export default {
     display: 'flex',
     flexDirection: 'column',
     padding: '3rem',
+  },
+  loginTitle: {
+    fontWeight: 400
   },
   emailField: {
     margin: '2rem 0',

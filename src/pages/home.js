@@ -6,6 +6,7 @@ import WarningMessage from '../components/WarningMessage';
 // matui
 import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/core/styles/withStyles';
+import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 // redux
 import { connect } from 'react-redux';
@@ -77,7 +78,17 @@ class Home extends Component {
 
     return (
       <Grid container>
-        <Grid item sm={8} xs={12}>
+        <Grid item xs={12}>
+          <header className={classes.homeHeader}>
+            <Typography 
+                variant='h2' 
+                className={classes.homeTitle} 
+                color='primary' align='center'>
+              Messages
+            </Typography>
+          </header>
+        </Grid>
+        <Grid item sm={!!authenticated ? 8 : 12} xs={12}>
           <WarningMessage
             warning={warning}
             authenticated={authenticated}
@@ -106,7 +117,7 @@ class Home extends Component {
             )}
           </div>
         </Grid>
-        <Grid item sm={4} xs={12}>
+        <Grid item sm={!!authenticated ? 4 : 0} xs={12}>
           <div className={classes.homeRight}>
             {!!authenticated && (
               <UserProfile

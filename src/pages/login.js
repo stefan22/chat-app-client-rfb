@@ -60,7 +60,7 @@ class Login extends Component {
     return (
       <Grid className={classes.loginForm} container>
         <Grid item sm={12} xs={12}>
-          <Typography variant='h2' color='primary' align='center'>
+          <Typography variant='h2' className={classes.loginTitle} color='primary' align='center'>
             Login
           </Typography>
           <form id='login' noValidate onSubmit={this.handleSubmit}>

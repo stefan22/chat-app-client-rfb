@@ -15,3 +15,4 @@ export const setAuthToken = token => {
 
 export const getAuthToken = token =>
   localStorage.getItem(token);
+

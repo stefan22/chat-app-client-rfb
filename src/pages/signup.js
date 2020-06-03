@@ -63,12 +63,14 @@ class Signup extends Component {
       confirmPassword,
     } = this.state;
     return (
-      <Grid className={classes.loginForm} container>
+      <Grid className={classes.signupForm} container>
         <Grid item sm={12} xs={12}>
-          <Typography variant='h2' color='primary' align='center'>
+          <Typography variant='h2' 
+            className={classes.signupTitle} 
+            color='primary' align='center'>
             Signup
           </Typography>
-          <form id='login' noValidate onSubmit={this.handleSubmit}>
+          <form id='signup' noValidate onSubmit={this.handleSubmit}>
              {!!loading ? (
               <CircularProgress
                 color='primary'
@@ -79,7 +81,7 @@ class Signup extends Component {
 
             <div className={classes.innerForm}>
               <TextField
-                id='user'
+                id='userSignup'
                 className={classes.userField}
                 name='user'
                 type='text'
@@ -92,7 +94,7 @@ class Signup extends Component {
                 fullWidth
               />
               <TextField
-                id='email'
+                id='emailSignup'
                 className={classes.emailField}
                 name='email'
                 type='email'
@@ -106,7 +108,7 @@ class Signup extends Component {
                 fullWidth
               />
               <TextField
-                id='password'
+                id='passwordSignup'
                 className={classes.passwordField}
                 name='password'
                 type='password'
@@ -120,7 +122,7 @@ class Signup extends Component {
                 fullWidth
               />
               <TextField
-                id='confirmPassword'
+                id='confirmPasswordSignup'
                 className={classes.confirmPasswordField}
                 name='confirmPassword'
                 type='password'

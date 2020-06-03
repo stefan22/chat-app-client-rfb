@@ -37,6 +37,7 @@ export const getUserData = () => (dispatch) => {
       'Content-type': 'application/json',
       'Authorization': token,
     },
+    'referrer': '', mode: 'cors', cache: 'reload', redirect: 'follow'
   })
   .then(data => data.json())
   .then(res => {
@@ -102,7 +103,8 @@ export const setProfileImage = formData => dispatch => {
       'Accept': '*/*',
       'Authorization': token,
     },
-    body: formData
+    body: formData,
+    'referrer': '', mode: 'cors', cache: 'reload', redirect: 'follow'
   })
   .then(() => dispatch(getUserData()))
   .catch(err => console.log(err));
@@ -118,7 +120,8 @@ export const userProfileUpdate = data => dispatch => {
       'Authorization': tkn,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(data)
+    body: JSON.stringify(data),
+    'referrer': '', mode: 'cors', cache: 'reload', redirect: 'follow'
   })
   .then(() => dispatch(getUserData()))
   .catch(err => console.log(err));
@@ -151,7 +154,8 @@ export const getLikedUser = (messageId) => dispatch => {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json',
-			'Authorization': token
+			'Authorization': token,
+      'referrer': '', mode: 'cors', cache: 'reload', redirect: 'follow'
 		}
 	})
 	.then((response) => {

@@ -10,13 +10,12 @@ import {
 import {
   addItemsToLocalStorage, 
   getItemsFromLocalStorage, 
-  getAuthToken
+  getAuthToken,
 
 } from '../../components/helperFns';
 
 // base api
 const baseURL = 'https://europe-west1-chat-app-5c91e.cloudfunctions.net/api';
-
 
 
 
@@ -48,7 +47,6 @@ export const getMessages = () => async (dispatch) => {
 };
 
 
-
 //updating messages/likes => fetch messages/update localStorage
 export const handleUpdateLikes = (messageId) => async (dispatch) => {
   let messages;
@@ -59,8 +57,10 @@ export const handleUpdateLikes = (messageId) => async (dispatch) => {
   fetch(`${baseURL}/message/${messageId}/like`, {
      method: 'GET',
       headers: {
+        'Accept': '*/*',
         'Content-type': 'application/json',
         'Authorization': token,
+        'referrer': '', mode: 'cors', cache: 'reload', redirect: 'follow'
       },
     })
     .then((res) => {
