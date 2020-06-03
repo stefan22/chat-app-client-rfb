@@ -5,44 +5,49 @@ import {
   SET_USER,
   SET_UNAUTHENTICATED,
   SET_AUTHENTICATED,
-  SET_LIKES
+  SET_LIKES,
 
 } from '../types';
+
+import {
+  getItemsFromLocalStorage, 
+  addItemsToLocalStorage, 
+  getAuthToken,
+  setAuthToken,
+
+} from '../../components/helperFns';
 
 import axios from 'axios';
 // base url
 const baseURL = 'https://europe-west1-chat-app-5c91e.cloudfunctions.net/api';
 
-const setAuthToken = (token) => {
-  let fbToken = `Bearer ${token}`;
-  localStorage.setItem('fbToken', fbToken);
-  axios.defaults.headers.common['Authorization'] = fbToken;
-};
 
-const addLikesToLocalStorage = data => {
-  let likes = [];
-  let passData = [{user:data.user, message:data.messageId}];
-  if (passData.length === 1) {
-    likes = JSON.parse(localStorage.getItem('likes'));
-    if (likes === null) {
-      localStorage.setItem('likes', JSON.stringify(passData));
-    }
-    else {
-      let allLikes = likes.concat(passData);
-      localStorage.setItem('likes', JSON.stringify(allLikes));
-    }
-  } else {//no likes
-    if (passData.length === 1) {
-      likes.push(passData);
-      localStorage.setItem('likes', JSON.stringify(likes));
-    }
-  }
-}
+
 
 // login/signup @comp mounting
 export const clearFormErrors = () => (dispatch) => (
   dispatch({ type: CLEAR_ERRORS })
 )
+
+// getting user data | avoid extra headers by sticking to axios
+export const getUserData = () => (dispatch) => {
+  let token = getAuthToken('fbToken');
+  fetch(`${baseURL}/user`, {
+    method: 'GET',
+    headers: {
+      'Content-type': 'application/json',
+      'Authorization': token,
+    },
+  })
+  .then(data => data.json())
+  .then(res => {
+    dispatch({
+      type: SET_USER,
+      payload: res,
+    });
+  })
+  .catch(err => console.log(err.config));
+};
 
 // login page
 export const userLogin = (userLogin, history) => (dispatch) => {
@@ -87,31 +92,11 @@ export const userSignup = (userSignup, history) => (dispatch) => {
     });
 };
 
-// getting user data | avoid extra headers by sticking to axios
-export const getUserData = () => (dispatch) => {
-  let token = localStorage.getItem('fbToken');
-  fetch(`${baseURL}/user`, {
-    method: 'GET',
-    headers: {
-      'Content-type': 'application/json',
-      'Authorization': token,
-    },
-  })
-  .then(data => data.json())
-  .then(res => {
-    dispatch({
-      type: SET_USER,
-      payload: res,
-    });
-  })
-  .catch(err => console.log(err.config));
-};
-
 
 // upload user profile image
 export const setProfileImage = formData => dispatch => {
   dispatch({ type: SET_LOADING_ON });
-  let token = localStorage.getItem('fbToken');
+  let token = getAuthToken('fbToken');
   fetch(`${baseURL}/user/image`, {
     method: 'POST',
     headers: {
@@ -127,7 +112,7 @@ export const setProfileImage = formData => dispatch => {
 // update user profile
 export const userProfileUpdate = data => dispatch => {
   dispatch({ type: SET_LOADING_ON });
-  let tkn = localStorage.getItem('fbToken');
+  let tkn = getItemsFromLocalStorage('fbToken');
   fetch(`${baseURL}/user`, {
     method: 'POST',
     headers: {
@@ -140,8 +125,29 @@ export const userProfileUpdate = data => dispatch => {
   .catch(err => console.log(err));
 }
 
+
+const addLikesToLocalStorage = data => {
+  let likes = [];
+  let passData = [{user:data.user, message:data.messageId}];
+  if (passData.length === 1) {
+    likes = getItemsFromLocalStorage('likes');
+    if (likes === null) {
+      addItemsToLocalStorage(passData);
+    }
+    else {
+      let allLikes = likes.concat(passData);
+      addItemsToLocalStorage(allLikes);
+    }
+  } else {//no likes
+    if (passData.length === 1) {
+      likes.push(passData);
+      addItemsToLocalStorage('likes');
+    }
+  }
+}
+
 export const getLikedUser = (messageId) => dispatch => {
-	let token = localStorage.getItem('fbToken');
+	let token = getItemsFromLocalStorage('fbToken');
 	fetch(`${baseURL}/message/${messageId}/like`, {
 		method: 'GET',
 		headers: {
@@ -155,10 +161,11 @@ export const getLikedUser = (messageId) => dispatch => {
 	.then(data => {
     if (data.error === undefined) {
       addLikesToLocalStorage(data);
-    }
+    } 
 		dispatch({
 			type: SET_LIKES,
 			payload: {messageId: data.messageId, user: data.user}
 		})
 	})
+  .catch(err => console.log(err.json()));
 }

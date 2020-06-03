@@ -12,13 +12,14 @@ const initialState = {
 	loading: false,
 	errors: {},
 	warning: false,
+	open: false,
 }
 
 const uiReducer = (state=initialState, action) => {
 	switch(action.type) {
 		case SET_LOADING_ON:
 			return {
-				...state, loading: true, 
+				...state, loading: true
 			}
 		case SET_LOADING_OFF:
 			return initialState;
@@ -40,7 +41,7 @@ const uiReducer = (state=initialState, action) => {
 		case SET_WARNING:
 			return {
 				...state,
-				warning: true
+				warning: true, open: true
 			}
 
 		case RESET_WARNING:
