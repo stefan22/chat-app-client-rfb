@@ -2,7 +2,8 @@ import {
 	SET_MESSAGES, 
 	CLEAR_MESSAGES, 
 	SET_LOADING_ON,
-  SET_WARNING
+  SET_WARNING,
+
 
 } from '../types';
 
@@ -49,7 +50,7 @@ export const getMessages = () => async (dispatch) => {
 
 
 //updating messages/likes => fetch messages/update localStorage
-export const handleUpdateLikes = (messageId) => async (dispatch, getState) => {
+export const handleUpdateLikes = (messageId) => async (dispatch) => {
   let messages;
    if (localStorage.messages) {
     messages = await getItemsFromLocalStorage('messages');
@@ -75,15 +76,12 @@ export const handleUpdateLikes = (messageId) => async (dispatch, getState) => {
         type: SET_MESSAGES,
         payload: messages
       });
-      addItemsToLocalStorage(messages);
       if (data.error === 'Message already liked') {
         dispatch({type: SET_WARNING, payload: data.error});
       }
+      addItemsToLocalStorage(messages);
     })
-    .catch((err) => {
-      console.log(err);
-      dispatch({ type: CLEAR_MESSAGES });
-    });
+    .catch((err) => console.log(err));
   
 };
 

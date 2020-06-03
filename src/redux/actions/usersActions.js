@@ -23,7 +23,6 @@ const baseURL = 'https://europe-west1-chat-app-5c91e.cloudfunctions.net/api';
 
 
 
-
 // login/signup @comp mounting
 export const clearFormErrors = () => (dispatch) => (
   dispatch({ type: CLEAR_ERRORS })

@@ -17,6 +17,7 @@ ref=> project:google.cloud.functions./chat-app-5c91e
 - user profile image upload √ 
 - edit userProfile √
 - user like/likeCount √
+- warning badges √
 
 
 

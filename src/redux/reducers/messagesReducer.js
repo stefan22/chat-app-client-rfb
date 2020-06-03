@@ -14,7 +14,7 @@ const messagesReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_MESSAGES:
       return [
-        ...action.payload,
+        ...action.payload
       ]
 
     case CLEAR_MESSAGES:

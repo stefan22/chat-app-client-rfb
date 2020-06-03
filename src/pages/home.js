@@ -23,10 +23,9 @@ class Home extends Component {
     super(props);
     this.state = {
       likedMessageId: '',
-      liked: false,
-      open: false, //warning
-      vertical: 'top', //warning placement
-      horizontal: 'center', //warning placement
+      open: false,  //warning
+      vertical: 'top',  // warning placement
+      horizontal: 'center',  // warning placement
     };
   }
 
@@ -34,24 +33,25 @@ class Home extends Component {
     this.props.getMessages();
   }
 
-  handleWarningClick = () => {
-    this.setState((prevState) => ({
-      open: !prevState.open,
-    }));
-  };
-
   handleLikedUnliked = (messageId) => {
-    const { authenticated } = this.props;
+    const { authenticated, warning } = this.props;
+    const { open } = this.state;
     if (!!authenticated) {
       this.setState((prevState) => ({
-        liked: !prevState.liked,
-        likedMessageId: messageId,
-      }));
-      //msg like
-      this.props.handleUpdateLikes(messageId);
-    } else {
-      this.handleWarningClick();
-      this.props.sendWarningMessage();
+        open: !prevState.open,
+        likedMessageId: prevState.messageId !== messageId ? 
+          messageId : prevState.messageId,
+      })); //likes req server err to return
+      !!open ? this.props.resetWarningMessage() : 
+        this.props.handleUpdateLikes(messageId);
+    } else {//not authenticated
+      this.setState((prevState) => ({
+        open: !prevState.open,
+        likedMessageId: prevState.messageId !== messageId ? 
+          messageId : prevState.messageId,
+      })); //send/reset warning
+      !warning ? this.props.sendWarningMessage() : 
+        this.props.resetWarningMessage();
     }
   };
 
@@ -80,7 +80,8 @@ class Home extends Component {
         <Grid item sm={8} xs={12}>
           <WarningMessage
             warning={warning}
-            handleWarningClick={this.handleWarningClick}
+            authenticated={authenticated}
+            handleLikedUnliked={this.handleLikedUnliked}
             open={open}
             horizontal={horizontal}
             vertical={vertical}

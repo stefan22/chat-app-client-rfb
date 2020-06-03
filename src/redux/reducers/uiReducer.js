@@ -47,7 +47,7 @@ const uiReducer = (state=initialState, action) => {
 		case RESET_WARNING:
 			return {
 				...state,
-				warning: false
+				warning: false, open: false
 			}
 
 		default:
