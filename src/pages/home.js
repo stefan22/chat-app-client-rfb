@@ -72,6 +72,7 @@ class Home extends Component {
       messages,
       user,
       warning,
+      //open,
     } = this.props;
 
     return (

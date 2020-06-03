@@ -2,23 +2,28 @@ import {
 	SET_MESSAGES, 
 	CLEAR_MESSAGES, 
 	SET_LOADING_ON,
+  SET_WARNING
 
 } from '../types';
 
+import {
+  addItemsToLocalStorage, 
+  getItemsFromLocalStorage, 
+  getAuthToken
+
+} from '../../components/helperFns';
+
+// base api
 const baseURL = 'https://europe-west1-chat-app-5c91e.cloudfunctions.net/api';
 
 
-const addMessagesToLocalStorage = (data) =>
-  localStorage.setItem('messages', JSON.stringify(data));
 
-const getMessagesFromLocalStorage = () =>
-  JSON.parse(localStorage.getItem('messages'));
 
 // get messages
 export const getMessages = () => async (dispatch) => {
   dispatch({ type: SET_LOADING_ON });
   if (localStorage.messages) {
-    let msgs = await getMessagesFromLocalStorage();
+    let msgs = await getItemsFromLocalStorage('messages');
     return dispatch({
       type: SET_MESSAGES,
       payload: msgs,
@@ -29,7 +34,7 @@ export const getMessages = () => async (dispatch) => {
       return res.json();
     })
     .then((data) => {
-      addMessagesToLocalStorage(data);
+      addItemsToLocalStorage(data);
       return dispatch({
         type: SET_MESSAGES,
         payload: data,
@@ -41,14 +46,15 @@ export const getMessages = () => async (dispatch) => {
     });
 };
 
+
+
 //updating messages/likes => fetch messages/update localStorage
 export const handleUpdateLikes = (messageId) => async (dispatch, getState) => {
   let messages;
    if (localStorage.messages) {
-    messages = await getMessagesFromLocalStorage();
+    messages = await getItemsFromLocalStorage('messages');
    }
-
-  let token = localStorage.getItem('fbToken');
+  let token = getAuthToken('fbToken');
   fetch(`${baseURL}/message/${messageId}/like`, {
      method: 'GET',
       headers: {
@@ -69,11 +75,14 @@ export const handleUpdateLikes = (messageId) => async (dispatch, getState) => {
         type: SET_MESSAGES,
         payload: messages
       });
-      addMessagesToLocalStorage(messages);
+      addItemsToLocalStorage(messages);
+      if (data.error === 'Message already liked') {
+        dispatch({type: SET_WARNING, payload: data.error});
+      }
     })
     .catch((err) => {
       console.log(err);
-      //dispatch({ type: CLEAR_MESSAGES });
+      dispatch({ type: CLEAR_MESSAGES });
     });
   
 };

@@ -1,9 +1,9 @@
 export default {
-  loginForm: {
+  'loginForm': {
     textAlign: 'center',
     position: 'relative',
   },
-  innerForm: {
+  'innerForm': {
     display: 'flex',
     flexDirection: 'column',
     padding: '3rem',

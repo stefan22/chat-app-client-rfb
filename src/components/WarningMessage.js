@@ -5,7 +5,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 
 class WarningMessage extends Component {
 
-  handleClick = (newState) => () => {
+  handleClick = () =>  {
     this.props.handleWarningClick();
   };
 
@@ -14,9 +14,10 @@ class WarningMessage extends Component {
   };
 
   render() {
+    //console.log(this);
     const { 
       warning, 
-      vertical, 
+      vertical,
       horizontal, 
       open,
 
@@ -24,7 +25,7 @@ class WarningMessage extends Component {
     
 
     const loginAction = (
-        <Button 
+        <Button
           onClick={this.handleClose}
           color='secondary' size='small'>
           Close
@@ -34,12 +35,14 @@ class WarningMessage extends Component {
     return (
       <div>
         <button
+          type="button"
+          id={"warningClickButton"}
           hidden={"hidden"}
-          onClick={this.handleClick()}
+          onClick={this.handleClick}
         >
         </button>
 
-      {!!warning &&
+      {!!warning && !!open &&
         <Snackbar
           size={"xs"}
           anchorOrigin={{ vertical, horizontal }}
