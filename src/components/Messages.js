@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import LikeCountButton from '../components/LikeCountButton';
+import WarningMessage from '../components/WarningMessage';
 // matui
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
@@ -15,24 +16,71 @@ import styles from '../theme/messages';
 import IconButton from '@material-ui/core/IconButton';
 import LikeIcon from '@material-ui/icons/ThumbUp';
 import UnlikeIcon from '@material-ui/icons/ThumbUpOutlined';
+// redux
+import { connect } from 'react-redux';
+import { handleUpdateLikes } from '../redux/actions/messagesActions';
+import {
+  sendWarningMessage,
+  resetWarningMessage,
+} from '../redux/actions/uiActions';
 
 class Messages extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      likedMessage: '',
+      open: false,  //warning
+      vertical: 'top',  // warning placement
+      horizontal: 'center',  // warning placement
+    };
+  }
+
+ 
+  handleLikedUnliked = (messageId) => {
+    const { authenticated } = this.props;
+    if (!!authenticated) {
+        this.setState(prevState => ({
+          open: !prevState.open
+        }));
+        //likes req server err to return
+      !this.state.open ? 
+          this.props.handleUpdateLikes(messageId) :
+          this.props.resetWarningMessage();
+    } 
+    else {//not authenticated
+      //send/reset warning
+      this.setState(prevState => ({
+        open: !prevState.open
+      }));
+      !this.state.open ? this.props.sendWarningMessage() : 
+        this.props.resetWarningMessage();
+    }
+    
+  };
+
+  getMessageWarning = () => {
+    return this.props.messageId === this.state.likedMessage;
+  }
+
   render() {
     //console.log(this);
+  const { horizontal, vertical, open } = this.state;
+
     const {
       classes,
       imageUrl,
       messageId,
-      likedMessageId,
       message,
       likeCount,
       createdAt,
+      authenticated,
+      warning,
       user,
-      handleLikedUnliked,
     } = this.props;
 
+
     return (
-      <Card className={classes.card} key={messageId}>
+      <Card className={classes.card} key={messageId} elevation={2}>
         <CardMedia
           className={classes.image}
           image={imageUrl}
@@ -52,32 +100,66 @@ class Messages extends Component {
             {message}
 
             <IconButton
-              onClick={() => handleLikedUnliked(messageId)}
+              onClick={() => this.handleLikedUnliked(messageId)}
               className={classes.likeButtonWrapper}
             >
-              {likedMessageId === messageId ? (
+              {likeCount > 0 ? (
                 <LikeIcon
-                  name='like'
                   className={classes.likeButton}
                   color={'secondary'}
                 />
               ) : (
                 <UnlikeIcon
-                  name='unlike'
                   className={classes.unlikeButton}
                   color='secondary'
                 />
               )}
-              <LikeCountButton likeCount={likeCount} color={'primary'} />
+
+              <LikeCountButton 
+                likeCount={likeCount} 
+                color={'primary'} 
+              />
+
             </IconButton>
           </Typography>
           <Typography variant='body2' color={'textSecondary'}>
             {moment(createdAt).fromNow()}
           </Typography>
         </CardContent>
+          { !!warning &&
+          <WarningMessage
+            warning={warning}
+            open={open}
+            authenticated={authenticated}
+            handleLikedUnliked={this.handleLikedUnliked}
+            horizontal={horizontal}
+            vertical={vertical}
+          />
+          }
       </Card>
+      
     );
   }
 }
 
-export default withStyles(styles)(Messages);
+
+const mapStateToProps = (state) => ({
+  authenticated: state.user.authenticated,
+  likes: state.user.likes,
+  warning: state.ui.warning,
+  messages: state.messages,
+  loading: state.ui.loading,
+});
+
+const mapActionsToProps = {
+  sendWarningMessage,
+  resetWarningMessage,
+  handleUpdateLikes,
+};
+
+export default connect(
+  mapStateToProps,
+  mapActionsToProps
+)(withStyles(styles)(Messages));
+
+

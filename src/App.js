@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // Components
 import Navbar from './components/Navbar';
+import Footer from './components/footer/Footer';
 import AuthRoute from './components/AuthRoute';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // pages
@@ -67,7 +68,9 @@ class App extends Component {
                 component={User} 
               /> */}
             </Switch>
+            <Footer />
           </div>
+         
         </Router>
       </Provider>
       </MuiThemeProvider>

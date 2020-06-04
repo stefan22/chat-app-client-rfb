@@ -18,7 +18,7 @@ ref=> project:google.cloud.functions./chat-app-5c91e
 - edit userProfile √
 - user like/likeCount √
 - warning badges √
-
+- footer comp - might incorp new file structure
 
 
 

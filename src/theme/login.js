@@ -7,6 +7,7 @@ export default {
     display: 'flex',
     flexDirection: 'column',
     padding: '3rem',
+    marginBottom: '6rem'
   },
   loginTitle: {
     fontWeight: 400
