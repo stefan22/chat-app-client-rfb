@@ -15,7 +15,7 @@ import profileDefault from '../images/profileholder.png';
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 // styles
-import styles from '../theme/userProfile';
+import userProfile from '../theme/userProfile.js';
 
 const UserProfile = ({
   classes,
@@ -115,4 +115,4 @@ const UserProfile = ({
   );
 };
 
-export default withStyles(styles)(UserProfile);
+export default withStyles(userProfile)(UserProfile);

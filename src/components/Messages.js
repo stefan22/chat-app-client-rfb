@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import LikeCountButton from '../components/LikeCountButton';
-import WarningMessage from '../components/WarningMessage';
+import WarningMessage from './WarningMessage';
+import LikeCountButton from './LikeCountButton';
+
 // matui
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';

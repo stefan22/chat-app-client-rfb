@@ -6,13 +6,13 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 // styles
-import useStyles from './useStyles.js';
+import footerStyles from './footerStyles.js';
 // redux
 import { connect } from 'react-redux';
 
 
 const Footer = ({ messages, loading }) => {
-  const classes = useStyles();
+  const classes = footerStyles();
 
   return (
     <>
@@ -89,6 +89,7 @@ const Footer = ({ messages, loading }) => {
                         className={classes.footerLink}
                         color='inherit'
                         variant='body2'
+                        title="Github website"
                         href='https://github.com'
                       >
                         Github
@@ -100,6 +101,7 @@ const Footer = ({ messages, loading }) => {
                         className={classes.footerLink}
                         color='inherit'
                         variant='body2'
+                        title="Stackoverflow website"
                         href='https://stackoverflow.com'
                       >
                         Stackoverflow
@@ -111,6 +113,7 @@ const Footer = ({ messages, loading }) => {
                         target='_blank'
                         color='inherit'
                         variant='body2'
+                        title="Twitter website"
                         href='https://twitter.com'
                       >
                         Twitter

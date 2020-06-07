@@ -61,7 +61,7 @@ export const userLogin = (userLogin, history) => (dispatch) => {
       history.push('/');
     })
     .catch((err) => {
-      console.log(err.response.data);
+      console.log(err.response);
       dispatch({type: SET_ERRORS, payload: err.response.data})
     });
 };
