@@ -1,6 +1,7 @@
 export default {
 	card: {
 		display: 'flex',
+		zIndex: 1,
 		marginBottom: 20,
 	},
 	image: {

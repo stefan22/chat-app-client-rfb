@@ -28,10 +28,10 @@ class Messages extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      likedMessage: '',
+      likedMessage: '',//selected
       open: false,  //warning
       vertical: 'top',  // warning placement
-      horizontal: 'center',  // warning placement
+      horizontal: 'right',  // warning placement
     };
   }
 
@@ -42,25 +42,22 @@ class Messages extends Component {
         this.setState(prevState => ({
           open: !prevState.open
         }));
-        //likes req server err to return
+        //likes req server err
       !this.state.open ? 
           this.props.handleUpdateLikes(messageId) :
           this.props.resetWarningMessage();
     } 
     else {//not authenticated
-      //send/reset warning
+      
       this.setState(prevState => ({
         open: !prevState.open
-      }));
+      })); //send/reset warning
       !this.state.open ? this.props.sendWarningMessage() : 
         this.props.resetWarningMessage();
     }
     
   };
 
-  getMessageWarning = () => {
-    return this.props.messageId === this.state.likedMessage;
-  }
 
   render() {
     //console.log(this);
@@ -145,7 +142,6 @@ class Messages extends Component {
 
 const mapStateToProps = (state) => ({
   authenticated: state.user.authenticated,
-  likes: state.user.likes,
   warning: state.ui.warning,
   messages: state.messages,
   loading: state.ui.loading,

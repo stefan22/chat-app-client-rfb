@@ -5,13 +5,11 @@ import Snackbar from '@material-ui/core/Snackbar';
 
 class WarningMessage extends Component {
 
-  handleClick = () =>  {
+  handleClick = () =>
     this.props.handleLikedUnliked();
-  };
 
-  handleClose = () => {
+  handleClose = () => 
     this.props.handleLikedUnliked();
-  };
 
   render() {
     //console.log(this);
@@ -45,6 +43,7 @@ class WarningMessage extends Component {
 
       {!!warning && !!open &&
         <Snackbar
+          style={{marginTop:'3rem'}}
           size={"xs"}
           anchorOrigin={{ vertical, horizontal }}
           open={open}
@@ -53,7 +52,7 @@ class WarningMessage extends Component {
               'To Like a message, you must be logged in.' :
               'Message already liked.'
           }
-          key={vertical + horizontal}
+          key={horizontal+vertical }
           action={loginAction}
         />
       }
