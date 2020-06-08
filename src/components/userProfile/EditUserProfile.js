@@ -14,10 +14,10 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import LaunchIcon from '@material-ui/icons/Launch';
 // redux
 import { connect } from 'react-redux';
-import { userProfileUpdate } from '../redux/actions/usersActions';
+import { userProfileUpdate } from '../../redux/actions/usersActions';
 
 // styles
-import editUserProfile from '../theme/editUserProfile.js';
+import editUserProfile from './editUserProfile.styles.js';
 
 class EditUserProfile extends Component {
   state = {

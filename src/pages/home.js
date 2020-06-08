@@ -1,6 +1,6 @@
 import React, { Component, createRef } from 'react';
 // comps
-import UserProfile from '../components/UserProfile';
+import UserProfile from '../components/userProfile/UserProfile';
 import Messages from '../components/Messages';
 // matui
 import Grid from '@material-ui/core/Grid';

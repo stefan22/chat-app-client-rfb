@@ -58,6 +58,7 @@ export const userLogin = (userLogin, history) => (dispatch) => {
       setAuthToken(response.data.token);
       dispatch({type: SET_AUTHENTICATED});
       dispatch(getUserData());
+      clearFormErrors();
       history.push('/');
     })
     .catch((err) => {
@@ -81,6 +82,7 @@ export const userSignup = (userSignup, history) => (dispatch) => {
       setAuthToken(response.data.token);
       dispatch({ type: SET_AUTHENTICATED });
       dispatch(getUserData());
+      clearFormErrors();
       history.push('/');
     })
     .catch((err) => {

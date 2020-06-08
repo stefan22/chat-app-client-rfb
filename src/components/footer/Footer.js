@@ -6,7 +6,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 // styles
-import footerStyles from './footerStyles.js';
+import footerStyles from './footer.styles.js';
 // redux
 import { connect } from 'react-redux';
 

@@ -23,6 +23,8 @@ export default {
   credentialsError: {
     color: '#F44336',
     marginTop: '3rem',
+    width: '100%',
+    textAlign: 'center'
   },
   errorsHereLink: {
     color: '#515151',

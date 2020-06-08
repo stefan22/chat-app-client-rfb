@@ -34,4 +34,5 @@ export default {
   userProfileActions: {
     padding: '1rem',
   },
+
 };

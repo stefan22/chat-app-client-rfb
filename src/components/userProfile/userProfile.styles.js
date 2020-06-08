@@ -1,4 +1,6 @@
-export default {
+import { makeStyles } from '@material-ui/core/styles';
+
+export default makeStyles((theme) => ({
 
   userProfileWrapper: {
     position: 'relative',
@@ -29,7 +31,7 @@ export default {
   profileSpinner: {
     position: 'absolute',
     top: '15vh',
-    left: '50%',
+    right: '25%',
   },
   userProfileIcon: {
     width: '28px',
@@ -42,4 +44,4 @@ export default {
     verticalAlign: 'top',
   },
 
-};
+}));

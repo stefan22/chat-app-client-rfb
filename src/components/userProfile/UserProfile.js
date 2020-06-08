@@ -2,7 +2,6 @@ import React from 'react';
 import EditUserProfile from './EditUserProfile';
 // matui
 import Paper from '@material-ui/core/Paper';
-import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 // librs
@@ -11,24 +10,26 @@ import moment from 'moment';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import WebIcon from '@material-ui/icons/Web';
-import profileDefault from '../images/profileholder.png';
+import profileDefault from '../../images/profileholder.png';
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 // styles
-import userProfile from '../theme/userProfile.js';
+import userProfile from './userProfile.styles.js';
 
 const UserProfile = ({
-  classes,
   loading,
   authenticated,
   protected: { imageUrl, user, bio, location, website, createdAt },
   handleUserProfileImage,
 }) => {
 
+  const classes = userProfile();
+
   const handleSimulateUpload = () => {
     const input = document.getElementById('userProfileImage');
     input.click();
   }
+
 
   return (
     <div className={classes.userProfileWrapper}>
@@ -115,4 +116,4 @@ const UserProfile = ({
   );
 };
 
-export default withStyles(userProfile)(UserProfile);
+export default UserProfile;
