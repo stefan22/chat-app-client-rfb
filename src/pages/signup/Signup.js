@@ -10,10 +10,10 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import SubdirectoryArrowLeftRoundedIcon from '@material-ui/icons/SubdirectoryArrowLeftRounded';
 // styles
-import styles from '../theme/signup';
+import styles from './signup.styles';
 // redux
 import { connect } from 'react-redux';
-import { userSignup, clearFormErrors } from '../redux/actions/usersActions';
+import { userSignup, clearFormErrors } from '../../redux/actions/usersActions';
 
 
 

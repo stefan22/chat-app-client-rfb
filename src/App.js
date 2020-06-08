@@ -5,9 +5,9 @@ import Footer from './components/footer/Footer';
 import AuthRoute from './components/AuthRoute';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // pages
-import Home from './pages/home';
-import Login from './pages/login';
-import Signup from './pages/signup';
+import Home from './pages/home/Home';
+import Login from './pages/login/Login';
+import Signup from './pages/signup/Signup';
 //import User from './pages/user';
 //redux
 import { Provider } from 'react-redux';

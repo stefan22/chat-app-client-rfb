@@ -1,17 +1,19 @@
 import React, { Component, createRef } from 'react';
 // comps
-import UserProfile from '../components/userProfile/UserProfile';
-import Messages from '../components/Messages';
+import UserProfile from '../../components/userProfile/UserProfile';
+import Messages from '../../components/Messages';
+// helpers
+import { scrollListenerHelper, formDataHelper } from '../../components/helperFns';
 // matui
 import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
 // redux
 import { connect } from 'react-redux';
-import { getMessages } from '../redux/actions/messagesActions';
-import { setProfileImage } from '../redux/actions/usersActions';
+import { getMessages } from '../../redux/actions/messagesActions';
+import { setProfileImage } from '../../redux/actions/usersActions';
 // styles
-import styles from '../theme/home';
+import styles from './home.styles';
 
 class Home extends Component {
   constructor(props) {
@@ -25,22 +27,13 @@ class Home extends Component {
 
   }
 
-  scrollListenerFun = () => {//transform title on evt scroll
-    if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
-      if (this.homeHeadingRef.current !== null) {
-        this.homeHeadingRef.current.className = `${this.props.classes.refTransform}`;
-      }
-    } else {
-      if (this.homeHeadingRef.current !== null) {
-        this.homeHeadingRef.current.className = `${this.props.classes.refInit}`;
-      }
-    }
+  scrollListenerFun = () => {
+    return scrollListenerHelper(this.homeHeadingRef,this.props.classes);
   }
-  
-  handleUserProfileImage = (evt) => {
+
+  handleUserProfileImage = async (evt) => {
     const image = evt.target.files[0];
-    const formData = new FormData();
-    formData.append('file', image, image.name);
+    let formData = await formDataHelper(image)
     this.props.setProfileImage(formData);
   };
 

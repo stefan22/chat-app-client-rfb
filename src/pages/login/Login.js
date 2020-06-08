@@ -11,9 +11,9 @@ import Button from '@material-ui/core/Button';
 import SubdirectoryArrowLeftRoundedIcon from '@material-ui/icons/SubdirectoryArrowLeftRounded';
 // redux
 import { connect } from 'react-redux';
-import { userLogin, clearFormErrors } from '../redux/actions/usersActions';
+import { userLogin, clearFormErrors } from '../../redux/actions/usersActions';
 // styles
-import styles from '../theme/login';
+import styles from './login.styles';
 
 
 
