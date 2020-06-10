@@ -9,6 +9,15 @@ export default makeStyles((theme) => ({
 			color: theme.palette.primary.contrastText,
 			cursor: 'pointer',
 		}
+	},
+	dialogTitle: {
+		color: theme.palette.primary.dark
+	},
+	postAction: {
+		fontWeight: 500
+	},
+	cancelAction: {
+		fontWeight: 500
 	}
 
 

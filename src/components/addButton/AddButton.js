@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -9,7 +10,7 @@ import addButton from './addButton.styles';
 import AddCommentIcon from '@material-ui/icons/AddComment';
 // redux
 import { connect } from 'react-redux';
-import { deleteMessage } from '../../redux/actions/messagesActions';
+//import { deleteMessage } from '../../redux/actions/messagesActions';
 
 
 const AddButton = ({deleteMessage,messageId,user}) => {
@@ -24,8 +25,8 @@ const AddButton = ({deleteMessage,messageId,user}) => {
     //const { messageId } = props;
     let value = evt.target.parentElement.name;
     setOpen(false); 
-    // pressed delete
-    if (value.toLowerCase() === 'delete') deleteMessage(messageId,user);
+    // pressed post
+    if (!!value && value.toLowerCase() === 'post') console.log('clicked add message');
   };
 
   return (
@@ -50,10 +51,17 @@ const AddButton = ({deleteMessage,messageId,user}) => {
           </DialogTitle>
           <DialogContent className={classes.dialogdescription}>
             <DialogContentText id="alert-dialog-description">
-              <span className={classes.addHeading}>Add Message form</span> 
-              Press <span className={classes.postAction}>Post</span> to add a new Message or press  <span className={classes.deleteAction}> Cancel</span>, 
-              if you've changed your mind.
+              Press <span className={classes.postAction}>Post</span> to add a new Message or press  <span className={classes.cancelAction}> Cancel</span>, 
+              to exit form.
             </DialogContentText>
+						<TextField
+								autoFocus
+								margin="dense"
+								id="newMessage"
+								label="New message"
+								type="text"
+								fullWidth
+							/>
           </DialogContent>
           <DialogActions>
             <Button onClick={(evt) => handleClose(evt)} name="cancel" color="secondary">
@@ -61,7 +69,7 @@ const AddButton = ({deleteMessage,messageId,user}) => {
             </Button>
             <Button 
               onClick={(evt) => handleClose(evt)} 
-              name="delete" 
+              name="post" 
               color="primary" autoFocus>
               Post
             </Button>
@@ -78,7 +86,7 @@ const mapStateToProps = state => ({
 
 
 const mapActionsToProps = {
-  deleteMessage
+  
 
 }
 
