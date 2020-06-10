@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
+import AddButton from './addButton/AddButton';
 //redux
 import { connect } from 'react-redux';
 import { userLogout } from '../redux/actions/usersActions';
@@ -26,6 +27,7 @@ class Navbar extends Component {
 
           {
           !!authenticated ? (
+            <>
             <Button 
               onClick={this.handleLogout}
               color="inherit" 
@@ -33,6 +35,9 @@ class Navbar extends Component {
               to="/login"
             >Logout
             </Button>
+            <AddButton />
+            </>
+
             ) : (
             <>
             <Button color="inherit" component={Link} to="/login">Login</Button>

@@ -35,7 +35,7 @@ const userReducer = (state = initialState, action) => {
       return {
         ...state,
         likes: [
-          ...state.likes, action.payload
+          ...state.likes,  
         ]
       }
 

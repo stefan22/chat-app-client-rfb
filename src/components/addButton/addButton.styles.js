@@ -1,0 +1,17 @@
+import { makeStyles } from '@material-ui/core/styles';
+
+export default makeStyles((theme) => ({
+	deleteButton: {
+		padding: '5px 15px 3px 15px',
+		lineHeight: 0,
+		
+		'& svg': {
+			color: theme.palette.primary.contrastText,
+			cursor: 'pointer',
+		}
+	}
+
+
+
+
+}));

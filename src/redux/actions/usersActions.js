@@ -51,10 +51,11 @@ export const getUserData = () => (dispatch) => {
 
 // login page
 export const userLogin = (userLogin, history) => (dispatch) => {
-  dispatch({type: SET_LOADING_ON});
+  dispatch({ type: SET_LOADING_ON });
   axios
     .post(`${baseURL}/login`, userLogin)
     .then((response) => {
+      dispatch({type: SET_LOADING_ON});
       setAuthToken(response.data.token);
       dispatch({type: SET_AUTHENTICATED});
       dispatch(getUserData());
@@ -79,6 +80,7 @@ export const userSignup = (userSignup, history) => (dispatch) => {
   axios
     .post(`${baseURL}/signup`, userSignup)
     .then((response) => {
+      dispatch({type: SET_LOADING_ON});
       setAuthToken(response.data.token);
       dispatch({ type: SET_AUTHENTICATED });
       dispatch(getUserData());

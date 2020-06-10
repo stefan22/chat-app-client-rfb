@@ -47,6 +47,36 @@ export const getMessages = () => async (dispatch) => {
 };
 
 
+
+// add message
+export const addMessage = (message,user) => dispatch => {
+  let addToken = getAuthToken('fbToken');
+
+  let newMessage = {
+    user: user.protected.user,
+    message: message
+  }
+  fetch(`${baseURL}/message`, {
+    method: 'POST',
+    headers: {
+      'Accept': '*/*',
+      'Content-type': 'application/json',
+      'Authorization': addToken,
+      'referrer': '', mode: 'cors', cache: 'reload', redirect: 'follow'
+    },
+    body: JSON.stringify(newMessage)
+  })
+  .then((res) => {
+    return res.json();
+  })
+  .then((data) => {
+    console.log('message id => ',data);
+  })
+
+
+}
+
+
 //updating messages/likes => fetch messages/update localStorage
 export const handleUpdateLikes = (messageId) => async (dispatch) => {
   let messages;
@@ -83,6 +113,42 @@ export const handleUpdateLikes = (messageId) => async (dispatch) => {
     })
     .catch((err) => console.log(err));
   
+};
+
+//deleteMessage
+export const deleteMessage =  (messageId,user) => async dispatch => {
+  let delToken = getAuthToken('fbToken');
+  let msgs = await getItemsFromLocalStorage('messages');
+  let match = msgs.find(msg => msg.messageId === messageId);
+  // message belongs to user & authenticated
+  if (user.protected.user === match.user) {
+      fetch(`${baseURL}/messages/${messageId}`, {
+        method: 'DELETE',
+        headers: {
+          'Accept': '*/*',
+          'Content-type': 'application/json',
+          'Authorization': delToken,
+          'referrer': '', mode: 'cors', cache: 'reload', redirect: 'follow'
+        },
+      })
+      .then((del) => {
+       // dispatch({type: SET_DELETE,})
+        console.log('message deleted ',del);
+      })
+      .then(() => {
+          localStorage.removeItem('messages');
+          getMessages();
+      })
+      .catch(err => console.log('error => ',err));
+  }
+  else {
+    console.log(`
+      Unauthorized.\n
+      You're logged in as ${user.protected.user} and ..\n
+      This message belongs to ${match.user} \n
+    `)
+    return;
+  }
 };
 
 

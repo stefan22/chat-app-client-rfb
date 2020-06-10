@@ -16,12 +16,22 @@ export default {
 		textTransform: 'capitalize'
 	},
 	likeButtonWrapper: {
-		margin: '0 .5rem .25rem'
+		marginLeft: '1rem',
+		padding: 0,
 	},
 	likeButton: {
-		width: '18px',
+		width: '22px',
 	},
 	unlikeButton: {
-		width: '18px',
+		width: '22px',
+	},
+	messageInnerWrapper: {
+		display: 'flex',
+		flexDirection: 'row',
+		flexWrap: 'wrap',
+		lineHeight: 2,
+		verticalAlign: 'baseline',
+		paddingTop: '.5rem',
+		justifyContent: 'flex-start',
 	}
 }

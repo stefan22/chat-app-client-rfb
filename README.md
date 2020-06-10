@@ -18,11 +18,21 @@ ref=> project:google.cloud.functions./chat-app-5c91e
 - edit userProfile √
 - user like/likeCount √
 - warning badges √
-- footer comp - might incorp new file structure
+- footer comp - √
+- post & delete messages ui
 
 
 
 > a few changes coming..
+
+
+note: could also use warning badge for:
+- currently used for likes only
+- delete button
+  + message does not exist or 
+  + message does not belong to user
+- add button
+  + message had been added
 
 
 

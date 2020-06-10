@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import WarningMessage from './WarningMessage';
 import LikeCountButton from './LikeCountButton';
+import DeleteButton from './deleteButton/DeleteButton';
 
 // matui
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -94,8 +95,10 @@ class Messages extends Component {
           >
             {user}
           </Typography>
-          <Typography variant='body1'>
+          
+          <div className={classes.messageInnerWrapper}>
             {message}
+             
 
             <IconButton
               onClick={() => this.handleLikedUnliked(messageId)}
@@ -117,9 +120,14 @@ class Messages extends Component {
                 likeCount={likeCount} 
                 color={'primary'} 
               />
-
             </IconButton>
-          </Typography>
+          {!!authenticated &&
+            <DeleteButton 
+              messageId={messageId}
+            />
+          }
+          </div>
+
           <Typography variant='body2' color={'textSecondary'}>
             {moment(createdAt).fromNow()}
           </Typography>
@@ -145,7 +153,6 @@ const mapStateToProps = (state) => ({
   authenticated: state.user.authenticated,
   warning: state.ui.warning,
   messages: state.messages,
-  loading: state.ui.loading,
 });
 
 const mapActionsToProps = {

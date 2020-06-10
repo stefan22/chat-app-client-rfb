@@ -6,7 +6,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 // styles
-import footerStyles from './footer.styles.js';
+import footerStyles from './footer.styles';
 // redux
 import { connect } from 'react-redux';
 
@@ -47,7 +47,7 @@ const Footer = ({ messages, loading }) => {
                         className={classes.footerLink}
                         color='inherit'
                         variant='body2'
-                        href='/'
+                        href='/' 
                       >
                         Home
                       </Link>
@@ -57,7 +57,7 @@ const Footer = ({ messages, loading }) => {
                         className={classes.footerLink}
                         color='inherit'
                         variant='body2'
-                        href='/login'
+                        href='/login' 
                       >
                         Login
                       </Link>
@@ -67,7 +67,7 @@ const Footer = ({ messages, loading }) => {
                         className={classes.footerLink}
                         color='inherit'
                         variant='body2'
-                        href='/signup'
+                        href='/signup' 
                       >
                         Signup
                       </Link>
@@ -90,7 +90,7 @@ const Footer = ({ messages, loading }) => {
                         color='inherit'
                         variant='body2'
                         title="Github website"
-                        href='https://github.com'
+                        href='https://github.com' rel="nonopener nonreferer"
                       >
                         Github
                       </Link>
@@ -102,7 +102,7 @@ const Footer = ({ messages, loading }) => {
                         color='inherit'
                         variant='body2'
                         title="Stackoverflow website"
-                        href='https://stackoverflow.com'
+                        href='https://stackoverflow.com' rel="nonopener nonreferer"
                       >
                         Stackoverflow
                       </Link>
@@ -114,7 +114,7 @@ const Footer = ({ messages, loading }) => {
                         color='inherit'
                         variant='body2'
                         title="Twitter website"
-                        href='https://twitter.com'
+                        href='https://twitter.com' rel="nonopener nonreferer"
                       >
                         Twitter
                       </Link>
