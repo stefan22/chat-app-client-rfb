@@ -17,13 +17,15 @@ const messagesReducer = (state = initialState, action) => {
         ...action.payload
       ]
 
+    case SET_LIKES:
+      let idx = state.findIndex(msg => msg.messageId === action.payload.messageId);
+      state[idx] = action.payload
+      return [
+        ...state
+      ]
+
     case CLEAR_MESSAGES:
       return initialState;
-
-    case SET_LIKES:
-      return [
-        ...action.payload
-      ]
       
     default:
       return state;
