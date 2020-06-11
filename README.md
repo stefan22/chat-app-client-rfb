@@ -17,23 +17,34 @@ ref=> project:google.cloud.functions./chat-app-5c91e
 - user profile image upload √ 
 - edit userProfile √
 - user like/likeCount √
-- warning badges √
+- warning badges for likes √
 - footer comp - √
 - add message √ [it's ok to like your own message - but just once && while authenticated]
-- delete messages ui ..
+- delete messages √ [so long as you own it and authenticated] √
+- so far ..so good.
+- warning badges for cases below..
+  
+> a few changes coming..        
 
 
+note: could also use warning badge for delete/add buttons:      
 
-> a few changes coming..
-
-
-note: could also use warning badge for:
-- currently used for likes only (not authenticated warning && already liked warning)
+º badges:        
+- currently used for likes only (not authenticated warning && already liked warning).         
 - delete button
-  + message does not exist or 
-  + message does not belong to user
-- add button
-  + message had been added
+  + message does not exist or          
+  + message does not belong to user             
+
+
+
+
+
+other:             
+ª signup form errors align-center and clear during loading like login page.     
+º localStorage updates.    
+º refactoring /classes etc.     
+º responsiveness.     
+
 
 
 

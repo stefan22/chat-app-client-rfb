@@ -1,7 +1,7 @@
 import React, { Component, createRef } from 'react';
 // comps
 import UserProfile from '../../components/userProfile/UserProfile';
-import Messages from '../../components/Messages';
+import Messages from '../../components/messages/Messages';
 // helpers
 import { scrollListenerHelper, formDataHelper } from '../../components/helperFns';
 // matui

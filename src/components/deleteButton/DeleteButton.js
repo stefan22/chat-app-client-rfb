@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import { deleteMessage } from '../../redux/actions/messagesActions';
 
 
-const DeleteButton = ({deleteMessage,messageId,user}) => {
+const DeleteButton = ({deleteMessage,messageId,user,userMessage}) => {
 	const classes = deleteButton();
   const [open, setOpen] = React.useState(false);
 
@@ -21,12 +21,13 @@ const DeleteButton = ({deleteMessage,messageId,user}) => {
   };
 
   const handleClose = (evt) => {
-    //const { messageId } = props;
     let value = evt.target.parentElement.name;
     setOpen(false); 
     // pressed delete
-    if (value.toLowerCase() === 'delete') deleteMessage(messageId,user);
+    if (value.toLowerCase() === 'delete') deleteMessage(messageId,user,userMessage);
   };
+
+  
 
   return (
       <div className={classes.deleteButton}>
