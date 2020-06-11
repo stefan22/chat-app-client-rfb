@@ -113,7 +113,10 @@ class Messages extends Component {
                   className={classes.likeButton}
                   color={'secondary'}
                 />
-              ) : <UnlikeIcon />
+              ) : <UnlikeIcon 
+                    className={classes.unlikeButton}
+                    color='secondary'
+                  />
               }
 
               <LikeCountButton 

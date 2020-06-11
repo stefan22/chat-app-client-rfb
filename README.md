@@ -19,7 +19,8 @@ ref=> project:google.cloud.functions./chat-app-5c91e
 - user like/likeCount √
 - warning badges √
 - footer comp - √
-- post & delete messages ui
+- add message √ [it's ok to like your own message - but just once && while authenticated]
+- delete messages ui ..
 
 
 
@@ -27,7 +28,7 @@ ref=> project:google.cloud.functions./chat-app-5c91e
 
 
 note: could also use warning badge for:
-- currently used for likes only
+- currently used for likes only (not authenticated warning && already liked warning)
 - delete button
   + message does not exist or 
   + message does not belong to user
