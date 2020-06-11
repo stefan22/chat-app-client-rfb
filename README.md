@@ -26,8 +26,7 @@ ref=> project:google.cloud.functions./chat-app-5c91e
   
 > a few changes coming..        
 
-
-note: could also use warning badge for delete/add buttons:      
+   
 
 º badges:        
 - currently used for likes only (not authenticated warning && already liked warning).         
