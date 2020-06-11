@@ -27,3 +27,4 @@ export const ADD_MESSAGE = 'ADD_MESSAGE';
 export const CLEAR_MESSAGES = 'CLEAR_MESSAGES';
 export const SET_LIKES = 'SET_LIKES';
 export const GET_LIKES = 'GET_LIKES';
+export const SET_DELETE = 'SET_DELETE';

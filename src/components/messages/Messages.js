@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import WarningMessage from './WarningMessage';
-import LikeCountButton from './LikeCountButton';
-import DeleteButton from './deleteButton/DeleteButton';
+import WarningMessage from '../WarningMessage';
+import LikeCountButton from '../LikeCountButton';
+import DeleteButton from '../deleteButton/DeleteButton';
 
 // matui
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -13,18 +13,18 @@ import Typography from '@material-ui/core/Typography';
 // 3rd party libs
 import moment from 'moment';
 // styles
-import styles from '../theme/messages';
+import messagesStyles from './messages.styles';
 // icons
 import IconButton from '@material-ui/core/IconButton';
 import LikeIcon from '@material-ui/icons/ThumbUp';
 import UnlikeIcon from '@material-ui/icons/ThumbUpOutlined';
 // redux
 import { connect } from 'react-redux';
-import { handleUpdateLikes } from '../redux/actions/messagesActions';
+import { handleUpdateLikes } from '../../redux/actions/messagesActions';
 import {
   sendWarningMessage,
   resetWarningMessage,
-} from '../redux/actions/uiActions';
+} from '../../redux/actions/uiActions';
 
 class Messages extends Component {
   constructor(props) {
@@ -127,6 +127,7 @@ class Messages extends Component {
           {!!authenticated &&
             <DeleteButton 
               messageId={messageId}
+              userMessage={user}
             />
           }
           </div>
@@ -167,6 +168,6 @@ const mapActionsToProps = {
 export default connect(
   mapStateToProps,
   mapActionsToProps
-)(withStyles(styles)(Messages));
+)(withStyles(messagesStyles)(Messages));
 
 

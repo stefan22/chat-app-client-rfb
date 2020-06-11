@@ -34,3 +34,12 @@ export const formDataHelper = (elem) => {
   formData.append('file', elem, elem.name);
   return formData;
 }
+
+
+
+export const isMessageFromUser = (user, userMessage) => {
+  let isUser = user.protected.user;
+  if (isUser.toLowerCase() === userMessage.toLowerCase()) {
+    return true;
+  } else return false;
+}

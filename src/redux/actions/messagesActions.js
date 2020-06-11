@@ -6,13 +6,14 @@ import {
   ADD_MESSAGE,
   SET_LIKES,
   CLEAR_ERRORS,
+  SET_DELETE
 
 
 } from '../types';
 
 import {
   addItemsToLocalStorage, 
-  getItemsFromLocalStorage, 
+  isMessageFromUser,
   getAuthToken,
 
 } from '../../components/helperFns';
@@ -103,39 +104,29 @@ export const handleUpdateLikes = (messageId) => async (dispatch) => {
 };
 
 //deleteMessage
-export const deleteMessage =  (messageId,user) => async dispatch => {
+export const deleteMessage = (messageId,user,userMessage) => async dispatch => {
+  let userOwnsMsg = await isMessageFromUser(user,userMessage);
   let delToken = getAuthToken('fbToken');
-  let msgs = await getItemsFromLocalStorage('messages');
-  let match = msgs.find(msg => msg.messageId === messageId);
+  if (!userOwnsMsg) {//user does not own message 
+    console.log('send warning badge - user does not own this message');
+    return true; //- end-of-road
+  }
+
   // message belongs to user & authenticated
-  // if (user.protected.user === match.user) {
-  //     fetch(`${baseURL}/messages/${messageId}`, {
-  //       method: 'DELETE',
-  //       headers: {
-  //         'Accept': '*/*',
-  //         'Content-type': 'application/json',
-  //         'Authorization': delToken,
-  //         'referrer': '', mode: 'cors', cache: 'reload', redirect: 'follow'
-  //       },
-  //     })
-  //     .then((del) => {
-  //      // dispatch({type: SET_DELETE,})
-  //       console.log('message deleted ',del);
-  //     })
-  //     .then(() => {
-  //         localStorage.removeItem('messages');
-  //         getMessages();
-  //     })
-  //     .catch(err => console.log('error => ',err));
-  // }
-  // else {
-  //   console.log(`
-  //     Unauthorized.\n
-  //     You're logged in as ${user.protected.user} and ..\n
-  //     This message belongs to ${match.user} \n
-  //   `)
-  //   return;
-  // }
+  fetch(`${baseURL}/messages/${messageId}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-type': 'application/json',
+      'Authorization': delToken,
+    },
+  })
+  .then(() => {
+    dispatch({type: SET_DELETE, payload: messageId});
+    if (localStorage.messages) localStorage.removeItem('messages');
+  })
+  .catch(err => console.log('error => ',err));
+
+ 
 };
 
 
