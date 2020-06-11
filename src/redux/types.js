@@ -23,6 +23,7 @@ export const RESET_WARNING = 'RESET_WARNING';
 
 // messages :messages
 export const SET_MESSAGES = 'SET_MESSAGES';
+export const ADD_MESSAGE = 'ADD_MESSAGE';
 export const CLEAR_MESSAGES = 'CLEAR_MESSAGES';
 export const SET_LIKES = 'SET_LIKES';
 export const GET_LIKES = 'GET_LIKES';

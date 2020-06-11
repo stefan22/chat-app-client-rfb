@@ -3,6 +3,9 @@ import {
 	CLEAR_MESSAGES, 
 	SET_LOADING_ON,
   SET_WARNING,
+  ADD_MESSAGE,
+  SET_LIKES,
+  CLEAR_ERRORS,
 
 
 } from '../types';
@@ -20,15 +23,8 @@ const baseURL = 'https://europe-west1-chat-app-5c91e.cloudfunctions.net/api';
 
 
 // get messages
-export const getMessages = () => async (dispatch) => {
+export const getMessages = () => (dispatch) => {
   dispatch({ type: SET_LOADING_ON });
-  if (localStorage.messages) {
-    let msgs = await getItemsFromLocalStorage('messages');
-    return dispatch({
-      type: SET_MESSAGES,
-      payload: msgs,
-    });
-  }
   fetch(`${baseURL}/messages`)
     .then((res) => {
       return res.json();
@@ -46,15 +42,12 @@ export const getMessages = () => async (dispatch) => {
     });
 };
 
-
-
 // add message
-export const addMessage = (message,user) => dispatch => {
+export const addMessage = (message,user,messageId) => dispatch => {
   let addToken = getAuthToken('fbToken');
-
   let newMessage = {
     user: user.protected.user,
-    message: message
+    message
   }
   fetch(`${baseURL}/message`, {
     method: 'POST',
@@ -70,19 +63,19 @@ export const addMessage = (message,user) => dispatch => {
     return res.json();
   })
   .then((data) => {
-    console.log('message id => ',data);
+    dispatch({
+      type: ADD_MESSAGE,
+      payload: data,
+    })
   })
-
-
+  .then(() => {
+    dispatch({type: CLEAR_ERRORS})
+  })
+  .catch(err => console.log(err));
 }
-
 
 //updating messages/likes => fetch messages/update localStorage
 export const handleUpdateLikes = (messageId) => async (dispatch) => {
-  let messages;
-   if (localStorage.messages) {
-    messages = await getItemsFromLocalStorage('messages');
-   }
   let token = getAuthToken('fbToken');
   fetch(`${baseURL}/message/${messageId}/like`, {
      method: 'GET',
@@ -97,19 +90,13 @@ export const handleUpdateLikes = (messageId) => async (dispatch) => {
       return res.json();
     })
     .then(data => {
-      messages.forEach(itm => {
-        if ( itm.messageId === data.messageId) {
-          itm.likeCount = data.likeCount;
-        }
-      })
       dispatch({
-        type: SET_MESSAGES,
-        payload: messages
+        type: SET_LIKES,
+        payload: data
       });
       if (data.error === 'Message already liked') {
         dispatch({type: SET_WARNING, payload: data.error});
       }
-      addItemsToLocalStorage(messages);
     })
     .catch((err) => console.log(err));
   
@@ -121,34 +108,34 @@ export const deleteMessage =  (messageId,user) => async dispatch => {
   let msgs = await getItemsFromLocalStorage('messages');
   let match = msgs.find(msg => msg.messageId === messageId);
   // message belongs to user & authenticated
-  if (user.protected.user === match.user) {
-      fetch(`${baseURL}/messages/${messageId}`, {
-        method: 'DELETE',
-        headers: {
-          'Accept': '*/*',
-          'Content-type': 'application/json',
-          'Authorization': delToken,
-          'referrer': '', mode: 'cors', cache: 'reload', redirect: 'follow'
-        },
-      })
-      .then((del) => {
-       // dispatch({type: SET_DELETE,})
-        console.log('message deleted ',del);
-      })
-      .then(() => {
-          localStorage.removeItem('messages');
-          getMessages();
-      })
-      .catch(err => console.log('error => ',err));
-  }
-  else {
-    console.log(`
-      Unauthorized.\n
-      You're logged in as ${user.protected.user} and ..\n
-      This message belongs to ${match.user} \n
-    `)
-    return;
-  }
+  // if (user.protected.user === match.user) {
+  //     fetch(`${baseURL}/messages/${messageId}`, {
+  //       method: 'DELETE',
+  //       headers: {
+  //         'Accept': '*/*',
+  //         'Content-type': 'application/json',
+  //         'Authorization': delToken,
+  //         'referrer': '', mode: 'cors', cache: 'reload', redirect: 'follow'
+  //       },
+  //     })
+  //     .then((del) => {
+  //      // dispatch({type: SET_DELETE,})
+  //       console.log('message deleted ',del);
+  //     })
+  //     .then(() => {
+  //         localStorage.removeItem('messages');
+  //         getMessages();
+  //     })
+  //     .catch(err => console.log('error => ',err));
+  // }
+  // else {
+  //   console.log(`
+  //     Unauthorized.\n
+  //     You're logged in as ${user.protected.user} and ..\n
+  //     This message belongs to ${match.user} \n
+  //   `)
+  //   return;
+  // }
 };
 
 

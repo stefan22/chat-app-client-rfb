@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -10,23 +10,29 @@ import addButton from './addButton.styles';
 import AddCommentIcon from '@material-ui/icons/AddComment';
 // redux
 import { connect } from 'react-redux';
-//import { deleteMessage } from '../../redux/actions/messagesActions';
+import { addMessage } from '../../redux/actions/messagesActions';
 
 
-const AddButton = ({deleteMessage,messageId,user}) => {
+const AddButton = ({addMessage,user}) => {
 	const classes = addButton();
-  const [open, setOpen] = React.useState(false);
+
+  const [open,setOpen] = useState(false);
+	const [message,setMessage] = useState('');
 
   const handleClickOpen = () => {
     setOpen(true);
   };
 
+	const handleOnChange = (evt) => {
+		let msg = evt.target.value;
+		setMessage(msg);
+	}
+
   const handleClose = (evt) => {
-    //const { messageId } = props;
-    let value = evt.target.parentElement.name;
+		let value = evt.target.parentElement.name;
     setOpen(false); 
     // pressed post
-    if (!!value && value.toLowerCase() === 'post') console.log('clicked add message');
+    if (!!value && value.toLowerCase() === 'post') addMessage(message,user);
   };
 
   return (
@@ -60,6 +66,7 @@ const AddButton = ({deleteMessage,messageId,user}) => {
 								id="newMessage"
 								label="New message"
 								type="text"
+								onChange={(e) => handleOnChange(e)}
 								fullWidth
 							/>
           </DialogContent>
@@ -86,7 +93,7 @@ const mapStateToProps = state => ({
 
 
 const mapActionsToProps = {
-  
+  addMessage
 
 }
 

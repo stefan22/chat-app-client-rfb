@@ -39,25 +39,29 @@ class Messages extends Component {
 
  
   handleLikedUnliked = (messageId) => {
-    const { authenticated } = this.props;
+    const { authenticated,likeCount } = this.props;
     if (!!authenticated) {
+      if (likeCount === 0) {
         this.setState(prevState => ({
-          open: !prevState.open
+          open: false,
         }));
-        //likes req server err
-      !this.state.open ? 
-          this.props.handleUpdateLikes(messageId) :
+        this.props.handleUpdateLikes(messageId);
+      }
+      else if (likeCount > 0) {
+        this.setState(prevState => ({
+          open: !prevState.open,
+        }));
+        !this.state.open ? this.props.sendWarningMessage() :
           this.props.resetWarningMessage();
+      }
     } 
     else {//not authenticated
-      
       this.setState(prevState => ({
-        open: !prevState.open
+        open: !prevState.open,
       })); //send/reset warning
       !this.state.open ? this.props.sendWarningMessage() : 
         this.props.resetWarningMessage();
     }
-    
   };
 
 
@@ -109,12 +113,11 @@ class Messages extends Component {
                   className={classes.likeButton}
                   color={'secondary'}
                 />
-              ) : (
-                <UnlikeIcon
-                  className={classes.unlikeButton}
-                  color='secondary'
-                />
-              )}
+              ) : <UnlikeIcon 
+                    className={classes.unlikeButton}
+                    color='secondary'
+                  />
+              }
 
               <LikeCountButton 
                 likeCount={likeCount} 
