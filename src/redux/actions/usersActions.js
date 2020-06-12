@@ -80,15 +80,13 @@ export const userSignup = (userSignup, history) => (dispatch) => {
   axios
     .post(`${baseURL}/signup`, userSignup)
     .then((response) => {
-      dispatch({type: SET_LOADING_ON});
       setAuthToken(response.data.token);
-      dispatch({ type: SET_AUTHENTICATED });
       dispatch(getUserData());
-      clearFormErrors();
+      dispatch({type: CLEAR_ERRORS});
       history.push('/');
     })
     .catch((err) => {
-      console.log(err.response.data);
+      console.log(err.response);
       dispatch({
         type: SET_ERRORS,
         payload: err.response.data,

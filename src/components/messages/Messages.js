@@ -24,6 +24,8 @@ import { handleUpdateLikes } from '../../redux/actions/messagesActions';
 import {
   sendWarningMessage,
   resetWarningMessage,
+  setDeleteWarning,
+  resetDeleteWarning,
 } from '../../redux/actions/uiActions';
 
 class Messages extends Component {
@@ -37,32 +39,40 @@ class Messages extends Component {
     };
   }
 
- 
-  handleLikedUnliked = (messageId) => {
-    const { authenticated,likeCount } = this.props;
-    if (!!authenticated) {
-      if (likeCount === 0) {
-        this.setState(prevState => ({
-          open: false,
-        }));
-        this.props.handleUpdateLikes(messageId);
-      }
-      else if (likeCount > 0) {
-        this.setState(prevState => ({
-          open: !prevState.open,
-        }));
-        !this.state.open ? this.props.sendWarningMessage() :
-          this.props.resetWarningMessage();
-      }
-    } 
-    else {//not authenticated
-      this.setState(prevState => ({
-        open: !prevState.open,
-      })); //send/reset warning
-      !this.state.open ? this.props.sendWarningMessage() : 
-        this.props.resetWarningMessage();
+  handleDeleteWarning = () => {
+    this.setState({
+      open: true,
+    });
+    this.props.setDeleteWarning();
+  }
+
+  handleResetDeleteWarning = () => {
+    this.props.resetDeleteWarning();
+  }
+
+  handleLiked = messageId => {
+    const { likeCount } = this.props;
+    this.setState({open: true});
+    if (likeCount === 0) {
+      this.props.handleUpdateLikes(messageId);
     }
-  };
+    this.props.sendWarningMessage();
+  }
+
+  handleResetliked = () => {
+    this.setState({open: false});
+    this.props.resetWarningMessage();
+  }
+
+  handleLikedMessage = messageId => {
+    const { authenticated } = this.props;
+    if (!!authenticated) {
+      this.handleLiked(messageId);
+    }
+    this.props.sendWarningMessage();
+  }
+
+  
 
 
   render() {
@@ -77,11 +87,12 @@ class Messages extends Component {
       likeCount,
       createdAt,
       authenticated,
+      deleteMessageWarning,
       warning,
       user,
     } = this.props;
 
-
+     console.log('authenticated ',authenticated, ' delete mesg warning ', deleteMessageWarning);
     return (
       <Card className={classes.card} key={messageId} elevation={2}>
         <CardMedia
@@ -105,7 +116,7 @@ class Messages extends Component {
              
 
             <IconButton
-              onClick={() => this.handleLikedUnliked(messageId)}
+              onClick={() => this.handleLikedMessage(messageId)}
               className={classes.likeButtonWrapper}
             >
               {likeCount > 0 ? (
@@ -124,10 +135,12 @@ class Messages extends Component {
                 color={'primary'} 
               />
             </IconButton>
+
           {!!authenticated &&
             <DeleteButton 
               messageId={messageId}
               userMessage={user}
+              handleDeleteWarning={this.handleDeleteWarning}
             />
           }
           </div>
@@ -141,7 +154,19 @@ class Messages extends Component {
             warning={warning}
             open={open}
             authenticated={authenticated}
-            handleLikedUnliked={this.handleLikedUnliked}
+            handleLiked={this.handleLiked}
+            handleResetliked={this.handleResetliked}
+            horizontal={horizontal}
+            vertical={vertical}
+          />
+          }
+          { !!deleteMessageWarning &&
+          <WarningMessage
+            open={open}
+            deleteMessageWarning={deleteMessageWarning}
+            authenticated={authenticated}
+            handleDeleteWarning={this.handleDeleteWarning}
+            handleResetDeleteWarning={this.handleResetDeleteWarning}
             horizontal={horizontal}
             vertical={vertical}
           />
@@ -157,12 +182,15 @@ const mapStateToProps = (state) => ({
   authenticated: state.user.authenticated,
   warning: state.ui.warning,
   messages: state.messages,
+  deleteMessageWarning: state.ui.deleteMessageWarning,
 });
 
 const mapActionsToProps = {
   sendWarningMessage,
   resetWarningMessage,
   handleUpdateLikes,
+  setDeleteWarning,
+  resetDeleteWarning,
 };
 
 export default connect(

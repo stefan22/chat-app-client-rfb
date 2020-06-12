@@ -5,19 +5,23 @@ import Snackbar from '@material-ui/core/Snackbar';
 
 class WarningMessage extends Component {
 
-  handleClick = () =>
-    this.props.handleLikedUnliked();
+  handleClick = () => {
+    if (!!this.props.deleteMessageWarning) this.props.handleDeleteWarning();
+  }
 
-  handleClose = () => 
-    this.props.handleLikedUnliked();
+  handleClose = () => {
+    if (!!this.props.warning) this.props.handleResetliked();
+    if (!!this.props.deleteMessageWarning) this.props.handleResetDeleteWarning();
+  }
 
   render() {
     //console.log(this);
     const { 
       warning, 
       authenticated,
+      deleteMessageWarning,
       vertical,
-      horizontal, 
+      horizontal,
       open,
 
 } = this.props;
@@ -52,6 +56,18 @@ class WarningMessage extends Component {
               'To Like a message, you must be logged in.' :
               'Message already liked.'
           }
+          key={horizontal+vertical }
+          action={loginAction}
+        />
+      }
+
+       {!!deleteMessageWarning && !!open &&
+        <Snackbar
+          style={{marginTop:'3rem'}}
+          size={"xs"}
+          anchorOrigin={{ vertical, horizontal }}
+          open={open}
+          message={'It cannot be deleted because it does not belong to you.'}
           key={horizontal+vertical }
           action={loginAction}
         />

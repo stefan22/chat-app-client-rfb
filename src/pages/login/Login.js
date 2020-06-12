@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 // comps
 import { Link } from 'react-router-dom';
-import CircularProgress from '@material-ui/core/CircularProgress';
 // matui
 import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -52,7 +51,7 @@ class Login extends Component {
     //console.log(this);
     const {
       classes,
-      loading,
+  
       errors,
     } = this.props;
     const { email, password } = this.state;
@@ -64,15 +63,7 @@ class Login extends Component {
             Login
           </Typography>
           <form id='login' noValidate onSubmit={this.handleSubmit}>
-             {!!loading ? (
-                
-              <CircularProgress
-                color='primary'
-                size={40}
-                className={classes.spinner}
-              />
             
-            ) : (
             <div className={classes.innerForm}>
               <TextField
                 id='email'
@@ -113,7 +104,7 @@ class Login extends Component {
                 Login
               </Button>
             </div>
-            )}
+           
 
             {errors.credentials && (
               <Typography

@@ -24,4 +24,10 @@ body {
   max-width: 1200px;
 }
 
-
+.MuiCircularProgress-root {
+  display: inline-block;
+  position: absolute;
+  left: 48.5%;
+  top: 45vh;
+ 
+}
