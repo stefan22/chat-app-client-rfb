@@ -19,11 +19,11 @@ export default {
     margin: '0 1rem',
     position: 'relative',
   },
-  homeSpinner1: {
-    position: 'absolute',
-    top: '22vh',
-    left: '15%',
-  },
+  // homeSpinner1: {
+  //   position: 'absolute',
+  //   top: '22vh',
+  //   left: '15%',
+  // },
   refTransform: {
     position: 'fixed',
     top: '22vh',

@@ -14,9 +14,8 @@ import styles from './signup.styles';
 // redux
 import { connect } from 'react-redux';
 import { userSignup, clearFormErrors } from '../../redux/actions/usersActions';
-
-
-
+// gif
+import igif from '../../images/cloud.gif';
 
 class Signup extends Component {
   constructor(props) {
@@ -55,30 +54,20 @@ class Signup extends Component {
 
   render() {
     //console.log(this);
-    const { classes, errors, loading } = this.props;
-    const {
-      user,
-      email,
-      password,
-      confirmPassword,
-    } = this.state;
+    const { classes, errors } = this.props;
+    const { user, email, password, confirmPassword } = this.state;
     return (
       <Grid className={classes.signupForm} container>
         <Grid item sm={12} xs={12}>
-          <Typography variant='h2' 
-            className={classes.signupTitle} 
-            color='primary' align='center'>
+          <Typography
+            variant='h2'
+            className={classes.signupTitle}
+            color='primary'
+            align='center'
+          >
             Signup
           </Typography>
           <form id='signup' noValidate onSubmit={this.handleSubmit}>
-             {!!loading ? (
-              <CircularProgress
-                color='primary'
-                size={40}
-                className={classes.spinner}
-              />
-            ) : (
-
             <div className={classes.innerForm}>
               <TextField
                 id='userSignup'
@@ -148,13 +137,8 @@ class Signup extends Component {
               </Button>
             </div>
 
-            )}
-
             {errors.loginMsg && (
-              <Typography
-                variant='body1'
-                className={classes.credentialsError}
-              >
+              <Typography variant='body1' className={classes.credentialsError}>
                 {errors.loginMsg} Already have an account? Click
                 <Link to='/login' className={classes.errorsHereLink}>
                   here
@@ -162,14 +146,10 @@ class Signup extends Component {
               </Typography>
             )}
             {errors.regMsg && (
-              <Typography
-                variant='body1'
-                className={classes.credentialsError}
-              >
+              <Typography variant='body1' className={classes.credentialsError}>
                 {errors.regMsg}
               </Typography>
             )}
-
           </form>
         </Grid>
       </Grid>
@@ -177,16 +157,16 @@ class Signup extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   user: state.user,
   errors: state.ui.errors,
-  loading: state.ui.loading
+  loading: state.ui.loading,
 });
 
 const mapActionsToProps = {
   userSignup,
-  clearFormErrors
-}
+  clearFormErrors,
+};
 
 export default connect(
   mapStateToProps,
