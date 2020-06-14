@@ -17,38 +17,35 @@ ref=> project:google.cloud.functions./chat-app-5c91e
 - user profile image upload √ 
 - edit userProfile √
 - user like/likeCount √
-- warning badges for likes √
+- warning badges for likes √ [when authenticated : not authenticated :already liked before] √
 - footer comp - √
 - add message √ [it's ok to like your own message - but just once && while authenticated]
 - delete messages √ [so long as you own it and authenticated] √
-- so far ..so good.
-- warning badges for cases below..
-  
+- warning badges for messages √ [ when message does not belong to user] √
+- grid √ [messages: 12 - col not authenticated] [messages: 8col when authenticated] √
+- heading √ [moves to the side of messages when scroll-down - react.ref] √
+- ...
 > a few changes coming..        
 
-   
-
-º badges:        
-- currently used for likes only (not authenticated warning && already liked warning).         
-- delete button
-  + message does not exist or          
-  + message does not belong to user             
-
-
-
-
-
+      
 other:             
-ª signup form errors align-center and clear during loading like login page.     
-º localStorage updates.    
+
+º localStorage updates. 
+ª loading   
 º refactoring /classes etc.     
 º responsiveness.     
 
 
+> ___screenshots__ @: [/images/screenshots/]
 
+<kbd>screenshot..messages/userProfile</kbd><br/>
+![](src/images/screenshots/gridcol8col4.png)<br/>
 
-<kbd>screenshot..</kbd><br/>
-![](src/images/soFar.png)<br/>
+<kbd>screenshot..editProfile</kbd><br/>
+![](src/images/screenshots/editProfile.png)<br/>
+
+<kbd>screenshot..deleteWarningBadge</kbd><br/>
+![](src/images/screenshots/cannotDeleteMessage.png)<br/>
 
 
 

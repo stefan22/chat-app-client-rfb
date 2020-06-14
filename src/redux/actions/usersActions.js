@@ -115,7 +115,7 @@ export const setProfileImage = formData => dispatch => {
 // update user profile
 export const userProfileUpdate = data => dispatch => {
   dispatch({ type: SET_LOADING_ON });
-  let tkn = getItemsFromLocalStorage('fbToken');
+  let tkn = localStorage.getItem('fbToken');
   fetch(`${baseURL}/user`, {
     method: 'POST',
     headers: {
@@ -123,7 +123,6 @@ export const userProfileUpdate = data => dispatch => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(data),
-    'referrer': '', mode: 'cors', cache: 'reload', redirect: 'follow'
   })
   .then(() => dispatch(getUserData()))
   .catch(err => console.log(err));

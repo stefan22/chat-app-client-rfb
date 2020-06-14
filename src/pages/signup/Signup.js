@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 // comps
 import { Link } from 'react-router-dom';
-import CircularProgress from '@material-ui/core/CircularProgress';
 // matui
 import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -14,8 +13,7 @@ import styles from './signup.styles';
 // redux
 import { connect } from 'react-redux';
 import { userSignup, clearFormErrors } from '../../redux/actions/usersActions';
-// gif
-import igif from '../../images/cloud.gif';
+
 
 class Signup extends Component {
   constructor(props) {
