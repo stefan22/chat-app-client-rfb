@@ -6,6 +6,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 class WarningMessage extends Component {
 
   handleClick = () => {
+    //if (!!this.props.warning) this.props.sendWarningMessage();
     if (!!this.props.deleteMessageWarning) this.props.handleDeleteWarning();
   }
 

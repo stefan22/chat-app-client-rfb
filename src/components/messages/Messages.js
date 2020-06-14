@@ -51,10 +51,20 @@ class Messages extends Component {
   }
 
   handleLiked = messageId => {
-    const { likeCount } = this.props;
+    const { likes, authenticated } = this.props;
+    let likedBefore = {};
     this.setState({open: true});
-    if (likeCount === 0) {
-      this.props.handleUpdateLikes(messageId);
+    if (!!authenticated) {
+      if (likes && likes.length === 0) {
+        return  this.props.handleUpdateLikes(messageId);
+      }
+      else if (likes.length > 0) {
+        likedBefore = likes.find(m => m.messageId === messageId);
+        if (!likedBefore) {//not liked yet
+          return this.props.handleUpdateLikes(messageId);
+        }// otherwise
+        else return this.props.sendWarningMessage();
+      }
     }
     this.props.sendWarningMessage();
   }
@@ -63,16 +73,6 @@ class Messages extends Component {
     this.setState({open: false});
     this.props.resetWarningMessage();
   }
-
-  handleLikedMessage = messageId => {
-    const { authenticated } = this.props;
-    if (!!authenticated) {
-      this.handleLiked(messageId);
-    }
-    this.props.sendWarningMessage();
-  }
-
-  
 
 
   render() {
@@ -92,7 +92,6 @@ class Messages extends Component {
       user,
     } = this.props;
 
-     console.log('authenticated ',authenticated, ' delete mesg warning ', deleteMessageWarning);
     return (
       <Card className={classes.card} key={messageId} elevation={2}>
         <CardMedia
@@ -116,7 +115,7 @@ class Messages extends Component {
              
 
             <IconButton
-              onClick={() => this.handleLikedMessage(messageId)}
+              onClick={() => this.handleLiked(messageId)}
               className={classes.likeButtonWrapper}
             >
               {likeCount > 0 ? (
@@ -180,6 +179,7 @@ class Messages extends Component {
 
 const mapStateToProps = (state) => ({
   authenticated: state.user.authenticated,
+  likes: state.user.likes,
   warning: state.ui.warning,
   messages: state.messages,
   deleteMessageWarning: state.ui.deleteMessageWarning,
