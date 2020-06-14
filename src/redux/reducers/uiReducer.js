@@ -4,7 +4,9 @@ import {
 		SET_LOADING_ON, 
 		SET_LOADING_OFF,
 		SET_WARNING,
-		RESET_WARNING
+		RESET_WARNING,
+		DELETE_WARNING,
+		RESET_DELETE_WARNING,
 
 } from '../types';
 
@@ -13,6 +15,7 @@ const initialState = {
 	errors: {},
 	warning: false,
 	open: false,
+	deleteMessageWarning: false,
 }
 
 const uiReducer = (state=initialState, action) => {
@@ -41,13 +44,32 @@ const uiReducer = (state=initialState, action) => {
 		case SET_WARNING:
 			return {
 				...state,
-				warning: true, open: true
+				warning: true, open: true,
+				deleteMessageWarning: false,
+			}
+
+		case DELETE_WARNING:
+			return {
+				...state,
+				deleteMessageWarning: true,
+				warning: false,
+				open: true,
+			}
+
+		case RESET_DELETE_WARNING:
+			return {
+				...state,
+				deleteMessageWarning: false,
+				open: false,
+				warning: false,
 			}
 
 		case RESET_WARNING:
 			return {
 				...state,
-				warning: false, open: false
+				warning: false, 
+				open: false,
+				deleteMessageWarning: false,
 			}
 
 		default:

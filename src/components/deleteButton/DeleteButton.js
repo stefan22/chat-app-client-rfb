@@ -9,25 +9,41 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import deleteButton from './deleteButton.styles';
 // redux
 import { connect } from 'react-redux';
-import { deleteMessage } from '../../redux/actions/messagesActions';
+import { getDeleteMessage } from '../../redux/actions/messagesActions';
+import { setDeleteWarning } from '../../redux/actions/uiActions';
 
 
-const DeleteButton = ({deleteMessage,messageId,user,userMessage}) => {
+const DeleteButton = ({
+  messageId,
+  user,
+  userMessage,  
+  authenticated,
+  deleteMessageWarning,
+  setDeleteWarning,
+  getDeleteMessage,
+  handleDeleteWarning
+ 
+
+}) => {
 	const classes = deleteButton();
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
-    setOpen(true);
+    let isUser = user.protected.user;
+    if (userMessage === isUser) {
+      return setOpen(true);
+    }
+     // otherwise
+    handleDeleteWarning();
   };
 
   const handleClose = (evt) => {
     let value = evt.target.parentElement.name;
-    setOpen(false); 
     // pressed delete
-    if (value.toLowerCase() === 'delete') deleteMessage(messageId,user,userMessage);
+    if (value.toLowerCase() === 'delete') getDeleteMessage(messageId,user,userMessage);
+    setOpen(false); 
   };
 
-  
 
   return (
       <div className={classes.deleteButton}>
@@ -74,12 +90,15 @@ const DeleteButton = ({deleteMessage,messageId,user,userMessage}) => {
 
 
 const mapStateToProps = state => ({
-  user: state.user
+  user: state.user,
+  authenticated: state.user.authenticated,
+  deleteMessageWarning: state.ui.deleteMessageWarning
 })
 
 
 const mapActionsToProps = {
-  deleteMessage
+  getDeleteMessage,
+  setDeleteWarning,
 
 }
 
