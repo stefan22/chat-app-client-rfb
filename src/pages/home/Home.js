@@ -18,17 +18,22 @@ import styles from './home.styles';
 class Home extends Component {
   constructor(props) {
     super(props);
+    this.state = { width: 0};
     this.homeHeadingRef = createRef(); //pg main-heading ref
+  }
+
+  getWindowWidth = () => {
+    this.setState({width: window.innerWidth})
   }
 
   componentDidMount() {
     this.props.getMessages();
+    window.addEventListener('resize', this.getWindowWidth, false);
     window.addEventListener('scroll', this.scrollListenerFun,false);
-
   }
 
   scrollListenerFun = () => {
-    return scrollListenerHelper(this.homeHeadingRef,this.props.classes);
+    if (this.state.width > 1725) scrollListenerHelper(this.homeHeadingRef,this.props.classes);
   }
 
   handleUserProfileImage = async (evt) => {
@@ -37,8 +42,9 @@ class Home extends Component {
     this.props.setProfileImage(formData);
   };
 
-  componentWillUnmount() {//removes ref dom anim handle
+  componentWillUnmount() {//remove evts
     window.removeEventListener('scroll', this.scrollListenerFun, false);
+    window.removeEventListener('resize', this.getWindowWidth, false);
   }
 
   render() {
