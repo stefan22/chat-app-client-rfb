@@ -55,10 +55,10 @@ class Messages extends Component {
     let likedBefore = {};
     this.setState({open: true});
     if (!!authenticated) {
-      if (likes && likes.length === 0) {
+      if (!!likes && likes.length === 0) {
         return  this.props.handleUpdateLikes(messageId);
       }
-      else if (likes.length > 0) {
+      else if (!!likes && likes.length > 0) {
         likedBefore = likes.find(m => m.messageId === messageId);
         if (!likedBefore) {//not liked yet
           return this.props.handleUpdateLikes(messageId);
@@ -148,7 +148,7 @@ class Messages extends Component {
             {moment(createdAt).fromNow()}
           </Typography>
         </CardContent>
-          { !!warning &&
+          { !!warning && !deleteMessageWarning &&
           <WarningMessage
             warning={warning}
             open={open}
@@ -159,7 +159,7 @@ class Messages extends Component {
             vertical={vertical}
           />
           }
-          { !!deleteMessageWarning &&
+          { !!deleteMessageWarning && !warning &&
           <WarningMessage
             open={open}
             deleteMessageWarning={deleteMessageWarning}

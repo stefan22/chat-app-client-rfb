@@ -3,10 +3,31 @@ import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 
 
+
+
 class WarningMessage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      options: {
+        notAuthWarning: 'To Like a message, you must be logged in',
+        authWarning: 'Message already liked',
+        authDelWarning: 'Cannot delete a message posted by someone else.',
+      }
+    }
+  }
+
+  messages = () => {
+    const { authenticated, warning, deleteMessageWarning } = this.props;
+    const {options: {notAuthWarning, authWarning, authDelWarning}} = this.state;
+    return (
+      (!authenticated && !!warning) ? 
+        notAuthWarning : (!!authenticated && !!deleteMessageWarning) ?
+        authDelWarning : authWarning
+    );
+}
 
   handleClick = () => {
-    //if (!!this.props.warning) this.props.sendWarningMessage();
     if (!!this.props.deleteMessageWarning) this.props.handleDeleteWarning();
   }
 
@@ -18,12 +39,10 @@ class WarningMessage extends Component {
   render() {
     //console.log(this);
     const { 
-      warning, 
-      authenticated,
-      deleteMessageWarning,
       vertical,
       horizontal,
       open,
+    
 
 } = this.props;
     
@@ -46,33 +65,18 @@ class WarningMessage extends Component {
         >
         </button>
 
-      {!!warning && !!open &&
+      {!!open &&
         <Snackbar
           style={{marginTop:'3rem'}}
           size={"xs"}
           anchorOrigin={{ vertical, horizontal }}
           open={open}
-          message={
-            (!authenticated) ? 
-              'To Like a message, you must be logged in.' :
-              'Message already liked.'
-          }
+          message={this.messages()}
           key={horizontal+vertical }
           action={loginAction}
         />
       }
 
-       {!!deleteMessageWarning && !!open &&
-        <Snackbar
-          style={{marginTop:'3rem'}}
-          size={"xs"}
-          anchorOrigin={{ vertical, horizontal }}
-          open={open}
-          message={'It cannot be deleted because it does not belong to you.'}
-          key={horizontal+vertical }
-          action={loginAction}
-        />
-      }
       </div>
     );
   }
