@@ -1,15 +1,13 @@
 export default {
-  '#root-chat signupForm': {
-    textAlign: 'center',
-    position: 'relative',
-  },
+  
   innerForm: {
     display: 'flex',
     flexDirection: 'column',
     padding: '3rem',
   },
   signupTitle: {
-    fontWeight: 400
+    fontWeight: 400,
+    margin: '3rem 0 5rem',
   },
   userField: {
     margin: '1rem 0',

@@ -14,7 +14,7 @@ import { connect } from 'react-redux';
 
 const Footer = ({ messages, loading }) => {
   const classes = footerStyles();
-  const isMobile = useMediaQuery("(max-width: 600px")
+  const isMobile = useMediaQuery("(max-width: 600px)")
 
   return (
     <>
@@ -22,7 +22,7 @@ const Footer = ({ messages, loading }) => {
         <footer className={classes.footer}>
           <Container>
             <Grid container>
-              <div className={isMobile ? classes.mobileInnerWrapper : classes.innerWrapper}>
+              <div className={!isMobile ? classes.innerWrapper : classes.mobileInnerWrapper}>
                 <Grid item xs={12} sm={3}>
                   <div className={classes.logo}>
                     <Link
@@ -35,7 +35,7 @@ const Footer = ({ messages, loading }) => {
                     </Link>
                   </div>
                 </Grid>
-                <div className={isMobile ? classes.mobileFooterLinks : classes.footerLinks}>
+                <div className={!isMobile ? classes.footerLinks : classes.mobileFooterLinks}>
                   <Grid item xs={6} sm={3} className={classes.list}>
                     <Typography
                       className={classes.footerHeading}

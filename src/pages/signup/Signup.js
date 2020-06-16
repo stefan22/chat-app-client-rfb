@@ -55,7 +55,7 @@ class Signup extends Component {
     const { classes, errors } = this.props;
     const { user, email, password, confirmPassword } = this.state;
     return (
-      <Grid className={classes.signupForm} container>
+      <Grid container>
         <Grid item sm={12} xs={12}>
           <Typography
             variant='h2'

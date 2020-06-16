@@ -10,7 +10,8 @@ export default {
     marginBottom: '6rem'
   },
   loginTitle: {
-    fontWeight: 400
+    fontWeight: 400,
+    margin: '3rem 0 5rem',
   },
   emailField: {
     margin: '2rem 0',

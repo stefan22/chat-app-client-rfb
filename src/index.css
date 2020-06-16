@@ -17,6 +17,11 @@ body {
   line-height: 1.5;
 }
 
+#root-chat {
+  position: relative;
+  min-height: 100vh;
+}
+
 #root-chat .container {
   margin-top: calc(12vh);
   margin-left: auto;
@@ -31,3 +36,4 @@ body {
   top: 45vh;
  
 }
+

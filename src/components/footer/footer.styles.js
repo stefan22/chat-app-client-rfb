@@ -6,6 +6,7 @@ export default makeStyles((theme) => ({
   footer: {
     position: 'absolute',
     width: '100vw',
+    minHeight: '170px',
     left: 0,
     right: 0,
     padding: '3rem 1rem 2rem 1rem',

@@ -1,5 +1,6 @@
 import React, { Component, createRef } from 'react';
 // comps
+import Footer from '../../components/footer/Footer';
 import UserProfile from '../../components/userProfile/UserProfile';
 import Messages from '../../components/messages/Messages';
 // helpers
@@ -18,12 +19,12 @@ import styles from './home.styles';
 class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = { width: 0};
+    this.state = { width: window.innerWidth};
     this.homeHeadingRef = createRef(); //pg main-heading ref
   }
 
   getWindowWidth = () => {
-    this.setState({width: window.innerWidth})
+    return this.setState({width: window.innerWidth})
   }
 
   componentDidMount() {
@@ -64,6 +65,7 @@ class Home extends Component {
     
 
     return (
+      <>
         <Grid container>
           <Grid item xs={12}>
             <header className={classes.homeHeader}>
@@ -76,8 +78,7 @@ class Home extends Component {
               </Typography>
             </header>
           </Grid>
-          <Grid item sm={sm1} xs={12}>
-           
+          <Grid item sm={12} xs={12} md={sm1}>
             <div className={classes.homeCards}>
               {messages.length > 0 && (
                 messages.map((msg) => (
@@ -91,7 +92,7 @@ class Home extends Component {
               )}
             </div>
           </Grid>
-          <Grid item sm={sm2} xs={12}>
+          <Grid item sm={12} xs={12} md={sm2}>
             <div className={classes.homeRight}>
               {!!authenticated && (
                 <UserProfile
@@ -104,6 +105,8 @@ class Home extends Component {
             </div>
           </Grid>
         </Grid>
+      <Footer />
+      </>
     );
   }
 }

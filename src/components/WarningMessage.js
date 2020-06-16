@@ -67,7 +67,7 @@ class WarningMessage extends Component {
 
       {!!open &&
         <Snackbar
-          style={{marginTop:'3rem'}}
+          style={{marginTop:'3.5rem'}}
           size={"xs"}
           anchorOrigin={{ vertical, horizontal }}
           open={open}
