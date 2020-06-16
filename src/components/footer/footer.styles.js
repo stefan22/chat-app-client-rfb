@@ -13,11 +13,53 @@ export default makeStyles((theme) => ({
     borderTop: `1px solid ${theme.palette.primary.main}`,
     backgroundColor: theme.palette.primary.main,
   },
-  footerInnerWrapper: {
+  innerWrapper: {
     display: 'flex',
     width: '100%',
-    margin: '0 2rem'
+    margin: '0 2rem',
   },
+  mobileInnerWrapper: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    textAlign: 'center'
+  },
+  footerLinks: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'flex-end'
+  },
+  mobileFooterLinks: {
+    display: 'flex',
+    width: '100%',
+    flexDirection: 'row',
+    margin: '1rem 0',
+    padding: '0 5px',
+    justifyContent: 'center',
+    '& > div': {
+      maxWidth: 'inherit',
+      flex: '0 1 33%',
+      '& h2': {
+        textAlign: 'center'
+      },
+      '& li': {
+        textAlign: 'center'
+      }
+    },
+
+  },
+  list: {
+    '& h2': {
+      textAlign: 'right'
+    },
+    '& li': {
+      textAlign: 'right'
+    }
+  }, 
+ 
   logo: {
     alignItems: 'center',
     padding: '1rem 0',

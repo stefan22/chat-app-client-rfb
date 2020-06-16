@@ -7,12 +7,14 @@ import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 // styles
 import footerStyles from './footer.styles';
+import { useMediaQuery } from '@material-ui/core';
 // redux
 import { connect } from 'react-redux';
 
 
 const Footer = ({ messages, loading }) => {
   const classes = footerStyles();
+  const isMobile = useMediaQuery("(max-width: 600px")
 
   return (
     <>
@@ -20,7 +22,7 @@ const Footer = ({ messages, loading }) => {
         <footer className={classes.footer}>
           <Container>
             <Grid container>
-              <div className={classes.footerInnerWrapper}>
+              <div className={isMobile ? classes.mobileInnerWrapper : classes.innerWrapper}>
                 <Grid item xs={12} sm={3}>
                   <div className={classes.logo}>
                     <Link
@@ -33,125 +35,129 @@ const Footer = ({ messages, loading }) => {
                     </Link>
                   </div>
                 </Grid>
-                <Grid item xs={6} sm={3} className={classes.list}>
-                  <Typography
-                    className={classes.footerHeading}
-                    component='h2'
-                    gutterBottom
-                  >
-                    Pages
-                  </Typography>
-                  <ul className={classes.ul}>
-                    <li>
-                      <Link
-                        className={classes.footerLink}
-                        color='inherit'
-                        variant='body2'
-                        href='/' 
-                      >
-                        Home
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        className={classes.footerLink}
-                        color='inherit'
-                        variant='body2'
-                        href='/login' 
-                      >
-                        Login
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        className={classes.footerLink}
-                        color='inherit'
-                        variant='body2'
-                        href='/signup' 
-                      >
-                        Signup
-                      </Link>
-                    </li>
-                  </ul>
-                </Grid>
-                <Grid item xs={6} sm={3} className={classes.list}>
-                  <Typography
-                    className={classes.footerHeading}
-                    component='h2'
-                    gutterBottom
-                  >
-                    Social
-                  </Typography>
-                  <ul className={classes.ul}>
-                    <li>
-                      <Link
-                        target='_blank'
-                        className={classes.footerLink}
-                        color='inherit'
-                        variant='body2'
-                        title="Github website"
-                        href='https://github.com' rel="nonopener nonreferer"
-                      >
-                        Github
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        target='_blank'
-                        className={classes.footerLink}
-                        color='inherit'
-                        variant='body2'
-                        title="Stackoverflow website"
-                        href='https://stackoverflow.com' rel="nonopener nonreferer"
-                      >
-                        Stackoverflow
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        className={classes.footerLink}
-                        target='_blank'
-                        color='inherit'
-                        variant='body2'
-                        title="Twitter website"
-                        href='https://twitter.com' rel="nonopener nonreferer"
-                      >
-                        Twitter
-                      </Link>
-                    </li>
-                  </ul>
-                </Grid>
-                <Grid item xs={6} sm={3} className={classes.list}>
-                  <Typography
-                    className={classes.footerHeading}
-                    component='h2'
-                    gutterBottom
-                  >
-                    Company
-                  </Typography>
-                  <ul className={classes.ul}>
-                    <li>
-                      <Link
-                        className={classes.footerLink}
-                        color='inherit'
-                        variant='body2'
-                        href='#aboutus'
-                      >
-                        About Us
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        className={classes.footerLink}
-                        color='inherit'
-                        variant='body2'
-                        href='#contactus'
-                      >
-                        Contact Us
-                      </Link>
-                    </li>
-                  </ul>
-                </Grid>
+                <div className={isMobile ? classes.mobileFooterLinks : classes.footerLinks}>
+                  <Grid item xs={6} sm={3} className={classes.list}>
+                    <Typography
+                      className={classes.footerHeading}
+                      component='h2'
+                      gutterBottom
+                    >
+                      Pages
+                    </Typography>
+                    
+                    <ul className={classes.ul}>
+                      <li>
+                        <Link
+                          className={classes.footerLink}
+                          color='inherit'
+                          variant='body2'
+                          href='/' 
+                        >
+                          Home
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          className={classes.footerLink}
+                          color='inherit'
+                          variant='body2'
+                          href='/login' 
+                        >
+                          Login
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          className={classes.footerLink}
+                          color='inherit'
+                          variant='body2'
+                          href='/signup' 
+                        >
+                          Signup
+                        </Link>
+                      </li>
+                    </ul>
+                    
+                  </Grid>
+                  <Grid item xs={6} sm={3} className={classes.list}>
+                    <Typography
+                      className={classes.footerHeading}
+                      component='h2'
+                      gutterBottom
+                    >
+                      Social
+                    </Typography>
+                    <ul className={classes.ul}>
+                      <li>
+                        <Link
+                          target='_blank'
+                          className={classes.footerLink}
+                          color='inherit'
+                          variant='body2'
+                          title="Github website"
+                          href='https://github.com' rel="nonopener nonreferer"
+                        >
+                          Github
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          target='_blank'
+                          className={classes.footerLink}
+                          color='inherit'
+                          variant='body2'
+                          title="Stackoverflow website"
+                          href='https://stackoverflow.com' rel="nonopener nonreferer"
+                        >
+                          Stackoverflow
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          className={classes.footerLink}
+                          target='_blank'
+                          color='inherit'
+                          variant='body2'
+                          title="Twitter website"
+                          href='https://twitter.com' rel="nonopener nonreferer"
+                        >
+                          Twitter
+                        </Link>
+                      </li>
+                    </ul>
+                  </Grid>
+                  <Grid item xs={6} sm={3} className={classes.list}>
+                    <Typography
+                      className={classes.footerHeading}
+                      component='h2'
+                      gutterBottom
+                    >
+                      Company
+                    </Typography>
+                    <ul className={classes.ul}>
+                      <li>
+                        <Link
+                          className={classes.footerLink}
+                          color='inherit'
+                          variant='body2'
+                          href='#aboutus'
+                        >
+                          About Us
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          className={classes.footerLink}
+                          color='inherit'
+                          variant='body2'
+                          href='#contactus'
+                        >
+                          Contact Us
+                        </Link>
+                      </li>
+                    </ul>
+                  </Grid>
+                </div>
               </div>
             </Grid>
           </Container>

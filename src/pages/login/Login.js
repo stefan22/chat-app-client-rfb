@@ -106,12 +106,12 @@ class Login extends Component {
             </div>
            
 
-            {errors.credentials && (
+            {errors.error && (
               <Typography
                 variant='body1'
                 className={classes.credentialsError}
               >
-              {errors.credentials}. Don't have an account? Click
+               Don't have an account? Click
                <Link to='/signup' className={classes.errorsHereLink}>
                 here
                </Link>
