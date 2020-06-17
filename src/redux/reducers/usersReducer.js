@@ -2,14 +2,16 @@ import {
   SET_AUTHENTICATED, 
   SET_UNAUTHENTICATED, 
   SET_USER, 
-  SET_LIKES
+  SET_LIKES,
+  SET_USER_MESSAGES,
  
 } from '../types';
 
 const initialState = {
   authenticated: false,
   protected: {},
-  likes: []
+  likes: [],
+  userMessages: [],
 };
 
 const userReducer = (state = initialState, action) => {
@@ -36,6 +38,13 @@ const userReducer = (state = initialState, action) => {
         ...state,
         likes: [
           ...state.likes,  
+        ]
+      }
+    case SET_USER_MESSAGES:
+      return {
+        ...state,
+        userMessages: [
+          ...action.payload,
         ]
       }
 

@@ -9,6 +9,7 @@ export const SET_AUTHENTICATED = 'SET_AUTHENTICATED';
 export const SET_UNAUTHENTICATED = 'SET_UNAUTHENTICATED';
 // user :user
 export const SET_USER = 'SET_USER';
+export const SET_USER_MESSAGES = 'SET_USER_MESSAGES';
 
 
 // loading :ui

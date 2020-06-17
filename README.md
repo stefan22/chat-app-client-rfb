@@ -24,7 +24,11 @@ ref=> project:google.cloud.functions./chat-app-5c91e
 - warning badges for messages √ [ when message does not belong to user] √
 - grid √ [messages: 12 - col not authenticated] [messages: 8col when authenticated] √
 - heading √ [moves to the side of messages when scroll-down - react.ref] √
-- ...
+- updated backend firebase function - chat-app-repo (returns user info + messages - not protected) √
+
+- user ui page...
+	[shouldnt be returning userInfo without credentials - need to update backend]
+
 > a few changes coming..        
 
       

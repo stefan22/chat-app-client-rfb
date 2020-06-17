@@ -6,6 +6,7 @@ import {
   SET_UNAUTHENTICATED,
   SET_AUTHENTICATED,
   SET_LIKES,
+  SET_USER_MESSAGES,
 
 } from '../types';
 
@@ -172,4 +173,26 @@ export const getLikedUser = (messageId) => dispatch => {
 		})
 	})
   .catch(err => console.log(err.json()));
+}
+
+
+export const getUserProfileNMessages = (user) => dispatch => {
+  dispatch({type: SET_LOADING_ON});
+  fetch(`${baseURL}/users/${user}`, {
+    method: 'GET',
+    headers: {
+			'Content-Type': 'application/json',
+      'referrer': '', mode: 'cors', cache: 'reload', redirect: 'follow'
+		}
+  })
+  .then(response => response.json())
+  .then(data => {
+      console.log(data);
+      dispatch({type:SET_USER_MESSAGES, payload: data.messages});
+  })
+  .catch(err => {
+    dispatch({type: SET_USER_MESSAGES, payload: null})
+    console.log(err)
+  });
+    
 }

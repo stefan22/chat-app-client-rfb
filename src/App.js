@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './pages/home/Home';
 import Login from './pages/login/Login';
 import Signup from './pages/signup/Signup';
-//import User from './pages/user';
+import User from './pages/user/User';
 //redux
 import { Provider } from 'react-redux';
 import store from './redux/store';
@@ -62,10 +62,10 @@ class App extends Component {
                 exact path='/signup' 
                 component={Signup} 
               />
-              {/* <AuthRoute 
+              <AuthRoute 
                 exact path='/users/:user' 
                 component={User} 
-              /> */}
+              />
             </Switch>
           
           </div>
