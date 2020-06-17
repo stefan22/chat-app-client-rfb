@@ -1,9 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import deleteButton from './deleteButton.styles';
@@ -53,7 +50,6 @@ const DeleteButton = ({
           color="secondary"
         />
       
-
         <Dialog
           open={open}
           onClose={handleClose}
@@ -65,14 +61,20 @@ const DeleteButton = ({
               "Are you sure you want to delete this message?"
             }
           </DialogTitle>
-          <DialogContent className={classes.dialogdescription}>
-            <DialogContentText id="alert-dialog-description">
-              <span className={classes.deleteHeading}>All delete actions are final!</span> 
-              Press <span className={classes.deleteAction}>Delete</span> to proceed with deletion or  <span className={classes.deleteAction}> Cancel</span>, 
-              if you've changed your mind.
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
+          <div className={classes.dialogDescription}>
+            <h1 className={classes.deleteHeading}>
+              All delete actions are final!
+            </h1>
+            <div className={classes.deleteInfo}>
+              <p>Press 
+                <span className={classes.deleteAction}> Delete </span> 
+                to proceed with deletion or  
+                <span className={classes.deleteAction}> Cancel </span>, 
+                if you've changed your mind.
+              </p>
+            </div>
+          </div>
+          <div className={classes.dialogActions}>
             <Button onClick={(evt) => handleClose(evt)} name="cancel" color="secondary">
               Cancel
             </Button>
@@ -82,7 +84,7 @@ const DeleteButton = ({
               color="primary" autoFocus>
               Delete
             </Button>
-          </DialogActions>
+          </div>
         </Dialog>
       </div>
   );
