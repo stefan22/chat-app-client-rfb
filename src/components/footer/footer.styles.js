@@ -20,37 +20,43 @@ export default makeStyles((theme) => ({
     margin: '0 2rem',
   },
   mobileInnerWrapper: {
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    flexDirection: 'column',
-    textAlign: 'center'
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'center',
+      flexDirection: 'column',
+      textAlign: 'center'
+    },
   },
   footerLinks: {
     width: '100%',
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
+    [theme.breakpoints.between('md','lg')]: {
+      margin: '1rem 0',
+    },
   },
   mobileFooterLinks: {
-    display: 'flex',
-    width: '100%',
-    flexDirection: 'row',
-    margin: '1rem 0',
-    padding: '0 5px',
-    justifyContent: 'center',
-    '& > div': {
-      maxWidth: 'inherit',
-      flex: '0 1 33%',
-      '& h2': {
-        textAlign: 'center'
+    [theme.breakpoints.down('sm')]: {
+      display: 'flex',
+      width: '100%',
+      flexDirection: 'row',
+      margin: '1rem 0',
+      padding: '0 5px',
+      justifyContent: 'center',
+      '& > div': {
+        maxWidth: 'inherit',
+        flex: '0 1 33%',
+        '& h2': {
+          textAlign: 'center'
+        },
+        '& li': {
+          textAlign: 'center'
+        }
       },
-      '& li': {
-        textAlign: 'center'
-      }
     },
-
   },
   list: {
     '& h2': {
@@ -82,7 +88,7 @@ export default makeStyles((theme) => ({
   },  
   footerLink: {
     color: teal[900],
-  }
+  },
 }));
 
 
