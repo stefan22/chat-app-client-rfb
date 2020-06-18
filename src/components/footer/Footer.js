@@ -19,13 +19,14 @@ const Footer = ({ messages, loading }) => {
   return (
     <>
       {!loading ? (
-        <footer className={classes.footer}>
+        <footer className={classes.footer} data-test="footerWrapper">
           <Container>
             <Grid container>
               <div className={!isMobile ? classes.innerWrapper : classes.mobileInnerWrapper}>
                 <Grid item xs={12} sm={3}>
                   <div className={classes.logo}>
                     <Link
+                      data-test="appName"
                       className={classes.footerTitle}
                       variant='h3'
                       color='inherit'
