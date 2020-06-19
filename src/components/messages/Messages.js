@@ -97,6 +97,7 @@ class Messages extends Component {
         <CardMedia
           className={classes.image}
           image={imageUrl}
+          loading="auto"
           title='User profile'
         />
         <CardContent className={classes.content}>

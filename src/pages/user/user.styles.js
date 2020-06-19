@@ -100,5 +100,13 @@ export default {
   actionMessage: {
     display: 'inline',
     width: '50%'
+  },
+
+  userFootnote: {
+    margin: '1rem 0',
+    fontSize: '1rem',
+    '& a': {
+      color: theme.palette.secondary.main,
+    }
   }
 };

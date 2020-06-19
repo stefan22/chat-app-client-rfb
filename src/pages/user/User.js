@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 // matui
 import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -9,14 +10,19 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import FabButton from '../../components/FabButton';
 // redux
 import { connect } from 'react-redux';
 import { getUserProfileNMessages } from '../../redux/actions/usersActions';
 // styles
 import userStyles from './user.styles';
-
-
-
+// icons
+import PersonAddIcon from '@material-ui/icons/PersonAdd';//signup
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';//signin
+import LockIcon from '@material-ui/icons/Lock';
+import LockOpenIcon from '@material-ui/icons/LockOpen';
+import HomeIcon from '@material-ui/icons/Home';
+import MessageIcon from '@material-ui/icons/Message';
 
 class User extends Component {
 
@@ -35,8 +41,11 @@ class User extends Component {
     let pageTitle = user.charAt(0).toUpperCase() + user.slice(1);
     const {
       classes,
+      authenticated,
       userMessages
     } = this.props;
+
+    let smallLargeGridSize = !authenticated ? 9 : 6;
   
 
     return (
@@ -55,7 +64,7 @@ class User extends Component {
               </div>
             </Grid>
 
-            <Grid item lg={6} md={12} sm={6} xs={12}>
+            <Grid item lg={smallLargeGridSize} md={12} sm={smallLargeGridSize} xs={12}>
                 <header className={classes.messagesHeader}>
                   <Typography 
                     className={classes.userSubtitle}
@@ -84,6 +93,7 @@ class User extends Component {
                             alt={msg.user}
                             height="100"
                             image={msg.imageUrl}
+                            loading="eager"
                             title={msg.user}
                           />
 
@@ -98,6 +108,20 @@ class User extends Component {
                 </div>
             </Grid>
 
+            {!authenticated &&
+            <Grid item lg={3} sm={3}>
+            <header>
+              <FabButton />
+            </header>
+            <div className={classes.userFootnote}>
+              You must have an account, in order to see user's profile.<br />
+              Follow this link to <Link to={'/signup'}>signup</Link> now.
+            </div>
+            
+            </Grid>
+            }
+
+            {!!authenticated &&
             <Grid item lg={6} md={12} sm={6} xs={12}>
                 <header className={classes.messagesHeader}>
                   <Typography
@@ -138,7 +162,7 @@ class User extends Component {
                   </CardActions>
                 </Card>
             </Grid>
-
+            }
         
         </Grid>
       </div>
