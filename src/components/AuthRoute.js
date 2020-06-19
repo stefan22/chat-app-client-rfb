@@ -4,13 +4,14 @@ import { connect } from 'react-redux';
 
 
 const AuthRoute = ({component: Component, authenticated, ...rest }) => {
-
+	console.log(rest);
 	return (
 		<Route
 			{...rest}
+		
 			render={ (props) => 
 				authenticated === true 
-				? <Redirect to="/" />
+				? <Redirect to={`/`} />
 				: <Component {...props} />
 
 			}

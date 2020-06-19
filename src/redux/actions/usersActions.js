@@ -7,6 +7,7 @@ import {
   SET_AUTHENTICATED,
   SET_LIKES,
   SET_USER_MESSAGES,
+  CLEAR_USER_MESSAGES,
 
 } from '../types';
 
@@ -73,6 +74,7 @@ export const userLogout = () => (dispatch) => {
   localStorage.removeItem('fbToken');
   delete axios.defaults.headers.common['Authorization'];
   dispatch({ type: SET_UNAUTHENTICATED });
+  dispatch({type: CLEAR_USER_MESSAGES});
 };
 
 // signup page
@@ -191,7 +193,6 @@ export const getUserProfileNMessages = (user) => dispatch => {
       dispatch({type:SET_USER_MESSAGES, payload: data.messages});
   })
   .catch(err => {
-    dispatch({type: SET_USER_MESSAGES, payload: null})
     console.log(err)
   });
     
