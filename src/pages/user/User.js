@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import UserMsgsHeading from '../../components/userMsgsHeading/UserMsgsHeading';
 // matui
 import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -55,11 +56,11 @@ class User extends Component {
             <Grid item sm={12} xs={12}>
               <div className={classes.userWrapper}>
                 <header className={classes.userHeader}>
-                  <Typography 
-                    className={classes.userTitle}
-                    variant='h2' color='primary' align='center'>
-                    {pageTitle}
-                  </Typography>
+                 
+                  <UserMsgsHeading 
+                    pageTitle={pageTitle}
+                  />
+
                 </header>
               </div>
             </Grid>
