@@ -12,7 +12,7 @@ export default makeStyles((theme) => ({
     padding: '3rem 1rem 2rem 1rem',
     marginTop: '7rem',
     borderTop: `1px solid ${theme.palette.primary.main}`,
-    backgroundColor: theme.palette.primary.main,
+    background: 'background: linear-gradient(-45deg, #66cdcc 0%, #336799 100%)'
   },
   innerWrapper: {
     display: 'flex',
