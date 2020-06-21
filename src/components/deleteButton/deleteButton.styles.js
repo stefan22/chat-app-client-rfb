@@ -7,11 +7,16 @@ export default makeStyles((theme) => ({
 		padding: '1rem',
 	},
 	deleteButton: {
-		margin: '0 1rem 0 2rem',
+		margin: '0',
+		float: 'left',
 		lineHeight: 1.5,
 		'& svg': {
 			verticalAlign: 'text-top',
-			cursor: 'pointer'
+			cursor: 'pointer',
+			width: '26px',
+			height: '26px',
+			marginLeft: '-4px',
+			
 		},
 	},
 	deleteHeading: {

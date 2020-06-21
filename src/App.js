@@ -25,7 +25,7 @@ import customTheme from './theme/customTheme';
 import './App.css';
 
 const theme = createMuiTheme(customTheme);
-
+console.log(theme);
 
 const fbToken = localStorage.getItem('fbToken');
 
@@ -77,4 +77,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export {theme, App};

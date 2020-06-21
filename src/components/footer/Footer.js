@@ -29,7 +29,6 @@ const Footer = ({ messages, loading }) => {
                       data-test="appName"
                       className={classes.footerTitle}
                       variant='h3'
-                      color='inherit'
                       href='/'
                     >
                       Chat-App
