@@ -42,7 +42,6 @@ class WarningMessage extends Component {
       vertical,
       horizontal,
       open,
-    
 
 } = this.props;
     
@@ -65,9 +64,13 @@ class WarningMessage extends Component {
         >
         </button>
 
-      {!!open &&
+      {!!open && 
         <Snackbar
-          style={{marginTop:'3.5rem'}}
+          style={{
+            marginTop:'3.5rem',
+          }}
+          color={"primary"}
+          elevation={2}
           size={"xs"}
           anchorOrigin={{ vertical, horizontal }}
           open={open}

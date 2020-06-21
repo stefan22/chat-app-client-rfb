@@ -39,3 +39,8 @@ body {
  
 }
 
+
+/* box-shadow */
+#root-chat .MuiPaper-elevation6 {
+  box-shadow: 1px 1px 1px 5px rgba(0,0,0,.15),1px 3px 3px 1px rgba(0,0,0,0.1),0px 4px 4px 3px rgba(0,0,0,0.075) !important;
+}

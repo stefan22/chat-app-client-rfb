@@ -15,6 +15,7 @@ import { getMessages } from '../../redux/actions/messagesActions';
 import { setProfileImage } from '../../redux/actions/usersActions';
 // styles
 import styles from './home.styles';
+import theme from '../../theme/customTheme';
 
 class Home extends Component {
   constructor(props) {
@@ -80,16 +81,16 @@ class Home extends Component {
           </Grid>
           <Grid item sm={12} xs={12} md={sm1}>
             <div className={classes.homeCards}>
-              {messages.length > 0 && (
-                messages.map((msg) => (
-                  <Messages
-                    key={msg.messageId}
-                    messages={messages}
-                    handleLikedUnliked={this.handleLikedUnliked}
-                    {...msg}
-                  />
-                ))
-              )}
+
+            {!!messages &&
+              <Messages 
+                messages={messages}
+                handleLikedUnliked={this.handleLikedUnliked}
+              />
+            }
+          
+
+             
             </div>
           </Grid>
           <Grid item sm={12} xs={12} md={sm2}>
