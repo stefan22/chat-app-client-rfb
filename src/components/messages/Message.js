@@ -20,7 +20,6 @@ import UnlikeIcon from '@material-ui/icons/ThumbUpOutlined';
 
 
 
-
 const Message = ({ 
 	loading,
 	imageUrl,
@@ -40,10 +39,10 @@ const Message = ({
 	handleResetDeleteWarning,
 	handleResetliked,
 
-
 }) => {
 
 	const classes = messageStyles();
+
 
   return (
     <Card className={classes.card} key={messageId} elevation={2}>

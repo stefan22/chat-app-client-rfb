@@ -12,48 +12,11 @@ export default {
     justifyContent: 'center',
     margin: '3rem 0 5rem',
   },
-	 userTitle: {
+  userTitle: {
     fontWeight: 400,
+    margin: '10rem 0 5rem',
   },
-  // root: {
-  //   margin: 'auto',
-  //   borderRadius: '16px',
-  //   transition: '0.3s',
-  //   boxShadow: '0px 14px 80px rgba(34, 35, 58, 0.2)',
-  //   position: 'relative',
-  //   maxWidth: 500,
-  //   marginLeft: 'auto',
-  //   overflow: 'initial',
-  //   background: '#ffffff',
-  //   display: 'flex',
-  //   flexDirection: 'column',
-  //   alignItems: 'center',
-  //   paddingBottom: '2rem',
-   
-  // },
-  // media: {
-  //   width: '88%',
-  //   marginLeft: 'auto',
-  //   marginRight: 'auto',
-  //   marginTop: '3rem',
-  //   height: 0,
-  //   paddingBottom: '48%',
-  //   borderRadius: '2rem',
-  //   backgroundColor: '#fff',
-  //   position: 'relative',
-   
-  //   '&:after': {
-  //     content: '" "',
-  //     position: 'absolute',
-  //     top: 0,
-  //     left: 0,
-  //     width: '100%',
-  //     height: '100%',
-  //     backgroundImage: 'linear-gradient(147deg, #fe8a39 0%, #fd3838 74%)',
-  //     borderRadius: '16px',
-  //     opacity: 0.5,
-  //   },
-  // },
+
   messagesHeader: {
     padding: '0'
   },
@@ -95,6 +58,9 @@ export default {
     marginBottom: '3rem',
   },
   userSubtitle: {
+    color: theme.palette.primary.light
+  },
+  userSubtitleProfile: {
     color: theme.palette.primary.light
   },
   actionMessage: {

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 // comps
 import { Link } from 'react-router-dom';
 // matui
@@ -13,12 +13,14 @@ import { connect } from 'react-redux';
 import { userLogin, clearFormErrors } from '../../redux/actions/usersActions';
 // styles
 import loginStyles from './login.styles';
-
+// gsap
+import {gsap} from 'gsap';
 
 
 class Login extends Component {
   constructor(props) {
     super(props);
+    this.loginTitleRef = createRef(null);
     this.state = {
       email: '',
       password: '',
@@ -27,6 +29,12 @@ class Login extends Component {
 
   componentDidMount() {
     this.props.clearFormErrors();
+    gsap.from(this.loginTitleRef.current, {
+      opacity: 0.35,
+      color: '#222222',
+      duration: 2.5, 
+      rotationX: 360
+    });
   }
 
   handleSubmit = (event) => {
@@ -59,7 +67,7 @@ class Login extends Component {
       <div className={classes.loginForm}>
         <Grid container>
           <Grid item sm={12} xs={12}>
-            <Typography variant='h2' className={classes.loginTitle} color='primary' align='center'>
+            <Typography ref={this.loginTitleRef} variant='h2' className={classes.loginTitle} color='primary' align='center'>
               Login
             </Typography>
             <form id='login' noValidate onSubmit={this.handleSubmit}>
