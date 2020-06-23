@@ -25,9 +25,8 @@ ref=> project:google.cloud.functions./chat-app-5c91e
 - grid √ [messages: 12 - col not authenticated] [messages: 8col when authenticated] √
 - heading √ [moves to the side of messages when scroll-down - react.ref] √
 - updated backend firebase function - chat-app-repo (returns user info + messages - not protected) √
-
+- installed gsap & updted styling √
 - user ui page...
-	[shouldnt be returning userInfo without credentials - need to update backend]
 
 > a few changes coming..        
 
@@ -37,7 +36,7 @@ other:
 º localStorage updates. 
 ª loading   
 º refactoring /classes etc.     
-º responsiveness.     
+º responsiveness.    √ 
 
 
 > ___screenshots__ @: [/images/screenshots/]
