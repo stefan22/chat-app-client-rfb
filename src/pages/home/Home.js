@@ -4,7 +4,7 @@ import Footer from '../../components/footer/Footer';
 import UserProfile from '../../components/userProfile/UserProfile';
 import Messages from '../../components/messages/Messages';
 // helpers
-import { scrollListenerHelper, formDataHelper } from '../../components/helperFns';
+import { formDataHelper } from '../../components/helperFns';
 // matui
 import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -15,28 +15,27 @@ import { getMessages } from '../../redux/actions/messagesActions';
 import { setProfileImage } from '../../redux/actions/usersActions';
 // styles
 import styles from './home.styles';
-import theme from '../../theme/customTheme';
+import {gsap} from 'gsap';
+
+
 
 class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = { width: window.innerWidth};
-    this.homeHeadingRef = createRef(); //pg main-heading ref
+    this.titleEle = createRef(null); //dom ref
   }
 
-  getWindowWidth = () => {
-    return this.setState({width: window.innerWidth})
-  }
-
-  componentDidMount() {
+  componentDidMount(){
     this.props.getMessages();
-    window.addEventListener('resize', this.getWindowWidth, false);
-    window.addEventListener('scroll', this.scrollListenerFun,false);
+    gsap.from(this.titleEle.current,3, {
+      opacity: .25,
+      color: '#222222',
+      x: -1500
+    });
+   
   }
 
-  scrollListenerFun = () => {
-    if (this.state.width > 1725) scrollListenerHelper(this.homeHeadingRef,this.props.classes);
-  }
+ 
 
   handleUserProfileImage = async (evt) => {
     const image = evt.target.files[0];
@@ -44,10 +43,6 @@ class Home extends Component {
     this.props.setProfileImage(formData);
   };
 
-  componentWillUnmount() {//remove evts
-    window.removeEventListener('scroll', this.scrollListenerFun, false);
-    window.removeEventListener('resize', this.getWindowWidth, false);
-  }
 
   render() {
     //console.log(this);
@@ -63,20 +58,25 @@ class Home extends Component {
     // grid when !mobile
     let sm1 = (!!authenticated) ? 8 : 12;
     let sm2 = (!!authenticated) ? 4 : 'auto';
-    
+
+
+
+   
 
     return (
       <>
         <Grid container>
           <Grid item xs={12}>
             <header className={classes.homeHeader}>
-              <Typography
-                  ref={this.homeHeadingRef}
-                  variant='h2' 
-                  className={classes.homeTitle} 
-                  color='primary' align='center'
-                  >Messages
-              </Typography>
+
+            <Typography
+              ref={this.titleEle}
+              variant='h2' 
+              className={classes.homeTitle} 
+              color='primary' align='center'
+            >Messages
+            </Typography>
+             
             </header>
           </Grid>
           <Grid item sm={12} xs={12} md={sm1}>
@@ -129,3 +129,12 @@ export default connect(
   mapStateToProps,
   mapActionsToProps
 )(withStyles(styles)(Home));
+
+
+
+
+
+
+
+
+

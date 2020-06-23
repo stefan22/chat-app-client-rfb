@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 // comps
 import { Link } from 'react-router-dom';
 // matui
@@ -13,11 +13,13 @@ import styles from './signup.styles';
 // redux
 import { connect } from 'react-redux';
 import { userSignup, clearFormErrors } from '../../redux/actions/usersActions';
-
+// gsap
+import gsap from 'gsap';
 
 class Signup extends Component {
   constructor(props) {
     super(props);
+    this.signupTitleRef = createRef(null);
     this.state = {
       user: '',
       email: '',
@@ -28,6 +30,12 @@ class Signup extends Component {
 
   componentDidMount() {
     this.props.clearFormErrors();
+    gsap.from(this.signupTitleRef.current, {
+      opacity: 0.35,
+      color: '#222222',
+      duration: 2.5,
+      rotationX: 360
+    });
   }
 
   handleSubmit = (event) => {
@@ -58,6 +66,7 @@ class Signup extends Component {
       <Grid container>
         <Grid item sm={12} xs={12}>
           <Typography
+            ref={this.signupTitleRef}
             variant='h2'
             className={classes.signupTitle}
             color='primary'

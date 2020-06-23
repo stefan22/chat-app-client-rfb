@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import { Link } from 'react-router-dom';
-import UserMsgsHeading from '../../components/userMsgsHeading/UserMsgsHeading';
 // matui
 import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -17,18 +16,54 @@ import { connect } from 'react-redux';
 import { getUserProfileNMessages } from '../../redux/actions/usersActions';
 // styles
 import userStyles from './user.styles';
-// icons
-import PersonAddIcon from '@material-ui/icons/PersonAdd';//signup
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';//signin
-import LockIcon from '@material-ui/icons/Lock';
-import LockOpenIcon from '@material-ui/icons/LockOpen';
-import HomeIcon from '@material-ui/icons/Home';
-import MessageIcon from '@material-ui/icons/Message';
+// gsap
+import {gsap} from 'gsap';
+
+const gsapRun = (handle) =>  {
+    let handleClassName;
+    handle.current !== null ?
+    handleClassName = handle.current.classList[1].split('-')[1] : handleClassName = '';
+    switch (handleClassName) {
+      case 'userTitle':
+        return gsap.from(handle.current, {
+          opacity: 0.35,
+          color: '#222222',
+          duration: 2.5, 
+          rotationX: 360
+        });
+      case 'userSubtitle':
+        return gsap.from(handle.current, {
+          opacity: 0.35,
+          duration: 2.75,
+          x: - 1200
+        });
+      case 'userSubtitleProfile':
+        return gsap.from(handle.current, {
+          opacity: 0.35,
+          duration: 3,
+          x: 1500
+        });
+      default:
+        return;
+    }
+}
+
+
 
 class User extends Component {
+  constructor(props) {
+    super(props);
+    this.userRef = createRef(null);
+    this.userMessagesRef = createRef(null);
+    this.userProfileRef = createRef(null);
+  }
 
   componentDidMount() {
     this.getUser();
+    //gsap runs
+    gsapRun(this.userRef);
+    gsapRun(this.userMessagesRef);
+    gsapRun(this.userProfileRef);
   }
 
   getUser = () => {
@@ -56,11 +91,12 @@ class User extends Component {
             <Grid item sm={12} xs={12}>
               <div className={classes.userWrapper}>
                 <header className={classes.userHeader}>
-                 
-                  <UserMsgsHeading 
-                    pageTitle={pageTitle}
-                  />
-
+                  <Typography 
+                    ref={this.userRef}
+                    className={classes.userTitle}
+                    variant='h2' color='primary' align='center'>
+                    {pageTitle}
+                  </Typography>
                 </header>
               </div>
             </Grid>
@@ -68,6 +104,7 @@ class User extends Component {
             <Grid item lg={smallLargeGridSize} md={12} sm={smallLargeGridSize} xs={12}>
                 <header className={classes.messagesHeader}>
                   <Typography 
+                    ref={this.userMessagesRef}
                     className={classes.userSubtitle}
                     variant='h4' align='left'
                   >
@@ -126,7 +163,8 @@ class User extends Component {
             <Grid item lg={6} md={12} sm={6} xs={12}>
                 <header className={classes.messagesHeader}>
                   <Typography
-                    className={classes.userSubtitle}
+                    ref={this.userProfileRef}
+                    className={classes.userSubtitleProfile}
                     variant='h4' align='left'
                   >
                     Profile
