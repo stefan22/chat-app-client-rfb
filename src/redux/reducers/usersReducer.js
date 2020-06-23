@@ -4,6 +4,7 @@ import {
   SET_USER, 
   SET_LIKES,
   SET_USER_MESSAGES,
+  CLEAR_USER_MESSAGES,
  
 } from '../types';
 
@@ -46,6 +47,12 @@ const userReducer = (state = initialState, action) => {
         userMessages: [
           ...action.payload,
         ]
+      }
+
+    case CLEAR_USER_MESSAGES:
+      return {
+        ...state,
+        userMessages: []
       }
 
     default:

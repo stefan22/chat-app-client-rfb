@@ -1,3 +1,5 @@
+import theme from '../../theme/customTheme';
+
 export default {
   homeCards: {
     zIndex: 1,
@@ -9,7 +11,7 @@ export default {
     flexDirection: 'row',
     width: '100%',
     justifyContent: 'center',
-    margin: '3rem 0 5rem',
+    margin: '10rem 0 5rem',
   },
   homeTitle: {
     fontWeight: 400,
@@ -27,7 +29,7 @@ export default {
     opacity: '1',
     transition: 'all .85s ease 50ms',
     fontSize: '2.75rem',
-    color: '#009688',
+    color: theme.palette.primary.main,
     fontWeight: 400,
     transform: 'translate(-40vw,3.5vh) rotate(-3.5deg) rotate(3.5deg)',
   },
@@ -37,7 +39,7 @@ export default {
     letterSpacing: '0',
     opacity: '.85',
     fontWeight: 400,
-    color: '#009688',
+    color: theme.palette.primary.main,
     zIndex: 0,
     transform: 'translateX(0)',
     position: 'initial',

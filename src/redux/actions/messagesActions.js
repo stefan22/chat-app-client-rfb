@@ -6,7 +6,7 @@ import {
   ADD_MESSAGE,
   SET_LIKES,
   CLEAR_ERRORS,
-  SET_DELETE
+  SET_DELETE,
 
 
 } from '../types';

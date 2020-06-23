@@ -1,23 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import WarningMessage from '../WarningMessage';
-import LikeCountButton from '../LikeCountButton';
-import DeleteButton from '../deleteButton/DeleteButton';
-
-// matui
-import withStyles from '@material-ui/core/styles/withStyles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
-// 3rd party libs
-import moment from 'moment';
-// styles
-import messagesStyles from './messages.styles';
-// icons
-import IconButton from '@material-ui/core/IconButton';
-import LikeIcon from '@material-ui/icons/ThumbUp';
-import UnlikeIcon from '@material-ui/icons/ThumbUpOutlined';
+import Message from './Message';
 // redux
 import { connect } from 'react-redux';
 import { handleUpdateLikes } from '../../redux/actions/messagesActions';
@@ -27,6 +9,8 @@ import {
   setDeleteWarning,
   resetDeleteWarning,
 } from '../../redux/actions/uiActions';
+
+
 
 class Messages extends Component {
   constructor(props) {
@@ -77,101 +61,42 @@ class Messages extends Component {
 
   render() {
     //console.log(this);
+
   const { horizontal, vertical, open } = this.state;
 
     const {
-      classes,
-      imageUrl,
-      messageId,
-      message,
-      likeCount,
-      createdAt,
-      authenticated,
+      messages,
+      handleLikedUnliked,
       deleteMessageWarning,
       warning,
-      user,
+      authenticated,
+
     } = this.props;
 
     return (
-      <Card className={classes.card} key={messageId} elevation={2}>
-        <CardMedia
-          className={classes.image}
-          image={imageUrl}
-          title='User profile'
-        />
-        <CardContent className={classes.content}>
-          <Typography
-            className={classes.heading}
-            component={Link}
-            to={`/users/${user}`}
-            variant='h5'
-            color={'primary'}
-          >
-            {user}
-          </Typography>
-          
-          <div className={classes.messageInnerWrapper}>
-            {message}
-             
-
-            <IconButton
-              onClick={() => this.handleLiked(messageId)}
-              className={classes.likeButtonWrapper}
-            >
-              {likeCount > 0 ? (
-                <LikeIcon
-                  className={classes.likeButton}
-                  color={'secondary'}
-                />
-              ) : <UnlikeIcon 
-                    className={classes.unlikeButton}
-                    color='secondary'
-                  />
-              }
-
-              <LikeCountButton 
-                likeCount={likeCount} 
-                color={'primary'} 
-              />
-            </IconButton>
-
-          {!!authenticated &&
-            <DeleteButton 
-              messageId={messageId}
-              userMessage={user}
+      <>
+        {messages.length > 0 && (
+          messages.map((msg) => (
+            <Message
+              horizontal={horizontal}
+              vertical={vertical}
+              open={open}
+              key={msg.messageId}
+              messages={messages}
+              handleLikedUnliked={handleLikedUnliked}
+              handleLiked={this.handleLiked}
+              handleResetliked={this.handleResetliked}
+              handleResetDeleteWarning={this.handleResetDeleteWarning}
               handleDeleteWarning={this.handleDeleteWarning}
-            />
-          }
-          </div>
+              authenticated={authenticated}
+              warning={warning}
+              deleteMessageWarning={deleteMessageWarning}
 
-          <Typography variant='body2' color={'textSecondary'}>
-            {moment(createdAt).fromNow()}
-          </Typography>
-        </CardContent>
-          { !!warning && !deleteMessageWarning &&
-          <WarningMessage
-            warning={warning}
-            open={open}
-            authenticated={authenticated}
-            handleLiked={this.handleLiked}
-            handleResetliked={this.handleResetliked}
-            horizontal={horizontal}
-            vertical={vertical}
-          />
-          }
-          { !!deleteMessageWarning && !warning &&
-          <WarningMessage
-            open={open}
-            deleteMessageWarning={deleteMessageWarning}
-            authenticated={authenticated}
-            handleDeleteWarning={this.handleDeleteWarning}
-            handleResetDeleteWarning={this.handleResetDeleteWarning}
-            horizontal={horizontal}
-            vertical={vertical}
-          />
-          }
-      </Card>
-      
+              {...msg}
+            />
+          ))
+        )}
+      </>
     );
   }
 }
@@ -196,6 +121,5 @@ const mapActionsToProps = {
 export default connect(
   mapStateToProps,
   mapActionsToProps
-)(withStyles(messagesStyles)(Messages));
-
+)(Messages);
 

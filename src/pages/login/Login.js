@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 // comps
 import { Link } from 'react-router-dom';
 // matui
@@ -12,13 +12,15 @@ import SubdirectoryArrowLeftRoundedIcon from '@material-ui/icons/SubdirectoryArr
 import { connect } from 'react-redux';
 import { userLogin, clearFormErrors } from '../../redux/actions/usersActions';
 // styles
-import styles from './login.styles';
-
+import loginStyles from './login.styles';
+// gsap
+import {gsap} from 'gsap';
 
 
 class Login extends Component {
   constructor(props) {
     super(props);
+    this.loginTitleRef = createRef(null);
     this.state = {
       email: '',
       password: '',
@@ -27,6 +29,12 @@ class Login extends Component {
 
   componentDidMount() {
     this.props.clearFormErrors();
+    gsap.from(this.loginTitleRef.current, {
+      opacity: 0.35,
+      color: '#222222',
+      duration: 2.5, 
+      rotationX: 360
+    });
   }
 
   handleSubmit = (event) => {
@@ -51,75 +59,76 @@ class Login extends Component {
     //console.log(this);
     const {
       classes,
-  
       errors,
     } = this.props;
     const { email, password } = this.state;
 
     return (
-      <Grid className={classes.loginForm} container>
-        <Grid item sm={12} xs={12}>
-          <Typography variant='h2' className={classes.loginTitle} color='primary' align='center'>
-            Login
-          </Typography>
-          <form id='login' noValidate onSubmit={this.handleSubmit}>
+      <div className={classes.loginForm}>
+        <Grid container>
+          <Grid item sm={12} xs={12}>
+            <Typography ref={this.loginTitleRef} variant='h2' className={classes.loginTitle} color='primary' align='center'>
+              Login
+            </Typography>
+            <form id='login' noValidate onSubmit={this.handleSubmit}>
+              
+              <div className={classes.innerForm}>
+                <TextField
+                  id='email'
+                  className={classes.emailField}
+                  name='email'
+                  type='email'
+                  label='Email'
+                  value={email}
+                  helperText={errors.email}
+                  error={errors.email ? true : false}
+                  placeholder='Enter email'
+                  onChange={this.handleChange}
+                  autoComplete={'email'}
+                  fullWidth
+                />
+                <TextField
+                  id='password'
+                  className={classes.passwordField}
+                  name='password'
+                  type='password'
+                  label='Password'
+                  placeholder='Enter password'
+                  value={password}
+                  helperText={errors.password}
+                  error={errors.password ? true : false}
+                  onChange={this.handleChange}
+                  autoComplete={'password'}
+                  fullWidth
+                />
+                <Button
+                  type={'submit'}
+                  variant='contained'
+                  size='large'
+                  className={classes.loginButton}
+                  endIcon={<SubdirectoryArrowLeftRoundedIcon />}
+                  color='primary'
+                >
+                  Login
+                </Button>
+              </div>
             
-            <div className={classes.innerForm}>
-              <TextField
-                id='email'
-                className={classes.emailField}
-                name='email'
-                type='email'
-                label='Email'
-                value={email}
-                helperText={errors.email}
-                error={errors.email ? true : false}
-                placeholder='Enter email'
-                onChange={this.handleChange}
-                autoComplete={'email'}
-                fullWidth
-              />
-              <TextField
-                id='password'
-                className={classes.passwordField}
-                name='password'
-                type='password'
-                label='Password'
-                placeholder='Enter password'
-                value={password}
-                helperText={errors.password}
-                error={errors.password ? true : false}
-                onChange={this.handleChange}
-                autoComplete={'password'}
-                fullWidth
-              />
-              <Button
-                type={'submit'}
-                variant='contained'
-                size='large'
-                className={classes.loginButton}
-                endIcon={<SubdirectoryArrowLeftRoundedIcon />}
-                color='primary'
-              >
-                Login
-              </Button>
-            </div>
-           
 
-            {errors.error && (
-              <Typography
-                variant='body1'
-                className={classes.credentialsError}
-              >
-               Don't have an account? Click
-               <Link to='/signup' className={classes.errorsHereLink}>
-                here
-               </Link>
-              </Typography>
-              )}
-          </form>
+              {errors.error && (
+                <Typography
+                  variant='body1'
+                  className={classes.credentialsError}
+                >
+                Don't have an account? Click
+                <Link to='/signup' className={classes.errorsHereLink}>
+                  here
+                </Link>
+                </Typography>
+                )}
+            </form>
+          </Grid>
         </Grid>
-      </Grid>
+      </div>
     );
   }
 }
@@ -138,4 +147,4 @@ const mapActionsToProps = {
 export default connect(
   mapStateToProps,
   mapActionsToProps
-)(withStyles(styles)(Login));
+)(withStyles(loginStyles)(Login));

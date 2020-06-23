@@ -12,6 +12,7 @@ body {
   font-family: 'Roboto', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(-45deg, #effdee 0%, #edf6f9 100%);
   height: auto;
   width: 100%;
   line-height: 1.5;
@@ -20,13 +21,14 @@ body {
 #root-chat {
   position: relative;
   min-height: 100vh;
+  
 }
 
 #root-chat .container {
-  margin-top: calc(12vh);
   margin-left: auto;
   margin-right: auto;
   max-width: 1200px;
+  margin-bottom: 7rem;
 }
 
 .MuiCircularProgress-root {
@@ -37,3 +39,8 @@ body {
  
 }
 
+
+/* box-shadow */
+#root-chat .MuiPaper-elevation6 {
+  box-shadow: 1px 1px 1px 5px rgba(0,0,0,.15),1px 3px 3px 1px rgba(0,0,0,0.1),0px 4px 4px 3px rgba(0,0,0,0.075) !important;
+}

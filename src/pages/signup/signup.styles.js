@@ -7,7 +7,7 @@ export default {
   },
   signupTitle: {
     fontWeight: 400,
-    margin: '3rem 0 5rem',
+    margin: '10rem 0 5rem',
   },
   userField: {
     margin: '1rem 0',

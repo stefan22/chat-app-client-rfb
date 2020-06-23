@@ -25,7 +25,7 @@ import customTheme from './theme/customTheme';
 import './App.css';
 
 const theme = createMuiTheme(customTheme);
-
+console.log(theme);
 
 const fbToken = localStorage.getItem('fbToken');
 
@@ -53,17 +53,17 @@ class App extends Component {
           <div className='container'>
             <Navbar />
             <Switch>
-              <Route exact path='/' component={Home} />
+              <Route exact path={'/'} component={Home} />
               <AuthRoute 
-                exact path='/login' 
+                exact path={'/login'}
                 component={Login} 
               />
               <AuthRoute 
-                exact path='/signup' 
+                exact path={'/signup'}
                 component={Signup} 
               />
-              <AuthRoute 
-                exact path='/users/:user' 
+              <Route 
+                exact path={`/users/:user`}
                 component={User} 
               />
             </Switch>
@@ -77,4 +77,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export {theme, App};
