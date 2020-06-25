@@ -40,12 +40,13 @@ const Message = ({
 	handleResetliked,
 
 }) => {
-
+  
 	const classes = messageStyles();
 
 
   return (
     <Card className={classes.card} key={messageId} elevation={2}>
+       
         <CardMedia
           className={(!authenticated) ? classes.image : classes.imageAuth}
           image={imageUrl}

@@ -34,7 +34,6 @@ export default makeStyles((theme) => ({
 	},
 	deleteInfo: {
 		fontSize: '1rem',
-		color: 'color: rgba(0, 0, 0, 0.54)',
 	},
 	dialogActions: {
 		padding: '1rem',
