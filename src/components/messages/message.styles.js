@@ -78,7 +78,7 @@ export default makeStyles((theme) => {
 			width: '22px'
 		},
 		messageInnerWrapper: {
-			color: theme.palette.secondary.contrastText,
+			color: theme.palette.primary.mainText,
 			fontSize: '.94rem',
 			lineHeight: 1.5,
 			display: 'flex',
