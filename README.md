@@ -1,11 +1,14 @@
-# chat-app-client-rfb
+# chat-app-client-rfb.
+### live to create an account/login/post/like /delete.  &nbsp; :mega: &nbsp; :loudspeaker: &nbsp; :tada:
+### live @ => https://donpio.tech/repositories/chatapp/
+
 react º redux º material-ui º firebase º node º express.            
 ref=> project:google.cloud.functions./chat-app-5c91e
 
 
 - __chat-app__ repo - (gc functions-backend)
 - Or run concurrently by proxy [server/client]
-- React/Redux application with Firebase Firestore && FB Storage DB, Material-UI.
+- React/Redux application and Google Cloud Functions w/Firestore/FireStorage DB, Material-UI...and little bit of GSAP
 
 
 

@@ -1,5 +1,6 @@
 import React, { Component, createRef } from 'react';
 import { Link } from 'react-router-dom';
+import AddButton from '../../components/addButton/AddButton';
 // matui
 import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -49,7 +50,6 @@ const gsapRun = (handle) =>  {
 }
 
 
-
 class User extends Component {
   constructor(props) {
     super(props);
@@ -73,14 +73,20 @@ class User extends Component {
 
   render() {
     console.log(this);
-    const { user } = this.props.match.params;
-    let pageTitle = user.charAt(0).toUpperCase() + user.slice(1);
+    let memberSince;
+    const isUser = this.props.match.params.user;
+    let pageTitle = isUser.charAt(0).toUpperCase() + isUser.slice(1);
+    if(!!this.props.user.protected.createdAt) {
+      memberSince = this.props.user.protected.createdAt.split("T")[0];
+    }
     const {
       classes,
       authenticated,
-      userMessages
+      userMessages,
+      user,
     } = this.props;
 
+    
     let smallLargeGridSize = !authenticated ? 9 : 6;
   
 
@@ -105,7 +111,7 @@ class User extends Component {
                 <header className={classes.messagesHeader}>
                   <Typography 
                     ref={this.userMessagesRef}
-                    className={classes.userSubtitle}
+                    className={classes.userTitle2}
                     variant='h4' align='left'
                   >
                     Messages
@@ -114,26 +120,30 @@ class User extends Component {
                 <div className={classes.userMessages}>
                   {!!userMessages && userMessages.length > 0 ?
                     userMessages.map(msg => 
-                      <Card key={msg.messageId} className={classes.root} elevation={2}>
+                      <Card key={msg.messageId} className={classes.userRoot} elevation={2}>
                         <CardActionArea>
                            <CardContent>
-                            <Typography className={classes.userName} gutterBottom variant="h4" component="h2">
-                              {msg.user}
+                            <Typography className={classes.userName} gutterBottom variant="h5" component="h2">
+                              {(msg.user).charAt(0).toUpperCase()}{(msg.user).slice(1)}
                             </Typography>
-                            <Typography variant="body2" className={classes.userMessage} component="p">
+                            <Typography variant="body2" className={classes.userMainMessage} component="p">
                               {msg.message}
                             </Typography>
+
+                            <Typography variant="body2" className={classes.userMessage} component="p">
+                              <span className={classes.userMessageq}>Created:</span> {msg.createdAt.split('T')[0]}
+                            </Typography>
+                            <Typography variant="body2" className={classes.userMessage} component="p">
+                              <span className={classes.userMessageq}>Likecount:</span> {msg.likeCount}
+                            </Typography>
+                            <Typography variant="body2" className={classes.userMessage} component="p">
+                              <span className={classes.userMessageq}>Message Id:</span> {msg.messageId}
+                            </Typography>
+                          
+
                           </CardContent>
 
-                          <CardMedia
-                            className={classes.userImage}
-                            component="img"
-                            alt={msg.user}
-                            height="100"
-                            image={msg.imageUrl}
-                            loading="eager"
-                            title={msg.user}
-                          />
+                        
 
                         </CardActionArea>
                        
@@ -149,7 +159,10 @@ class User extends Component {
             {!authenticated &&
             <Grid item lg={3} sm={3}>
             <header>
-              <FabButton />
+              <FabButton variant={"extended"}
+                  className={classes.userFabButton}
+                  color={"secondary"}
+               />
             </header>
             <div className={classes.userFootnote}>
               You must have an account, in order to see user's profile.<br />
@@ -159,46 +172,106 @@ class User extends Component {
             </Grid>
             }
 
-            {!!authenticated &&
+            {!!authenticated && 
             <Grid item lg={6} md={12} sm={6} xs={12}>
                 <header className={classes.messagesHeader}>
                   <Typography
                     ref={this.userProfileRef}
-                    className={classes.userSubtitleProfile}
-                    variant='h4' align='left'
+                    className={classes.userTitle2}
+                    variant='h4' align='center'
                   >
                     Profile
                   </Typography>
                 </header>
-                <Card className={classes.rootProfile} elevation={2}>
-                
-                    <CardActionArea>
+
+                <Card className={classes.userProfileInfo} elevation={2}>
                       <CardMedia
+                        className={classes.userProfileImage}
                         component="img"
                         alt={"user profile"}
-                        height="140"
-                        image={"#"}
-                        title={"user profile"}
+                        width="150"
+                        height="150"
+                        image={user.protected.imageUrl}
                       />
-                      <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
-                          User name
+                      <CardActionArea>
+                        <CardContent className={classes.userInfoWrapper}>
+                          <Typography className={classes.userSubtitlesHeading} gutterBottom variant="h5" component="h2">
+                            {pageTitle}
+                          </Typography>
+                          <Typography 
+                              className={classes.userSubtitles}
+                              variant="subtitle1" color="textSecondary" component="p">
+                              <span className={classes.userUserSpan}>Id:</span> 
+                              {user.protected.userId}
+                          </Typography>
+
+                          <Typography 
+                              className={classes.userSubtitles}
+                              variant="subtitle1" color="textSecondary" component="p">
+                            <span className={classes.userUserSpanBio}>Bio:</span> {user.protected.bio}
+                          </Typography>
+                            <br />
+                          <Typography 
+                              className={classes.userSubtitles}
+                              variant="subtitle1" color="textSecondary" component="p">
+                            <span className={classes.userUserSpan}>Email:</span> {user.protected.email}
+                          </Typography>
+                          <Typography 
+                              className={classes.userSubtitles}
+                              variant="subtitle1" color="textSecondary" component="p">
+                            <span className={classes.userUserSpan}>Location:</span> {user.protected.location}
+                          </Typography>
+                          <Typography 
+                              className={classes.userSubtitles}
+                              variant="subtitle1" color="textSecondary" component="p">
+                            <span className={classes.userUserSpan}>Website:</span> {user.protected.website}
+                          </Typography>
+                          <Typography 
+                              className={classes.userSubtitles}
+                              variant="subtitle1" color="textSecondary" component="p">
+                            <span className={classes.userUserSpan}>Member since:</span> 
+                            {memberSince}
+                          </Typography>
+
+                        </CardContent>
+                      </CardActionArea>
+                      {!authenticated ?
+                      <CardActions className={classes.userActions}>
+                        <Typography 
+                          className={classes.userActionsHeading}
+                          variant="body1" color="textSecondary" component="p">
+                          You must be logged in to view this.
                         </Typography>
-                        <Typography variant="body2" color="textSecondary" component="p">
-                          details
+                        <Button 
+                          href={"/signup"}
+                          size="small" color="secondary">
+                          Sign up
+                        </Button>
+                        <Button 
+                          href={"/login"}
+                          className={classes.userLoginButton} 
+                          size="small" 
+                          color={"secondary"}>
+                          Login
+                        </Button>
+                      </CardActions>
+                      :
+                      <CardActions 
+  
+                        className={classes.userActions}>
+                        <Typography 
+                          className={classes.userActionsHeading}
+                          variant="body1" color="textSecondary" component="p">
+                          Post a new message.
                         </Typography>
-                      </CardContent>
-                    </CardActionArea>
-                
-                  <CardActions>
-                    You must be logged in to view this.
-                    <Button size="small" color="primary">
-                      Sign up
-                    </Button>
-                    <Button size="small" color="primary">
-                      Login here
-                    </Button>
-                  </CardActions>
+                        <Button 
+                          size="small" color="secondary">
+                          <AddButton 
+                            color={"primary"}
+                          />
+                        </Button>
+                      </CardActions>
+                      }
                 </Card>
             </Grid>
             }

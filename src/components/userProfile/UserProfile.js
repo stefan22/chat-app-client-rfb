@@ -75,7 +75,7 @@ const UserProfile = ({
           </div>
           <div className={classes.profileDetails}>
             <Typography
-              variant='h4'
+              variant='h3'
               color={'secondary'}
               className={classes.userHeading}
             >
@@ -83,7 +83,7 @@ const UserProfile = ({
                 className={classes.userProfileIcon}
                 color={'secondary'}
               />{' '}
-              {!!user ? user : 'username'}
+              {!!user ? user.charAt(0).toUpperCase()+user.slice(1) : 'username'}
             </Typography>
             <hr />
 
