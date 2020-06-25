@@ -1,5 +1,9 @@
 import theme from '../../theme/customTheme';
 
+
+
+
+
 export default {
   
   userWrapper: {
@@ -10,62 +14,116 @@ export default {
     flexDirection: 'row',
     width: '100%',
     justifyContent: 'center',
-    margin: '3rem 0 5rem',
+    margin: '3rem 0',
   },
   userTitle: {
     fontWeight: 400,
-    margin: '10rem 0 5rem',
+    margin: '7rem 0 3rem',
   },
 
   messagesHeader: {
     padding: '0'
   },
   userName: {
-    color: theme.palette.primary.contrastText
+    color: theme.palette.secondary.main,
   },
  
   content: {
     padding: 24,
   },
   userMessages: {
-    marginBottom: '3rem',
+    margin: '3rem 0',
+  },
+  userRoot: {
+    marginBottom: '2rem',
+    padding: '1rem',
+  },
+  userMainMessage: {
+    color: theme.palette.primary.mainText,
+    fontWeight: 400,
+    fontSize: '1rem',
+    marginBottom: '1rem',
   },
   userMessage: {
-    color: theme.palette.primary.contrastText,
-    fontWeight: 500,
+    color: theme.palette.primary.mainText,
+    fontWeight: 400,
   },
   root: {
     margin: '2rem 0',
     marginBottom: '3rem',
-    backgroundColor: theme.palette.secondary.light
+    color: theme.palette.primary.mainText,
   },
-  rootProfile: {
-    margin: '3rem 0'
+   userProfileInfo: {
+    margin: '3rem 0',
+    padding: '2rem',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    height: 'auto',
+  },
+  userInfoWrapper: {
+    padding: '2rem',
+    border: '1px solid',
+    borderColor: theme.borderPrimaryLight,
+    borderRadius: '4px',
+    backgroundColor: theme.palette.lightGreenBackground,
+  },
+  userProfileImage: {
+    width: '100%',
+    height: 'auto',
+    margin: '1rem auto 1rem',
+    maxWidth: '150px'
+  },
+  userLoginButton: {
+    //backgroundColor: theme.palette.secondary.main,
+  },
+  userFabButton: {
+    //backgroundColor: theme.palette.secondary.main,
+  },
+  userSubtitles: {
+    color: theme.palette.primary.mainText,
+    textAlign: 'left',
+    width: '100%',
+    display: 'flex',
+    alignItems: 'self-start',
+  },
+  userSubtitlesLight: {
+    color: theme.palette.secondary.lightText,
+    textAlign: 'left',
+    width: '100%',
+    display: 'flex',
+    alignItems: 'self-start',
+  },
+  userUserSpan: {
+    color: theme.palette.primary.main,
+    marginRight: '20px',
   },
 
-  userImage: {
-    maxWidth: '60px',
-    height: 'auto',
-    padding: '5px 0',
-    marginTop: '2rem',
-    marginLeft: '1rem',
-    marginBottom: '1rem',
-    borderRadius: '50%',
-    boxShadow: `0px 1px 3px ${theme.palette.secondary.dark}`,
+  userUserSpanBio: {
+    color: theme.palette.primary.main,
+    marginRight: '10px',
   },
-  userCardMedia:{
-    padding: '1rem 0',
-    marginBottom: '3rem',
+
+  userSubtitlesHeading: {
+    color: theme.palette.secondary.main, 
+    textAlign: 'left',
+    width: '100%',
   },
-  userSubtitle: {
-    color: theme.palette.primary.light
+
+ 
+  userTitle2: {
+    color: theme.palette.primary.light,
   },
-  userSubtitleProfile: {
-    color: theme.palette.primary.light
-  },
+  
   actionMessage: {
     display: 'inline',
     width: '50%'
+  },
+  userMessageq: {
+    color: theme.palette.secondary.light,
+    marginRight: '5px',
   },
 
   userFootnote: {
@@ -74,5 +132,10 @@ export default {
     '& a': {
       color: theme.palette.secondary.main,
     }
+  },
+  userActions: {
+    margin: '2rem 0 0'
   }
+
+
 };

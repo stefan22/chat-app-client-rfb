@@ -15,11 +15,7 @@ export default {
     },
   },
   editProfile: {
-    color: '#f44336',
-    '& h2': {
-      fontSize: '1.75rem',
-      margin: '1rem 0 0',
-    },
+    margin: '1rem 0 0',
   },
   editProfileIcon: {
     width: '22px',
