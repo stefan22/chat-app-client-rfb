@@ -75,6 +75,7 @@ class Login extends Component {
             </Typography>
             <form id='login' noValidate onSubmit={this.handleSubmit}>
               
+             
               <div className={classes.innerForm}>
                 <TextField
                   id='email'
@@ -113,6 +114,12 @@ class Login extends Component {
                   </Typography>
                 ): (<div className={classes.credentialsError}></div>
                 )}
+
+                {!!loading && (
+                 <CircularProgress size={30} className={classes.progress} />
+                )}
+
+                
                 <Button
                   type={'submit'}
                   variant='contained'
@@ -122,14 +129,12 @@ class Login extends Component {
                   color='primary'
                 >
                   Login
-                  {loading && (
-                    <CircularProgress size={30} className={classes.progress} />
-                  )}
+                
                 </Button>
+            
               </div>
             
                
-
             </form>
            
           </Grid>
