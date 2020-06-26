@@ -30,6 +30,7 @@ class Signup extends Component {
 
   componentDidMount() {
     this.props.clearFormErrors();
+    window.scrollTo(0,0);
     gsap.from(this.signupTitleRef.current, {
       opacity: 0.35,
       color: '#222222',

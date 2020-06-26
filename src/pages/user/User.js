@@ -60,6 +60,7 @@ class User extends Component {
 
   componentDidMount() {
     this.getUser();
+    window.scrollTo(0,0);
     //gsap runs
     gsapRun(this.userRef);
     gsapRun(this.userMessagesRef);

@@ -27,6 +27,7 @@ class Home extends Component {
 
   componentDidMount(){
     this.props.getMessages();
+    window.scrollTo(0,0);
     gsap.from(this.titleEle.current,3, {
       opacity: .25,
       color: '#222222',

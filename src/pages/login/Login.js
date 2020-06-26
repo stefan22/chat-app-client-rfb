@@ -30,6 +30,7 @@ class Login extends Component {
 
   componentDidMount() {
     this.props.clearFormErrors();
+    window.scrollTo(0,0);
     gsap.from(this.loginTitleRef.current, {
       opacity: 0.35,
       color: '#222222',
