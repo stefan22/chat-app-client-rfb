@@ -23,7 +23,7 @@ class Navbar extends Component {
     return (
       <AppBar>
         <Toolbar className="nav-container">
-          <Button color="inherit" component={Link} to="/">Home</Button>
+          <Button color="inherit" component={Link} to={'/repositories/chatapp/'}>Home</Button>
 
           {
           !!authenticated ? (
@@ -32,7 +32,7 @@ class Navbar extends Component {
               onClick={this.handleLogout}
               color="inherit" 
               component={Link} 
-              to="/login"
+              to="/repositories/chatapp/login"
             >Logout
             </Button>
             <AddButton />
@@ -40,8 +40,8 @@ class Navbar extends Component {
 
             ) : (
             <>
-            <Button color="inherit" component={Link} to="/login">Login</Button>
-            <Button color="inherit" component={Link} to="/signup">Signup</Button>
+            <Button color="inherit" component={Link} to={"/repositories/chatapp/login"}>Login</Button>
+            <Button color="inherit" component={Link} to={"/repositories/chatapp/signup"}>Signup</Button>
             </>
             )
           }

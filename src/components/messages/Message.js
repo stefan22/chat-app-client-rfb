@@ -57,7 +57,7 @@ const Message = ({
           <Typography
             className={classes.heading}
             component={Link}
-            to={`/users/${user}`}
+            to={`/repositories/chatapp/users/${user}`}
             variant='h4'
             color={'primary'}
           >

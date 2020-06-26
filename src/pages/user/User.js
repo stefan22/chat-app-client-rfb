@@ -166,7 +166,7 @@ class User extends Component {
             </header>
             <div className={classes.userFootnote}>
               You must have an account, in order to see user's profile.<br />
-              Follow this link to <Link to={'/signup'}>signup</Link> now.
+              Follow this link to <Link to={'/repositories/chatapp/signup'}>signup</Link> now.
             </div>
             
             </Grid>
@@ -243,12 +243,12 @@ class User extends Component {
                           You must be logged in to view this.
                         </Typography>
                         <Button 
-                          href={"/signup"}
+                          href={"/repositories/chatapp/signup"}
                           size="small" color="secondary">
                           Sign up
                         </Button>
                         <Button 
-                          href={"/login"}
+                          href={"/repositories/chatapp/login"}
                           className={classes.userLoginButton} 
                           size="small" 
                           color={"secondary"}>

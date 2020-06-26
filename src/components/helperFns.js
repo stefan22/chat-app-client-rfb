@@ -31,3 +31,11 @@ export const isMessageFromUser = (user, userMessage) => {
     return true;
   } else return false;
 }
+
+
+
+export const donpioPath = (subfolder = '/repositories/chatapp/') => {
+  let pathBe = window.location.pathname === subfolder ? subfolder : '/';
+
+  return pathBe;
+};

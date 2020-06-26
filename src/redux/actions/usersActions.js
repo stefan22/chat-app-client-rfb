@@ -62,7 +62,7 @@ export const userLogin = (userLogin, history) => (dispatch) => {
       dispatch({type: SET_AUTHENTICATED});
       dispatch(getUserData());
       clearFormErrors();
-      history.push('/');
+      history.push('/repositories/chatapp/');
     })
     .catch((err) => {
       console.log(err.response);
@@ -86,7 +86,7 @@ export const userSignup = (userSignup, history) => (dispatch) => {
       setAuthToken(response.data.token);
       dispatch(getUserData());
       dispatch({type: CLEAR_ERRORS});
-      history.push('/');
+      history.push('/repositories/chatapp/');
     })
     .catch((err) => {
       console.log(err.response);

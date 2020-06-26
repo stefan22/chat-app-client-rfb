@@ -22,7 +22,7 @@ export default function FabButton() {
     <div className={classes.root}>
       <Fab color="primary" variant="extended">
         <LockOpenIcon className={classes.extendedIcon} />
-        <Link style={{color: 'white',fontWeight: 500}} to={"/login"}>Login here</Link>
+        <Link style={{color: 'white',fontWeight: 500}} to={"/repositories/chatapp/login"}>Login here</Link>
       </Fab>
     </div>
   );

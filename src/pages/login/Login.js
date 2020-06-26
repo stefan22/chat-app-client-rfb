@@ -120,7 +120,7 @@ class Login extends Component {
                   className={classes.credentialsError}
                 >
                 Don't have an account? Click
-                <Link to='/signup' className={classes.errorsHereLink}>
+                <Link to='/repositories/chatapp/signup' className={classes.errorsHereLink}>
                   here
                 </Link>
                 </Typography>
