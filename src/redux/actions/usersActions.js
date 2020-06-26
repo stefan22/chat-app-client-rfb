@@ -54,11 +54,12 @@ export const getUserData = () => (dispatch) => {
 // login page
 export const userLogin = (userLogin, history) => (dispatch) => {
   dispatch({ type: SET_LOADING_ON });
+  
   axios
     .post(`${baseURL}/login`, userLogin)
     .then((response) => {
-      dispatch({type: SET_LOADING_ON});
       setAuthToken(response.data.token);
+      dispatch({type: CLEAR_ERRORS});
       dispatch({type: SET_AUTHENTICATED});
       dispatch(getUserData());
       clearFormErrors();

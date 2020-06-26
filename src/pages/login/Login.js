@@ -1,6 +1,7 @@
 import React, { Component, createRef } from 'react';
 // comps
 import { Link } from 'react-router-dom';
+import CircularProgress from '@material-ui/core/CircularProgress';
 // matui
 import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -60,6 +61,7 @@ class Login extends Component {
     const {
       classes,
       errors,
+      loading,
     } = this.props;
     const { email, password } = this.state;
 
@@ -101,6 +103,15 @@ class Login extends Component {
                   autoComplete={'password'}
                   fullWidth
                 />
+                {!!errors.credentials ? (
+                  <Typography
+                    variant='body1'
+                    className={classes.credentialsError}
+                  >
+                    {errors.credentials}
+                  </Typography>
+                ): (<div className={classes.credentialsError}></div>
+                )}
                 <Button
                   type={'submit'}
                   variant='contained'
@@ -110,22 +121,30 @@ class Login extends Component {
                   color='primary'
                 >
                   Login
+                  {loading && (
+                    <CircularProgress size={30} className={classes.progress} />
+                  )}
                 </Button>
               </div>
             
+               
 
-              {errors.error && (
-                <Typography
-                  variant='body1'
-                  className={classes.credentialsError}
-                >
-                Don't have an account? Click
-                <Link to='/signup' className={classes.errorsHereLink}>
-                  here
-                </Link>
-                </Typography>
-                )}
             </form>
+           
+          </Grid>
+           <Grid item sm={12} xs={12}>
+           <Typography
+                className={classes.noAccount}
+                variant='body1'
+                align="center"
+              >
+                Don't have an account?
+              <Link to='/signup' className={classes.errorsHereLink}>
+                <Button color="secondary">
+                  Click Here
+                </Button>
+              </Link>
+            </Typography>
           </Grid>
         </Grid>
       </div>
