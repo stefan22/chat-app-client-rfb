@@ -167,7 +167,12 @@ class User extends Component {
             </header>
             <div className={classes.userFootnote}>
               You must have an account, in order to see user's profile.<br />
-              Follow this link to <Link to={'/signup'}>signup</Link> now.
+              Follow this link to
+              <Link to='/signup' className={classes.signupLink}>
+                <Button color="secondary">
+                  Signup
+                </Button>
+              </Link>
             </div>
             
             </Grid>

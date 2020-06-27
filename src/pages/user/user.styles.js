@@ -127,10 +127,18 @@ export default {
   },
 
   userFootnote: {
+    color: theme.palette.primary.mainText,
     margin: '1rem 0',
     fontSize: '1rem',
     '& a': {
       color: theme.palette.secondary.main,
+    }
+  },
+  signupLink: {
+   '& button': {
+      verticalAlign: 'baseline',
+      textDecoration: 'underline',
+      letterSpacing: '.5px',
     }
   },
   userActions: {
