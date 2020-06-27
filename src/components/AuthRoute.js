@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 
 const AuthRoute = ({component: Component, authenticated, ...rest }) => {
-	console.log(rest);
+	//console.log(rest);
 	return (
 		<Route
 			{...rest}

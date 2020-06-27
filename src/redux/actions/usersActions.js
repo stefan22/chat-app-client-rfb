@@ -59,10 +59,9 @@ export const userLogin = (userLogin, history) => (dispatch) => {
     .post(`${baseURL}/login`, userLogin)
     .then((response) => {
       setAuthToken(response.data.token);
-      dispatch({type: CLEAR_ERRORS});
       dispatch({type: SET_AUTHENTICATED});
       dispatch(getUserData());
-      clearFormErrors();
+      dispatch({type: CLEAR_ERRORS});
       history.push('/');
     })
     .catch((err) => {
@@ -190,7 +189,7 @@ export const getUserProfileNMessages = (user) => dispatch => {
   })
   .then(response => response.json())
   .then(data => {
-      console.log(data);
+      //console.log(data);
       dispatch({type:SET_USER_MESSAGES, payload: data.messages});
   })
   .catch(err => {

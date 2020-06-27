@@ -12,7 +12,6 @@ import {
 } from '../types';
 
 import {
-  addItemsToLocalStorage, 
   isMessageFromUser,
   getAuthToken,
 
@@ -31,7 +30,6 @@ export const getMessages = () => (dispatch) => {
       return res.json();
     })
     .then((data) => {
-      addItemsToLocalStorage(data);
       return dispatch({
         type: SET_MESSAGES,
         payload: data,
@@ -105,11 +103,6 @@ export const handleUpdateLikes = (messageId) => async (dispatch) => {
 
 //deleteMessage
 export const getDeleteMessage = (messageId,user,userMessage) => async dispatch => {
-  console.log('enter')
-  console.log('is message id => ', messageId);
-  console.log('is user => ', user);
-  console.log('is userMessage => ', userMessage);
-
   let userOwnsMsg = await isMessageFromUser(user,userMessage);
   let delToken = getAuthToken('fbToken');
   if (!userOwnsMsg) {//user does not own message 

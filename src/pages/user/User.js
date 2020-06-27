@@ -73,7 +73,7 @@ class User extends Component {
   
 
   render() {
-    console.log(this);
+    //console.log(this);
     let memberSince;
     const isUser = this.props.match.params.user;
     let pageTitle = isUser.charAt(0).toUpperCase() + isUser.slice(1);
