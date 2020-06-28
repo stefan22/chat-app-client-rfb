@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import {Link} from 'react-router-dom';
 // matui
 import AppBar from '@material-ui/core/AppBar';
@@ -15,7 +16,7 @@ import AccountBoxRoundedIcon from '@material-ui/icons/AccountBoxRounded';
 
 
 class Navbar extends Component {
-
+  
   handleLogout = () => {
     console.clear();
     this.props.resetWarningMessage();
@@ -23,7 +24,24 @@ class Navbar extends Component {
   }
 
   render() {
-  const { authenticated, user } = this.props;
+  //console.log(this)
+  const isAccount = (
+    <IconButton>
+      <Link style={{lineHeight: 0}}
+      to={`/repositories/chatapp/users/${this.props.user.protected.user}`}>
+      <AccountBoxRoundedIcon 
+        className={"userAccount"}
+        color="primary"
+        size="small"
+      />
+      </Link>
+    </IconButton>
+
+  );
+
+  const { authenticated } = this.props;
+
+
     return (
       <AppBar>
         <Toolbar className="nav-container">
@@ -35,16 +53,9 @@ class Navbar extends Component {
           
            <AddButton />
 
-           <IconButton>
-              <Link style={{lineHeight: 0}}
-              to={`/users/${user.protected.user}`}>
-              <AccountBoxRoundedIcon 
-                className="userAccount"
-                color="primary"
-                size="small"
-              />
-              </Link>
-            </IconButton>
+           {this.props.location.pathname === '/repositories/chatapp/' &&
+              isAccount
+            }
 
             <Button 
               onClick={this.handleLogout}
@@ -77,8 +88,8 @@ const mapStateToProps = state => ({
 
 const mapActionsToProps = {
   userLogout,
-  resetWarningMessage
+  resetWarningMessage,
 }
 
 
-export default connect(mapStateToProps,mapActionsToProps)(Navbar);
+export default withRouter(connect(mapStateToProps,mapActionsToProps)(Navbar));

@@ -8,6 +8,8 @@ import {
   SET_LIKES,
   SET_USER_MESSAGES,
   CLEAR_USER_MESSAGES,
+  SET_USER_PROFILE,
+  CLEAR_USER_PROFILE,
 
 } from '../types';
 
@@ -62,7 +64,7 @@ export const userLogin = (userLogin, history) => (dispatch) => {
       dispatch({type: SET_AUTHENTICATED});
       dispatch(getUserData());
       dispatch({type: CLEAR_ERRORS});
-      history.push('/');
+      history.push('/repositories/chatapp/');
     })
     .catch((err) => {
       console.log(err.response);
@@ -180,6 +182,7 @@ export const getLikedUser = (messageId) => dispatch => {
 
 export const getUserProfileNMessages = (user) => dispatch => {
   dispatch({type: SET_LOADING_ON});
+  dispatch({type: CLEAR_USER_PROFILE});
   fetch(`${baseURL}/users/${user}`, {
     method: 'GET',
     headers: {
@@ -191,6 +194,7 @@ export const getUserProfileNMessages = (user) => dispatch => {
   .then(data => {
       //console.log(data);
       dispatch({type:SET_USER_MESSAGES, payload: data.messages});
+      dispatch({type: SET_USER_PROFILE, payload: data.user})
   })
   .catch(err => {
     console.log(err)

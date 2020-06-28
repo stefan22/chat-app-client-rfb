@@ -66,6 +66,6 @@ node_modules/
 .env
 
 
-package-lock.json
+build/
 .vscode/settings.json
 
