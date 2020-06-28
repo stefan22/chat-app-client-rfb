@@ -54,15 +54,15 @@ export const getUserData = () => (dispatch) => {
 // login page
 export const userLogin = (userLogin, history) => (dispatch) => {
   dispatch({ type: SET_LOADING_ON });
+  
   axios
     .post(`${baseURL}/login`, userLogin)
     .then((response) => {
-      dispatch({type: SET_LOADING_ON});
       setAuthToken(response.data.token);
       dispatch({type: SET_AUTHENTICATED});
       dispatch(getUserData());
-      clearFormErrors();
-      history.push('/repositories/chatapp/');
+      dispatch({type: CLEAR_ERRORS});
+      history.push('/');
     })
     .catch((err) => {
       console.log(err.response);
@@ -189,7 +189,7 @@ export const getUserProfileNMessages = (user) => dispatch => {
   })
   .then(response => response.json())
   .then(data => {
-      console.log(data);
+      //console.log(data);
       dispatch({type:SET_USER_MESSAGES, payload: data.messages});
   })
   .catch(err => {

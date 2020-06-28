@@ -7,7 +7,8 @@ export default {
     display: 'flex',
     flexDirection: 'column',
     padding: '3rem',
-    marginBottom: '6rem'
+    marginBottom: '6rem',
+    minHeight: '482px',
   },
   loginTitle: {
     fontWeight: 400,
@@ -23,9 +24,17 @@ export default {
   },
   credentialsError: {
     color: '#F44336',
-    marginTop: '3rem',
+    marginTop: 0,
     width: '100%',
-    textAlign: 'center'
+    height: '40px',
+    textAlign: 'center',
+    lineHeight: 2.5,
+  },
+  noAccount: {
+    '& button': {
+      marginLeft: '5px',
+      textDecoration: 'underline',
+    }
   },
   errorsHereLink: {
     color: '#515151',

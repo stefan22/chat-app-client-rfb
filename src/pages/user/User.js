@@ -60,6 +60,7 @@ class User extends Component {
 
   componentDidMount() {
     this.getUser();
+    window.scrollTo(0,0);
     //gsap runs
     gsapRun(this.userRef);
     gsapRun(this.userMessagesRef);
@@ -72,7 +73,7 @@ class User extends Component {
   
 
   render() {
-    console.log(this);
+    //console.log(this);
     let memberSince;
     const isUser = this.props.match.params.user;
     let pageTitle = isUser.charAt(0).toUpperCase() + isUser.slice(1);
@@ -166,7 +167,12 @@ class User extends Component {
             </header>
             <div className={classes.userFootnote}>
               You must have an account, in order to see user's profile.<br />
-              Follow this link to <Link to={'/repositories/chatapp/signup'}>signup</Link> now.
+              Follow this link to
+              <Link to={'/repositories/chatapp/signup'} className={classes.signupLink}>
+                <Button color="secondary">
+                  Signup
+                </Button>
+              </Link>
             </div>
             
             </Grid>

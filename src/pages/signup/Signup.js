@@ -1,6 +1,7 @@
 import React, { Component, createRef } from 'react';
 // comps
 import { Link } from 'react-router-dom';
+import CircularProgress from '@material-ui/core/CircularProgress';
 // matui
 import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -30,6 +31,7 @@ class Signup extends Component {
 
   componentDidMount() {
     this.props.clearFormErrors();
+    window.scrollTo(0,0);
     gsap.from(this.signupTitleRef.current, {
       opacity: 0.35,
       color: '#222222',
@@ -60,7 +62,7 @@ class Signup extends Component {
 
   render() {
     //console.log(this);
-    const { classes, errors } = this.props;
+    const { classes, errors, loading } = this.props;
     const { user, email, password, confirmPassword } = this.state;
     return (
       <Grid container>
@@ -131,6 +133,10 @@ class Signup extends Component {
                 autoComplete={'confirm-password'}
                 fullWidth
               />
+
+              {!!loading && (
+                <CircularProgress size={30} className={classes.progress} />
+              )}
 
               <Button
                 type={'submit'}

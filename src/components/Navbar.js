@@ -5,10 +5,14 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import AddButton from './addButton/AddButton';
+import IconButton from '@material-ui/core/IconButton';
 //redux
 import { connect } from 'react-redux';
 import { userLogout } from '../redux/actions/usersActions';
 import { resetWarningMessage } from '../redux/actions/uiActions';
+//icon
+import AccountBoxRoundedIcon from '@material-ui/icons/AccountBoxRounded';
+
 
 class Navbar extends Component {
 
@@ -19,7 +23,7 @@ class Navbar extends Component {
   }
 
   render() {
-  const { authenticated } = this.props;
+  const { authenticated, user } = this.props;
     return (
       <AppBar>
         <Toolbar className="nav-container">
@@ -28,6 +32,20 @@ class Navbar extends Component {
           {
           !!authenticated ? (
             <>
+          
+           <AddButton />
+
+           <IconButton>
+              <Link style={{lineHeight: 0}}
+              to={`/users/${user.protected.user}`}>
+              <AccountBoxRoundedIcon 
+                className="userAccount"
+                color="primary"
+                size="small"
+              />
+              </Link>
+            </IconButton>
+
             <Button 
               onClick={this.handleLogout}
               color="inherit" 
@@ -35,7 +53,7 @@ class Navbar extends Component {
               to="/repositories/chatapp/login"
             >Logout
             </Button>
-            <AddButton />
+
             </>
 
             ) : (
@@ -54,6 +72,7 @@ class Navbar extends Component {
 
 const mapStateToProps = state => ({
   authenticated: state.user.authenticated,
+  user: state.user,
 });
 
 const mapActionsToProps = {

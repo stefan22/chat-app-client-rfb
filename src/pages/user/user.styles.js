@@ -15,8 +15,42 @@ export default {
     width: '100%',
     justifyContent: 'center',
     margin: '3rem 0',
+<<<<<<< HEAD
   },
   userTitle: {
+=======
+  },
+  userTitle: {
+    fontWeight: 400,
+    margin: '7rem 0 3rem',
+  },
+
+  messagesHeader: {
+    padding: '0'
+  },
+  userName: {
+    color: theme.palette.secondary.main,
+  },
+ 
+  content: {
+    padding: 24,
+  },
+  userMessages: {
+    margin: '3rem 0',
+  },
+  userRoot: {
+    marginBottom: '2rem',
+    padding: '1rem',
+  },
+  userMainMessage: {
+    color: theme.palette.primary.mainText,
+    fontWeight: 400,
+    fontSize: '1rem',
+    marginBottom: '1rem',
+  },
+  userMessage: {
+    color: theme.palette.primary.mainText,
+>>>>>>> master
     fontWeight: 400,
     margin: '7rem 0 3rem',
   },
@@ -105,6 +139,63 @@ export default {
     color: theme.palette.primary.main,
     marginRight: '10px',
   },
+  root: {
+    margin: '2rem 0',
+    marginBottom: '3rem',
+    color: theme.palette.primary.mainText,
+  },
+   userProfileInfo: {
+    margin: '3rem 0',
+    padding: '2rem',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    height: 'auto',
+  },
+  userInfoWrapper: {
+    padding: '2rem',
+    border: '1px solid',
+    borderColor: theme.borderPrimaryLight,
+    borderRadius: '4px',
+    backgroundColor: theme.palette.lightGreenBackground,
+  },
+  userProfileImage: {
+    width: '100%',
+    height: 'auto',
+    margin: '1rem auto 1rem',
+    maxWidth: '150px'
+  },
+  userLoginButton: {
+    //backgroundColor: theme.palette.secondary.main,
+  },
+  userFabButton: {
+    //backgroundColor: theme.palette.secondary.main,
+  },
+  userSubtitles: {
+    color: theme.palette.primary.mainText,
+    textAlign: 'left',
+    width: '100%',
+    display: 'flex',
+    alignItems: 'self-start',
+  },
+  userSubtitlesLight: {
+    color: theme.palette.secondary.lightText,
+    textAlign: 'left',
+    width: '100%',
+    display: 'flex',
+    alignItems: 'self-start',
+  },
+  userUserSpan: {
+    color: theme.palette.primary.main,
+    marginRight: '20px',
+  },
+
+  userUserSpanBio: {
+    color: theme.palette.primary.main,
+    marginRight: '10px',
+  },
 
   userSubtitlesHeading: {
     color: theme.palette.secondary.main, 
@@ -127,10 +218,18 @@ export default {
   },
 
   userFootnote: {
+    color: theme.palette.primary.mainText,
     margin: '1rem 0',
     fontSize: '1rem',
     '& a': {
       color: theme.palette.secondary.main,
+    }
+  },
+  signupLink: {
+   '& button': {
+      verticalAlign: 'baseline',
+      textDecoration: 'underline',
+      letterSpacing: '.5px',
     }
   },
   userActions: {

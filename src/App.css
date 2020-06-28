@@ -19,6 +19,17 @@
 
 #root-chat .nav-container {
   margin: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  min-width: 300px;
+}
+
+#root-chat svg.userAccount {
+  width: .875em;
+  height: .875em;
+  background-color: #ffffff;
 }
 
 
