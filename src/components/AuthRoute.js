@@ -11,7 +11,7 @@ const AuthRoute = ({component: Component, authenticated, ...rest }) => {
 		
 			render={ (props) => 
 				authenticated === true 
-				? <Redirect to={`/repositories/chatapp/`} />
+				? <Redirect to={`/`} />
 				: <Component {...props} />
 
 			}

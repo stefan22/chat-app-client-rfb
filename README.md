@@ -29,8 +29,10 @@ ref=> project:google.cloud.functions./chat-app-5c91e
 - heading √ [moves to the side of messages when scroll-down - react.ref] √
 - updated backend firebase function - chat-app-repo (returns user info + messages - not protected) √
 - installed gsap & updted styling √
-- login/signup loading component
-- nav link button to user profile
+- login/signup loading component √
+- nav link button to user profile √
+- added account button for logged in user while authenticated. √
+- updated ui site link √
 - user ui page...
 
 > a few changes coming..        

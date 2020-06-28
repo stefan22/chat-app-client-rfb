@@ -217,7 +217,7 @@ class User extends Component {
                 <br />
                 Follow this link to
                 <Link
-                  to={'/repositories/chatapp/signup'}
+                  to={'/signup'}
                   className={classes.signupLink}
                 >
                   <Button color='secondary'>Signup</Button>
@@ -360,44 +360,3 @@ export default connect(
 
 
 
-//  {!authenticated ? (
-//                   <CardActions className={classes.userActions}>
-//                     <Typography
-//                       className={classes.userActionsHeading}
-//                       variant='body1'
-//                       color='textSecondary'
-//                       component='p'
-//                     >
-//                       You must be logged in to view this.
-//                     </Typography>
-//                     <Button
-//                       href={'/repositories/chatapp/signup'}
-//                       size='small'
-//                       color='secondary'
-//                     >
-//                       Sign up
-//                     </Button>
-//                     <Button
-//                       href={'/repositories/chatapp/login'}
-//                       className={classes.userLoginButton}
-//                       size='small'
-//                       color={'secondary'}
-//                     >
-//                       Login
-//                     </Button>
-//                   </CardActions>
-//                 ) : (
-//                   <CardActions className={classes.userActions}>
-//                     <Typography
-//                       className={classes.userActionsHeading}
-//                       variant='body1'
-//                       color='textSecondary'
-//                       component='p'
-//                     >
-//                       Post a new message.
-//                     </Typography>
-//                     <Button size='small' color='secondary'>
-//                       <AddButton color={'primary'} />
-//                     </Button>
-//                   </CardActions>
-//                 )}

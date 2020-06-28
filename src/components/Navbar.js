@@ -28,7 +28,7 @@ class Navbar extends Component {
   const isAccount = (
     <IconButton>
       <Link style={{lineHeight: 0}}
-      to={`/repositories/chatapp/users/${this.props.user.protected.user}`}>
+      to={`/users/${this.props.user.protected.user}`}>
       <AccountBoxRoundedIcon 
         className={"userAccount"}
         color="primary"
@@ -45,7 +45,7 @@ class Navbar extends Component {
     return (
       <AppBar>
         <Toolbar className="nav-container">
-          <Button color="inherit" component={Link} to={'/repositories/chatapp/'}>Home</Button>
+          <Button color="inherit" component={Link} to={'/'}>Home</Button>
 
           {
           !!authenticated ? (
@@ -53,7 +53,7 @@ class Navbar extends Component {
           
            <AddButton />
 
-           {this.props.location.pathname === '/repositories/chatapp/' &&
+           {this.props.location.pathname === '/' &&
               isAccount
             }
 
@@ -61,7 +61,7 @@ class Navbar extends Component {
               onClick={this.handleLogout}
               color="inherit" 
               component={Link} 
-              to="/repositories/chatapp/login"
+              to="/login"
             >Logout
             </Button>
 
@@ -69,8 +69,8 @@ class Navbar extends Component {
 
             ) : (
             <>
-            <Button color="inherit" component={Link} to={"/repositories/chatapp/login"}>Login</Button>
-            <Button color="inherit" component={Link} to={"/repositories/chatapp/signup"}>Signup</Button>
+            <Button color="inherit" component={Link} to={"/login"}>Login</Button>
+            <Button color="inherit" component={Link} to={"/signup"}>Signup</Button>
             </>
             )
           }

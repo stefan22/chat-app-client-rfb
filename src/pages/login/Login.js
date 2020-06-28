@@ -145,7 +145,7 @@ class Login extends Component {
                 align="center"
               >
                 Don't have an account?
-              <Link to='/repositories/chatapp/signup' className={classes.errorsHereLink}>
+              <Link to='/signup' className={classes.errorsHereLink}>
                 <Button color="secondary">
                   Click Here
                 </Button>

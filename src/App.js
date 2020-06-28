@@ -52,17 +52,17 @@ class App extends Component {
           <div className='container'>
             <Navbar />
             <Switch>
-              <Route exact path={"/repositories/chatapp/"} component={Home} />
+              <Route exact path={"/"} component={Home} />
               <AuthRoute 
-                exact path={"/repositories/chatapp/login"}
+                exact path={"/login"}
                 component={Login} 
               />
               <AuthRoute 
-                exact path={"/repositories/chatapp/signup"}
+                exact path={"/signup"}
                 component={Signup} 
               />
               <Route 
-                exact path={"/repositories/chatapp/users/:user"}
+                exact path={"/users/:user"}
                 component={User} 
               />
             </Switch>
