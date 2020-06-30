@@ -23,12 +23,9 @@ class Messages extends Component {
     };
   }
 
-  handleDeleteWarning = () => {
-    this.setState({
-      open: true,
-    });
-    this.props.setDeleteWarning();
-  }
+  handleDeleteWarning = () => 
+    this.setState({open: true}, () => this.props.setDeleteWarning());
+
 
   handleResetDeleteWarning = () => {
     this.props.resetDeleteWarning();
@@ -53,10 +50,8 @@ class Messages extends Component {
     this.props.sendWarningMessage();
   }
 
-  handleResetliked = () => {
-    this.setState({open: false});
-    this.props.resetWarningMessage();
-  }
+  handleResetliked = () => 
+    this.setState({open: false}, () => this.props.resetWarningMessage());
 
 
   render() {
@@ -66,7 +61,6 @@ class Messages extends Component {
 
     const {
       messages,
-      handleLikedUnliked,
       deleteMessageWarning,
       warning,
       authenticated,
@@ -83,7 +77,6 @@ class Messages extends Component {
               open={open}
               key={msg.messageId}
               messages={messages}
-              handleLikedUnliked={handleLikedUnliked}
               handleLiked={this.handleLiked}
               handleResetliked={this.handleResetliked}
               handleResetDeleteWarning={this.handleResetDeleteWarning}
