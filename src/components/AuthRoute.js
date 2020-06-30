@@ -2,28 +2,21 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+const AuthRoute = ({ component: RouteComponent, authenticated, ...rest }) => (
+  <Route
+    {...rest}
+    render={(routeProps) =>
+      !!authenticated ? (
+				<Redirect to={`/`} />
+      ) : (
+				<RouteComponent {...routeProps} />
+      )
+    }
+  />
+);
 
-const AuthRoute = ({component: Component, authenticated, ...rest }) => {
-	//console.log(rest);
-	return (
-		<Route
-			{...rest}
-		
-			render={ (props) => 
-				authenticated === true 
-				? <Redirect to={`/`} />
-				: <Component {...props} />
-
-			}
-		/>
-	);
-
-};
-
-
-const mapStateToProps = state => ({
-	authenticated: state.user.authenticated
+const mapStateToProps = (state) => ({
+  authenticated: state.user.authenticated,
 });
-
 
 export default connect(mapStateToProps)(AuthRoute);
