@@ -32,8 +32,7 @@ class WarningMessage extends Component {
   }
 
   handleClose = () => {
-    if (!!this.props.warning) this.props.handleResetliked();
-    if (!!this.props.deleteMessageWarning) this.props.handleResetDeleteWarning();
+    this.props.handleResetWarning();
   }
 
   render() {

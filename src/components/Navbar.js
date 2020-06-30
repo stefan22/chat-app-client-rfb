@@ -10,7 +10,6 @@ import IconButton from '@material-ui/core/IconButton';
 //redux
 import { connect } from 'react-redux';
 import { userLogout } from '../redux/actions/usersActions';
-import { resetWarningMessage } from '../redux/actions/uiActions';
 //icon
 import AccountBoxRoundedIcon from '@material-ui/icons/AccountBoxRounded';
 
@@ -19,7 +18,6 @@ class Navbar extends Component {
   
   handleLogout = () => {
     console.clear();
-    this.props.resetWarningMessage();
     this.props.userLogout();
   }
 
@@ -88,7 +86,6 @@ const mapStateToProps = state => ({
 
 const mapActionsToProps = {
   userLogout,
-  resetWarningMessage,
 }
 
 

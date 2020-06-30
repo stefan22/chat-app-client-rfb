@@ -40,7 +40,7 @@ ref=> project:google.cloud.functions./chat-app-5c91e
       
 other:             
 
-º localStorage updates. 
+º [todo] => if user uploads profile image and has already posted a message with default image, it should update posted message image as well. 
 ª loading   
 º refactoring /classes etc.     
 º responsiveness.    √ 

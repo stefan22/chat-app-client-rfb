@@ -6,7 +6,6 @@ import {
 		SET_WARNING,
 		RESET_WARNING,
 		DELETE_WARNING,
-		RESET_DELETE_WARNING,
 
 } from '../types';
 
@@ -54,14 +53,6 @@ const uiReducer = (state=initialState, action) => {
 				deleteMessageWarning: true,
 				warning: false,
 				open: true,
-			}
-
-		case RESET_DELETE_WARNING:
-			return {
-				...state,
-				deleteMessageWarning: false,
-				open: false,
-				warning: false,
 			}
 
 		case RESET_WARNING:
