@@ -61,10 +61,12 @@ export default {
   userInfoWrapper: {
     padding: '2rem',
     border: '1px solid',
-    borderColor: theme.borderPrimaryLight,
+    borderColor: theme.userProfileBorder,
     borderRadius: '4px',
-    backgroundColor: theme.palette.lightGreenBackground,
+    backgroundColor: theme.userProfileBackground,
+    boxShadow: '0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)',
   },
+  
   userProfileImage: {
     width: '100%',
     height: 'auto',

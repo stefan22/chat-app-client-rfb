@@ -249,7 +249,7 @@ class User extends Component {
                   image={imageUrl}
                 />
                 <CardActionArea>
-                  <CardContent className={classes.userInfoWrapper}>
+                  <CardContent elevation={2} className={classes.userInfoWrapper}>
                     <Typography
                       className={classes.userSubtitlesHeading}
                       gutterBottom

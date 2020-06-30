@@ -17,8 +17,8 @@ export default {
       lightText: 'rgba(0,0,0,.54)',
     },
   },
-  lightGreenBackground: '#f0f8ff',
-  borderPrimaryLight: '#a8ded9',
+  userProfileBackground: '#fdf3f4',
+  userProfileBorder: '#fbc9cc',
   typography: {
     useNextVariants: true,
   },
