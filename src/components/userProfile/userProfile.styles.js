@@ -20,6 +20,7 @@ export default makeStyles((theme) => ({
   userInfo: {
     textAlign: 'center',
     margin: '1.15rem 0',
+    color: '#525252',
   },
   userHeading: {
     textAlign: 'center',

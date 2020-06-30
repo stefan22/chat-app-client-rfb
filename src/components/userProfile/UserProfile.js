@@ -59,7 +59,7 @@ const UserProfile = ({
               onChange={(evt) => handleUserProfileImage(evt)} 
             />
               <IconButton
-                color="primary"
+                color="secondary"
                 onClick={handleSimulateUpload}
               >
                 <EditIcon />
@@ -67,7 +67,7 @@ const UserProfile = ({
               <Typography
                 variant='body1'
                 component="span"
-                color="textSecondary"
+                color="textPrimary"
               >
               Edit Picture
               </Typography>
@@ -76,12 +76,12 @@ const UserProfile = ({
           <div className={classes.profileDetails}>
             <Typography
               variant='h3'
-              color={'secondary'}
+              color={'primary'}
               className={classes.userHeading}
             >
               <AccountCircleIcon
                 className={classes.userProfileIcon}
-                color={'secondary'}
+                color={'primary'}
               />{' '}
               {!!user ? user.charAt(0).toUpperCase()+user.slice(1) : 'username'}
             </Typography>

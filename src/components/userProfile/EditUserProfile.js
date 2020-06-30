@@ -78,9 +78,9 @@ class EditUserProfile extends Component {
           <LaunchIcon
             className={classes.editProfileIcon}
             onClick={this.handleOpen}
-            color='primary'
+            color='secondary'
           />
-          <Typography variant='body1' component='span' color='textSecondary'>
+          <Typography variant='body1' component='span' color='textPrimary'>
             Edit user profile
           </Typography>
         </div>

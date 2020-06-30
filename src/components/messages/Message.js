@@ -36,8 +36,7 @@ const Message = ({
 	open,
 	handleLiked,
 	handleDeleteWarning,
-	handleResetDeleteWarning,
-	handleResetliked,
+  handleResetWarning,
 
 }) => {
   
@@ -108,7 +107,7 @@ const Message = ({
             open={open}
             authenticated={authenticated}
             handleLiked={handleLiked}
-            handleResetliked={handleResetliked}
+            handleResetWarning={handleResetWarning}
             horizontal={horizontal}
             vertical={vertical}
           />
@@ -120,7 +119,7 @@ const Message = ({
             deleteMessageWarning={deleteMessageWarning}
             authenticated={authenticated}
             handleDeleteWarning={handleDeleteWarning}
-            handleResetDeleteWarning={handleResetDeleteWarning}
+            handleResetWarning={handleResetWarning}
             horizontal={horizontal}
             vertical={vertical}
           />

@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 import { handleUpdateLikes } from '../../redux/actions/messagesActions';
 import {
   sendWarningMessage,
-  resetWarningMessage,
   setDeleteWarning,
-  resetDeleteWarning,
+  resetWarning,
+
 } from '../../redux/actions/uiActions';
 
 
@@ -26,10 +26,6 @@ class Messages extends Component {
   handleDeleteWarning = () => 
     this.setState({open: true}, () => this.props.setDeleteWarning());
 
-
-  handleResetDeleteWarning = () => {
-    this.props.resetDeleteWarning();
-  }
 
   handleLiked = messageId => {
     const { likes, authenticated } = this.props;
@@ -50,8 +46,8 @@ class Messages extends Component {
     this.props.sendWarningMessage();
   }
 
-  handleResetliked = () => 
-    this.setState({open: false}, () => this.props.resetWarningMessage());
+  handleResetWarning = () =>
+    this.setState({open: false}, () => this.props.resetWarning());
 
 
   render() {
@@ -78,8 +74,7 @@ class Messages extends Component {
               key={msg.messageId}
               messages={messages}
               handleLiked={this.handleLiked}
-              handleResetliked={this.handleResetliked}
-              handleResetDeleteWarning={this.handleResetDeleteWarning}
+              handleResetWarning={this.handleResetWarning}
               handleDeleteWarning={this.handleDeleteWarning}
               authenticated={authenticated}
               warning={warning}
@@ -105,10 +100,10 @@ const mapStateToProps = (state) => ({
 
 const mapActionsToProps = {
   sendWarningMessage,
-  resetWarningMessage,
   handleUpdateLikes,
   setDeleteWarning,
-  resetDeleteWarning,
+  resetWarning,
+
 };
 
 export default connect(

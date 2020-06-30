@@ -15,7 +15,7 @@ export default makeStyles((theme) => {
       padding: '3rem 1rem 2rem 1rem',
       marginTop: '7rem',
       borderTop: `1px solid ${theme.palette.primary.main}`,
-      background: 'linear-gradient(-45deg, #3dc391 0%, #05382c 100%)'
+      background: 'linear-gradient(-45deg, #164e39 0%, #192f2a 70%, #000000 100%)'
     },
     innerWrapper: {
       display: 'flex',
