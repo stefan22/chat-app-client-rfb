@@ -8,7 +8,7 @@
 		"**/node_modules": true,
 		".firebaserc": true,
 		"firebase.json": true,
-		"**/.gitignore": true,
+		 "**/.gitignore": true,
 		"**/package-lock.json": true
 	}
 }

@@ -1,11 +1,8 @@
 import teal from '@material-ui/core/colors/teal';
 import { makeStyles } from '@material-ui/core/styles';
 
-
-
 export default makeStyles((theme) => {
   return {
-
     footer: {
       position: 'absolute',
       width: '100vw',
@@ -15,7 +12,8 @@ export default makeStyles((theme) => {
       padding: '3rem 1rem 2rem 1rem',
       marginTop: '7rem',
       borderTop: `1px solid ${theme.palette.primary.main}`,
-      background: 'linear-gradient(-45deg, #164e39 0%, #192f2a 70%, #000000 100%)'
+      background:
+        'linear-gradient(-45deg, #164e39 0%, #192f2a 70%, #000000 100%)',
     },
     innerWrapper: {
       display: 'flex',
@@ -28,7 +26,7 @@ export default makeStyles((theme) => {
         display: 'flex',
         justifyContent: 'center',
         flexDirection: 'column',
-        textAlign: 'center'
+        textAlign: 'center',
       },
     },
     footerLinks: {
@@ -38,7 +36,7 @@ export default makeStyles((theme) => {
       flexWrap: 'wrap',
       justifyContent: 'flex-end',
       color: theme.palette.primary.dark,
-      [theme.breakpoints.between('md','lg')]: {
+      [theme.breakpoints.between('md', 'lg')]: {
         margin: '1rem 0',
       },
     },
@@ -54,44 +52,44 @@ export default makeStyles((theme) => {
           maxWidth: 'inherit',
           flex: '0 1 33%',
           '& h2': {
-            textAlign: 'center'
+            textAlign: 'center',
           },
           '& li': {
-            textAlign: 'center'
-          }
+            textAlign: 'center',
+          },
         },
       },
     },
     list: {
       '& h2': {
-        textAlign: 'right'
+        textAlign: 'right',
       },
       '& li': {
-        textAlign: 'right'
-      }
-    }, 
-  
+        textAlign: 'right',
+      },
+    },
+
     logo: {
       alignItems: 'center',
       padding: '1rem 0',
       '& a': {
-        color: theme.palette.primary.contrastText
-      }
-    },    
+        color: theme.palette.primary.contrastText,
+      },
+    },
     footerTitle: {
       color: teal[100],
     },
     footerHeading: {
       color: theme.palette.primary.contrastText,
-      fontWeight:500,
-      textAlign: 'center'
+      fontWeight: 500,
+      textAlign: 'center',
     },
     ul: {
       listStyleType: 'none',
-      textAlign: 'center'
-    },  
+      textAlign: 'center',
+    },
     footerLink: {
       color: theme.palette.common.white,
     },
-
-}});
+  };
+});
