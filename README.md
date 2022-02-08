@@ -1,3 +1,8 @@
+##### 2 repo project especial back/front - both repos work good -  should maybe reunite them (repos) and  update package their dependencies
+
+*** repo Stays ***. 🎆  👍
+
+
 # chat-app-client-rfb.
 ### live to create an account/login/post/like /delete.  &nbsp; :mega: &nbsp; :loudspeaker: &nbsp; :tada:
 ### live @ => https://donpio.tech/repositories/chatapp/
