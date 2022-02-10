@@ -1,19 +1,20 @@
-##### 2 repo project especial back/front - both repos work good -  should maybe reunite them (repos) and  update package their dependencies
+# Chat-app-client-rfb.
 
-*** repo Stays ***. 🎆  👍
-
-
-# chat-app-client-rfb.
-### live to create an account/login/post/like /delete.  &nbsp; :mega: &nbsp; :loudspeaker: &nbsp; :tada:
-### live @ => https://donpio.tech/repositories/chatapp/
-
-react º redux º material-ui º firebase º node º express.            
-ref=> project:google.cloud.functions./chat-app-5c91e
+- A React/Redux client-side application (MUI & GSAP)
+- Backend: Google Cloud Functions, Firestore db
 
 
-- __chat-app__ repo - (gc functions-backend)
-- Or run concurrently by proxy [server/client]
-- React/Redux application and Google Cloud Functions w/Firestore/FireStorage DB, Material-UI...and little bit of GSAP
+
+
+##### :floppy_disk: React, Redux, Material-UI, GSAP, Firebase, Express     
+
+> project:google.cloud.functions./chat-app-5c91e
+
+## Also part of this project:
+
+!(Chat-App)[https://github.com/stefan22/chat-app]
+
+- It can run concurrently: proxy [server/client]
 
 
 
@@ -38,9 +39,7 @@ ref=> project:google.cloud.functions./chat-app-5c91e
 - nav link button to user profile √
 - added account button for logged in user while authenticated. √
 - updated ui site link √
-- user ui page...
-
-> a few changes coming..        
+- user ui page...    
 
       
 other:             
